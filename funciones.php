@@ -4,7 +4,4 @@ $provincias = ["04" =>"Almeria", "11"=>"Cádiz", "14"=>"Córdoba", "18"=>"Granad
 				"41"=>"Sevilla"];
 
 
-function getFechaFormateada($fecha){
-	return date('d/m/Y', strtotime($fecha));
-}
 ?>

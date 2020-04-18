@@ -13,11 +13,6 @@
 	else 
 		Header("Location: form_alta_usuario.php");	
 		
-		// Función para formatear una fecha al formato de Oracle
-	function getFechaFormateada($fecha){
-		$fechaNacimiento = date('d/m/Y', strtotime($fecha));
-		return $fechaNacimiento;
-	}
 ?>
 
 <!DOCTYPE html>
