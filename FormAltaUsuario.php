@@ -8,6 +8,7 @@ include_once("cabecera.php");
 <html lang="es">
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/principal.css" />
   <title>Gestión de Polar Montajes: Usuarios</title>
 </head>
 

@@ -22,6 +22,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/principal.css" />
   <title>Inicio de Sesión: Alta de Usuario realizada con éxito</title>
 </head>
 
