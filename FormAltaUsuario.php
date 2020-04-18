@@ -34,10 +34,10 @@ include_once("cabecera.php");
 				<br>
 					<label>Perfil:</label>
 				<label>
-					<input name="perfil" type="radio" value="ALUMNO"/>
+					<input name="perfil" type="radio" value="Trabajador"/>
 					Trabajador</label>
 				<label>
-					<input name="perfil" type="radio" value="PDI" />
+					<input name="perfil" type="radio" value="Cliente" />
 					Cliente</label>
 					<br>
 						<label for="email">Email:<em>*</em></label>

@@ -1,6 +1,8 @@
 <?php
+	
 	session_start();
 	
+	include_once("funciones.php");
 	
 	// Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
 	if (isset($_SESSION["formulario"])) {
@@ -36,7 +38,7 @@
 		<div id="div_exito">
 		  <h1>Hola <?php echo $nuevoUsuario["nombre"]; ?>, gracias por registrarte</h1>
 			<div id="div_volver">	
-			   Pulsa <a href="form_alta_usuario.php">aquí</a> para volver al formulario de altas de usuarios.
+			   Pulsa <a href="FormAltaUsuario.php">aquí</a> para volver al formulario de altas de usuarios.
 			</div>
 		</div>
 		

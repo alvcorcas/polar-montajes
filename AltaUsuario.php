@@ -11,7 +11,7 @@
 	<h2>Inicio de sesión</h2>
 	</header>
 	
-<form id="id_For2" method="get" action="">
+<form id="altaUsuario" method="get" action="">
 		<fieldset>
 			<legend> Datos Personales </legend>
 			<div>

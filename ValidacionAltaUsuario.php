@@ -14,10 +14,6 @@ if (isset($_SESSION["formulario"])) {
 	$nuevoUsuario["provincia"] = $_REQUEST["provincia"];
 	$nuevoUsuario["calle"] = $_REQUEST["calle"];
 
-
-
-
-
 // Guardar la variable local con los datos del formulario en la sesión.
 	$_SESSION['formulario'] = $nuevoUsuario;
 	
@@ -32,20 +28,20 @@ if (isset($_SESSION["formulario"])) {
 		// Guardo en la sesión los mensajes de error
 		$_SESSION['errores'] = $errores;
 		// Redirigimos al usuario al formulario
-		Header("Location:form_alta_usuario.php");
+		Header("Location:FormAltaUsuario.php");
 
 	// Si NO se han detectado errores
 		// Redirigimos al usuario a la página de éxito
 
 	}else{
 		
-		Header('Location: accion_alta_usuario.php');
+		Header('Location: accionAltaUsuario.php');
 		
 	}
 	
 	// Si se ha llegado a esta página sin haber rellenado el formulario, se redirige al usuario al formulario
 }else{
-	Header("Location:form_alta_usuario.php");
+	Header("Location:FormAltaUsuario.php");
 }	
 
 // Formatear la fecha
