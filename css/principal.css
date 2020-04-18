@@ -1,0 +1,39 @@
+
+body {
+	background-color : #FFF3D4;
+	margin-left:2em;
+}
+
+header{
+	display:block; 
+	color: green; 
+	border-bottom:10px solid brown;
+	
+}
+
+footer{
+	border-top: 10px solid brown;
+	text-align:center;
+	clear: both;
+}
+
+cabecera{
+	
+}
+
+header h1  {
+
+	display: inline;  
+	font-variant: small-caps;  
+	color: brown;
+}
+
+header h2  {
+	font-weight: lighter;
+	font-style: italic;	
+	
+}
+
+.enlaces {
+	float:left;
+	width: 25%;  
