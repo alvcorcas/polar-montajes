@@ -1,5 +1,5 @@
 <?php
-
+include_once("funciones.php");
 include_once("cabecera.php");
 ?>
 
@@ -13,7 +13,7 @@ include_once("cabecera.php");
 </head>
 
 <body>
-	<form id="altaUsuario" method="get" action="accion_alta_usuario.php" novalidate="novalidate">
+	<form id="altaUsuario" method="get" action="accionAltaUsuario.php" novalidate="novalidate">
 			<p>
 				<i>Los campos obligatorios están marcados con </i><em>*</em>
 			</p>
