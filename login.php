@@ -6,7 +6,7 @@
  	include_once("gestionUsuario.php");
 	
 	if (isset($_POST['submit'])){
-		$user = $_POST['user'];
+		$user = $_POST['usuario'];
 		$pass = $_POST['pass'];
 
 		$conexion = crearConexionBD();
@@ -17,7 +17,7 @@
 			$login = "error";	
 		else {
 			$_SESSION['login'] = $user;
-			Header("Location: principal.php");
+			Header("Location: Principal.php");
 		}	
 	}
 
@@ -47,7 +47,7 @@
 	<!-- The HTML login form -->
 	<br></br>	
 	<form action="login.php" method="post">
-		<div><label for="email">Usuario: </label><input type="text" name="user" id="user" /></div>
+		<div><label for="usuario">Usuario: </label><input type="text" name="user" id="user" /></div>
 		<p></p>	
 		<div><label for="pass">Contraseña: </label><input type="password" name="pass" id="pass" /></div>
 		<input type="submit" name="submit" value="submit" />

@@ -11,7 +11,7 @@
 		$_SESSION["errores"] = null;
 	}
 	else 
-		Header("Location: form_alta_usuario.php");	
+		Header("Location: FormAltaUsuario.php");	
 		
 ?>
 

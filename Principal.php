@@ -1,3 +1,18 @@
+<?php
+	session_start();
+	
+	?>
+	
+	<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/principal.css" />
+  <title>Gestión de Polar Montajes: Usuarios</title>
+</head>
+
+<body>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> -->
@@ -36,3 +51,6 @@
  </div>
  </nav>
  	<br><br><br><br>
+ 	
+	</body>
+</html>
