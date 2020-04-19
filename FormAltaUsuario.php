@@ -1,6 +1,28 @@
 <?php
+	session_start();
 include_once("funciones.php");
-include_once("cabecera.php");
+include_once("Cabecera.php");
+
+	
+	if (!isset($_SESSION['formulario'])){
+		// Inicializamos la variable con los datos del formulario asignando valores por defecto a los elementos
+		$formulario['nif'] = "";
+		$formulario['nombre'] = "";
+		$formulario['apellidos'] = "";
+		$formulario['perfil'] = "Trabajador";
+		$formulario['email'] = "";
+		$formulario['calle'] = "";
+		$formulario['provincia'] = "";
+		
+		// Guardamos los datos en la sesión
+		$_SESSION['formulario'] = $formulario;
+	}else{
+		
+		$formulario = $_SESSION['formulario'];
+	}
+	
+		if(isset($_SESSION['errores']))
+		$errores = $_SESSION['errores'];
 ?>
 
 
