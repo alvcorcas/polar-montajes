@@ -26,22 +26,22 @@ include_once("cabecera.php");
 				<br>
 
 				<label for="nombre">Nombre:<em>*</em></label>
-				<input id="nombre" name="nombre" type="text" size="40" required/>
+				<input id="nombre" name="nombre" type="text" size="40" value="<?php echo $formulario['nombre'];?>" required/>
 				<br>
 
 				<label for="apellidos">Apellidos:</label>
-				<input id="apellidos" name="apellidos" type="text" size="80" required/>
+				<input id="apellidos" name="apellidos" type="text" size="80" size="80" value="<?php echo $formulario['apellidos'];?>"/>
 				<br>
 					<label>Perfil:</label>
 				<label>
-					<input name="perfil" type="radio" value="Trabajador"/>
+					<input name="perfil" type="radio" value="Trabajador" <?php if($formulario['perfil']=='Trabajador') echo ' checked ';?>/> 
 					Trabajador</label>
 				<label>
-					<input name="perfil" type="radio" value="Cliente" />
+					<input name="perfil" type="radio" value="Cliente" <?php if($formulario['perfil']=='Cliente') echo ' checked ';?>/> 
 					Cliente</label>
 					<br>
 						<label for="email">Email:<em>*</em></label>
-				<input id="email" name="email"  type="email" placeholder="usuario@dominio.extension" required/><br>
+				<input id="email" name="email"  type="email" placeholder="usuario@dominio.extension"  value="<?php echo $formulario['email'];?>" required/><br>
 
 				<br>
 			</fieldset>
