@@ -1,0 +1,48 @@
+
+body {
+	background-color : #FFF3D4;
+	margin-left:2em;
+}
+header{
+	display:block; 
+	color: green; 
+	
+}
+header h1  {
+
+	display: inline;  
+	font-variant: small-caps;  
+	color: indianred;
+	margin-left:100px;
+	font-size: xx-large;
+}
+
+header h2  {
+	font-weight: lighter;
+	font-style: italic;	
+	font-family: fantasy;
+}
+hr {
+  background-color: red;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: salmon;
+  color:white;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  padding: 12px;
+   margin-left: 40px;
+   color:white;
+}
+

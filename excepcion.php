@@ -15,15 +15,16 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/principal.css" />
+  <link rel="stylesheet" type="text/css" href="css/biblio.css" />
   <title>Gestión de biblioteca: ¡Se ha producido un problema!</title>
 </head>
 <body>	
 	
 <?php	
-	include_once("cabecera.php"); 
+	include_once("Cabecera.php"); 
 ?>	
-<div>
+
+	<div>
 		<h2>Ups!</h2>
 		<?php if ($destino<>"") { ?>
 		<p>Ocurrió un problema durante el procesado de los datos. Pulse <a href="<?php echo $destino ?>">aquí</a> para volver a la página principal.</p>
@@ -35,6 +36,6 @@
 	<div class='excepcion'>	
 		<?php echo "Información relativa al problema: $excepcion;" ?>
 	</div>
-	
+
 </body>
 </html>
