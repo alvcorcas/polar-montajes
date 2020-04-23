@@ -3,7 +3,8 @@
 	session_start();
 	
 	include_once("funciones.php");
-	
+	require_once("gestionBD.php");
+	require_once("gestionUsuario.php");
 	// Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
 	if (isset($_SESSION["formulario"])) {
 		$nuevoUsuario = $_SESSION["formulario"];
@@ -12,6 +13,8 @@
 	}
 	else 
 		Header("Location: FormAltaUsuario.php");	
+	
+			$conexion = crearConexionBD(); 
 		
 ?>
 
@@ -19,7 +22,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/principal.css" />
+  <link rel="stylesheet" type="text/css" href="css/Proyecto.css" />
   <title>Inicio de Sesión: Alta de Usuario realizada con éxito</title>
 </head>
 
@@ -30,13 +33,22 @@
 	?>
 	
 <main>
+				<?php if (alta_usuario($conexion, $nuevoUsuario)) { 
+				$_SESSION['login'] = $nuevoUsuario['user'];
+		?>
 		<div id="div_exito">
 		  <h1>Hola <?php echo $nuevoUsuario["nombre"]; ?>, gracias por registrarte</h1>
 			<div id="div_volver">	
-			   Pulsa <a href="FormAltaUsuario.php">aquí</a> para volver al formulario de altas de usuarios.
+			   Pulsa <a href="login.php">aquí</a> para volver al inicio de sesión.
 			</div>
 		</div>
-		
+		<?php } else { ?>
+				<h1>El usuario ya existe en la base de datos.</h1>
+				<div >	
+					Pulsa <a href="FormAltaUsuario.php">aquí</a> para volver al formulario.
+				</div>
+		<?php } ?>
+
 	<h2>El nuevo usuario ha sido dado de alta con éxito con los siguientes datos:</h2>
 		<ul>
 			<li><?php echo "NIF: " . $nuevoUsuario["nif"]; ?></li>
@@ -52,3 +64,6 @@
 	</main>
 	</body>
 </html>
+<?php
+	cerrarConexionBD($conexion);
+?>

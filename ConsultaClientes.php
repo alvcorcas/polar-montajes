@@ -69,13 +69,20 @@
 include_once ("cabecera.php");
 ?>
 <main>
-	
-	<ul>
-  <li><a href= Principal.php >Polar Montajes:</a></li>
-  <li><a href="#news">Servicio</a></li>
-  <li><a href="#contact">Contact</a></li>
-  <li><a href="#about">About</a></li>
+		<header>
+			<h2>Clientes</h2>
+			<hr	 />
+			</header>
+
+		<ul>
+  <li><a href= "Principal.php">Polar Montajes:</a></li>
+  <li><a href= "Servicios.php">Servicio</a></li>
+  <li><a href="Trabajadores.php">Trabajadores</a></li>
+  <li><a href= "Ayuda.php">Ayuda</a></li>
+  <li><a href="Contacto.php">Contact</a></li>
+  <li><a href="About.php">About</a></li>
 	</ul>
+
 
  <nav>
 

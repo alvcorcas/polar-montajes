@@ -4,53 +4,38 @@
 	?>
 	
 	<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/principal.css" />
-  <title>Gestión de Polar Montajes: Usuarios</title>
+    <link rel="stylesheet" type="text/css" href="css/Proyecto.css" />
+	<script type="text/javascript" src="./js/boton.js"></script>
+  <title>Gestión de Clientes: Pagina Principal</title>
 </head>
 
-<body>
+<body> 
+	<?php
+include_once ("cabecera.php");
+?>
+<main>
+		<header>
+			<h2>¡Bienvenido/a a Polar Montajes!</h2>
+			<hr	 />
+			</header>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> -->
-
-  <span class="navbar-toggler-icon"></span>
- </button>
-<div>
-<ul class="navbar-nav">
-	<li class="nav-item active" >Polar Montajes:
-	  <a class="nav-link" href="principal.php">Polar Montajes: <span class="sr-only">(current)</span></a>
-</li>
-      <li class="nav-item active">
-        <a class="nav-link" href="Servicios.php">Servicios <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Trabajadores.php">Trabajadores</a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="Ayuda.php">Ayuda</a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="Contacto.php">Contacto</a>
-      </li>
-    
-     <li class="nav-item">
-        <a class="nav-link" href="Valoraciones.php">Valoraciones</a>
-      </li>
-    
-     <li class="nav-item">
-        <a class="nav-link" href="Perfil.php">Mi Perfil</a>
-      </li>
-    
-    
-      
-    </ul>
- </div>
- </nav>
- 	<br><br><br><br>
- 	
-	</body>
+		<ul>
+  <li><a href= "Principal.php">Polar Montajes:</a></li>
+  <li><a href= "Servicios.php">Servicio</a></li>
+  <li><a href="Trabajadores.php">Trabajadores</a></li>
+  <li><a href= "Ayuda.php">Ayuda</a></li>
+  <li><a href="Contacto.php">Contact</a></li>
+  <li><a href="About.php">About</a></li>
+	</ul>
+	
+	<footer>
+		<a> Universidad De Sevilla</a> <h4>Derechos Reservados| Miguel Ángel Nieva Arjona y Álvaro Cortés Casado</h4>
+	</footer>
+	
+</main>
+</body>
 </html>

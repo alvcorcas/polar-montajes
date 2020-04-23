@@ -15,7 +15,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/biblio.css" />
+  <link rel="stylesheet" type="text/css" href="css/Proyecto.css" />
   <title>Gestión de biblioteca: ¡Se ha producido un problema!</title>
 </head>
 <body>	
