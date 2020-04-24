@@ -29,9 +29,8 @@
   <title>Polar Montajes: Login</title>
 </head>
 
-<body>
-
-<body> 
+<body style="background-image: url("imagenes/fondologin.jpg");"> 
+	
 	<?php
 include_once ("cabecera.php");
 ?>
@@ -41,14 +40,6 @@ include_once ("cabecera.php");
 			<hr	 />
 			</header>
 
-	<ul>
-  <li><a href= "Principal.php">Polar Montajes:</a></li>
-  <li><a href= "Servicios.php">Servicio</a></li>
-  <li><a href="Trabajadores.php">Trabajadores</a></li>
-  <li><a href= "Ayuda.php">Ayuda</a></li>
-  <li><a href="Contacto.php">Contact</a></li>
-  <li><a href="About.php">About</a></li>
-	</ul>
 
  <nav>
 
@@ -60,14 +51,22 @@ include_once ("cabecera.php");
 	?>
 	<!-- The HTML login form -->
 	<br></br>	
+	<div class="login">
+		<fieldset>
+			<legend>Inicio de Sesión</legend>
+			<br>
+			
 	<form action="login.php" method="post">
-		<div><label for="nif">DNI: </label><input type="text" name="nif" id="nif" /></div>
-		<p></p>	
-		<div><label for="pass">Contraseña: </label><input type="password" name="pass" id="pass" /></div>
-		<input type="submit" name="submit" value="submit" />
+		<div  style="margin-right:100px;"><label for="nif">DNI: </label><input type="text" name="nif" id="nif" style="margin-left:65px;"/></div>
+	<br />
+		<div style="margin-right:100px;"><label for="pass">Contraseña: </label><input type="password" name="pass" id="pass" style="margin-left:20px;"/></div>
+		<br>
+		<input type="submit" name="submit" value="submit"  style="margin-left:2px;"/>
 	</form>
 		
-	<p>¿No estás registrado? <a href="FormAltaUsuario.php">¡Registrate!</a></p>
+	<p style="margin-right:25px;">¿No estás registrado? <a href="FormAltaUsuario.php">¡Registrate!</a></p>
+	</fieldset>
+	</div>
 </main>
 
 

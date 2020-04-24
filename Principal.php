@@ -32,8 +32,10 @@ include_once ("cabecera.php");
   <li><a href="About.php">About</a></li>
 	</ul>
 	
+	
+	w
 	<footer>
-		<a> Universidad De Sevilla</a> <h4>Derechos Reservados| Miguel Ángel Nieva Arjona y Álvaro Cortés Casado</h4>
+		<a> Universidad De Sevilla</a> <h5> Derechos Reservados| Miguel Ángel Nieva Arjona y Álvaro Cortés Casado</h5>
 	</footer>
 	
 </main>
