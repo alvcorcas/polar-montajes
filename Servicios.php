@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$version = 3;
+	$version = 5;
 	?>
 	
 	<!DOCTYPE html>
@@ -53,6 +53,7 @@ include_once ("cabecera.php");
 <img src="imagenes/Reparación.jpg" align="left" width="200" height="250">
 </div>
 <div class ="text">
+	<div class="pp">
 	¿Te quedas muy a menudo sin luz en casa?¿Tienes una instalación muy antigua, con muchos cables viejos? <strong><em>Polar Montajes</em></strong>
 	cuenta con un servicio de reparación que garantizará la seguridad de su instalación durante muchos años más. Consta de tres partes:
 	<p><strong>1-</strong> Previo estudio de la instalación que hay, unas pruebas para saber que cambios llevar a cabo y un presupuesto exacto.</p>
@@ -61,6 +62,7 @@ include_once ("cabecera.php");
 	<p><strong>3-</strong> Pruebas finales de verificación y posterior aprobado por parte del cliente.</p>
 	
 	Contáctanos <a href="Contacto.php">aqui </a>para más información o casos puntuales.
+	</div>
 	<br />
 <br />
 <br />
@@ -80,12 +82,15 @@ include_once ("cabecera.php");
 <img src="imagenes/mantenimiento.jpg" align="left" width="200" height="180">
 	</div>
 	<div class ="text">
+		<br />
+		<div class="pp">
 	¿Crees que tu instalación puede estar deteriorada, o simplemente quires vivir con seguridad sobre la electricidad de su vivienda?</p>
 	<strong><em> Polar Montajes</em></strong> consta con un servicio de mantenimiento en el cuál iremos a su vivienda o local en el cual esté
 	interesado en solicitar este servicio, lo inspeccionaremos de manera detallada corrigiendo fallos o componentes defectuosos, para asegurar
 	la instalación.</br>
 	<br>
 	Contáctanos <a href="Contacto.php">aqui </a>para más información o casos puntuales.
+	</div>
 	<br />
 <br />
 <br />
@@ -106,6 +111,9 @@ include_once ("cabecera.php");
 <img src="imagenes/instalacion.jpg" align="left" width="200" height="180">
 </div>
 <div class = "text">
+	<br />
+	<br />
+	<div class="pp">
 	Y si tienes una construcción nueva y quieres dar de alta luz en ella, no dudes en contratar el servicio de instalación 
 	de <strong><em>Polar Montajes</em></strong>, en el cual hacemos un estudio detallado de la construcción, minimizamos los costes
 	de instalación para que el cliente tenga de forma rapida y segura una buena instlación con gastos mínimos. Así mismo, contamos
@@ -113,7 +121,7 @@ include_once ("cabecera.php");
 	que nos permitirá reducir el tiempo de instalación al mínimo posible. </br>
 	<br>
 	Contáctanos <a href="Contacto.php">aqui </a>para más información o casos puntuales.
-	
+	</div>
 	<br />
 <br />
 </div>

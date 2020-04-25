@@ -1,6 +1,6 @@
 <?php
 	session_start();
-  	
+  	$version = 3;
   	include_once("gestionBD.php");
  	include_once("gestionUsuario.php");
 	
@@ -24,12 +24,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/Proyecto.css" />
+    <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/login.css?v=<?= $version ?>" />
+   
   <title>Polar Montajes: Login</title>
 </head>
 
-<body style="background-image: url("imagenes/fondologin.jpg");"> 
+<body> 
 	
 	<?php
 include_once ("cabecera.php");
