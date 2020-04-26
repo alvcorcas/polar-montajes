@@ -2,7 +2,7 @@
 	
 
 	session_start();
-	$version = 5;
+	$version = 6;
     require_once("gestionBD.php");
     require_once("gestionTrabajadores.php");
     require_once("Paginacion.php");
@@ -70,7 +70,7 @@ include_once ("cabecera.php");
 	</ul>
 	</div>
 	<header>
-			<h2>¡Estos son los diferentes servicios que ofrecemos!</h2>
+			<h2>¡Estos son los profesionales que forman Polar Montajes!</h2>
 			<hr	 />
 			</header>
 	

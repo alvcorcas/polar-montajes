@@ -203,7 +203,7 @@ include_once ("cabecera.php");
 
 						<button id="grabar" name="grabar" type="submit" class="editar_fila">
 
-							<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar modificación">
+							<img src="imagenes/pngocean_opt.png" class="editar_fila" alt="Guardar modificación">
 
 						</button>
 
@@ -211,7 +211,7 @@ include_once ("cabecera.php");
 
 						<button id="editar" name="editar" type="submit" class="editar_fila">
 
-							<img src="imagenes/editar.jpg" class="editar_fila" alt="Editar Cliente">
+							<img src="imagenes/pngocean_opt.png" class="editar_fila" alt="Editar Cliente">
 
 						</button>
 					</td>
@@ -220,7 +220,7 @@ include_once ("cabecera.php");
 						
 					<button id="borrar" name="borrar" type="submit" class="editar_fila">
 
-						<img src="imagenes/1.jpg" class="editar_fila" alt="Borrar libro" >
+						<img src="imagenes/borrar.png" class="editar_fila" alt="Borrar libro" >
 
 					</button>
 				</div>

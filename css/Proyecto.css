@@ -7,6 +7,7 @@ div.error, div.excepcion {
 }
 body {
 	/*background-color : #FFF3D4;*/
+	background-image: url("../imagenes/beige.jpg");
 	margin-left:2em;
 	min-height: 100%;
 	
@@ -39,7 +40,7 @@ header h3  {
 }
 hr {
   background-color: red;
-  margin-right:280px;
+  
 }
 
 ul {
@@ -148,7 +149,7 @@ table{
 table td{
 	
 	text-align:center;
-	background-color:lightyellow;
+
 	width: 300px;
 }
 table tr{
@@ -190,4 +191,9 @@ legend{
   background-color: #8a9597;
 }
 
-
+tr.fila1{
+	background-color:gray;
+}
+tr.fila{
+	background-color:lightyellow;
+}

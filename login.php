@@ -1,6 +1,6 @@
 <?php
 	session_start();
-  	$version = 3;
+  	$version = 6;
   	include_once("gestionBD.php");
  	include_once("gestionUsuario.php");
 	
