@@ -107,11 +107,20 @@ div.text {
 	text-align: left;
 }
 
+div.text1{
+	width: 900px;
+	display:inline-block;
+	text-align:left;
+}
 div.pp{
 	
 	background-color:lightyellow;
 }
-
+div.img1{
+	display: inline-block;
+	 margin-right: 30px;
+	 margin-left:40px;
+}
 div.img{
 	display: inline-block;
 	 margin-right: 30px;
@@ -197,3 +206,4 @@ tr.fila1{
 tr.fila{
 	background-color:lightyellow;
 }
+

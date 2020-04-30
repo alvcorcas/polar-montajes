@@ -3,5 +3,5 @@
 		<br />
 		<br />
 		<br />
-	 <hr width=30%  align="center" size=3 > 	
+	 <hr width=30% size=3 style="margin-right: 274px;"> 	
 </header>
