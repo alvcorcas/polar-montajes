@@ -31,7 +31,7 @@
 	// La consulta que ha de paginarse
 
 	$query = 'SELECT * FROM FACTURA, CLIENTE ' 
-			. 'WHERE FACTURA.DNICLIENTE = $_SESSION['login'] ' ;
+			. 'WHERE FACTURA.DNICLIENTE = $_SESSION[login] ' ;
 
 	
 	// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
