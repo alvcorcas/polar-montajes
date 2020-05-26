@@ -54,6 +54,15 @@ include_once ("Cabecera.php");
 		</div>
 		<?php } else { ?>
 				<h1>El usuario ya existe en la base de datos o no se ha conseguido insertar correctamente.</h1>
+				<ul>
+			<li><?php echo "NIF: " . $nuevoUsuario["nif"]; ?></li>
+			<li><?php echo "Nombre: " . $nuevoUsuario["nombre"]; ?></li>
+			<li><?php echo "Apellidos: " . $nuevoUsuario["apellidos"]; ?></li>
+			<li><?php echo "e-mail: " . $nuevoUsuario["email"]; ?></li>
+			<li><?php echo "Perfil: " . $nuevoUsuario["perfil"]; ?></li>
+			<li><?php echo "Provincia: " . $nuevoUsuario["provincia"]; ?></li>
+			<li><?php echo "Dirección: " . $nuevoUsuario["calle"]; ?></li>
+				</ul>	
 				<div >	
 					Pulsa <a href="FormAltaUsuario.php">aquí</a> para volver al formulario.
 				</div>
@@ -64,5 +73,6 @@ include_once ("Cabecera.php");
 	</body>
 </html>
 <?php
+
 cerrarConexionBD($conexion);
 ?>

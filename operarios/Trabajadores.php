@@ -3,9 +3,9 @@
 
 	session_start();
 	$version = 6;
-    require_once("gestionBD.php");
+    require_once("../gestionBD.php");
     require_once("gestionTrabajadores.php");
-    require_once("Paginacion.php");
+    require_once("../Paginacion.php");
 	
 		if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
@@ -40,7 +40,7 @@
 <head>
 	
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/Proyecto.css?v=<?= $version ?>" />
+  <link rel="stylesheet" type="text/css" href="../css/Proyecto.css?v=<?= $version ?>" />
 <script src="js/boton.js?v=<?= $version ?>"></script>
    
   <title>Polar Montajes: Trabajadores</title>
@@ -51,7 +51,7 @@
 	<div>
 		<div>
 	<?php
-include_once ("cabecera.php");
+include_once ("../cabecera.php");
 ?>
 
 <main>

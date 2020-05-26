@@ -1,32 +1,34 @@
 <?php
 
-function alta_usuario($conexion,$usuario) {
+function alta_usuario($conexion, $usuario) {
 
 	try {
-		$consulta = "CALL INSERTAR_USUARIO(:nif, :nombre,:ape,:perfil,:email, :pass, :dir,:provincia :mun)";
-		$stmt=$conexion->prepare($consulta);
-		$stmt->bindParam(':nif',$usuario["nif"]);
-		$stmt->bindParam(':nombre',$usuario["nombre"]);
-		$stmt->bindParam(':ape',$usuario["apellidos"]);
-		$stmt->bindParam(':dir',$usuario["calle"]);
-		$stmt->bindParam(':mun',$usuario["municipio"]);
-		$stmt->bindParam(':email',$usuario["email"]);
-		$stmt->bindParam(':pass',$usuario["pass"]);
-		$stmt->bindParam(':perfil',$usuario["perfil"]);		
-		$stmt->execute();
+		$consulta = "CALL insertar_usuario(:nif, :nombre, :apellidos, :perfil, :email, :pass, :calle, :provincia, :municipio)";
+		$stmt = $conexion -> prepare($consulta);
+		$stmt -> bindParam(':nif', $usuario["nif"]);
+		$stmt -> bindParam(':nombre', $usuario["nombre"]);
+		$stmt -> bindParam(':apellidos', $usuario["apellidos"]);
+		$stmt -> bindParam(':perfil', $usuario["perfil"]);
+		$stmt -> bindParam(':email', $usuario["email"]);
+		$stmt -> bindParam(':pass', $usuario["pass"]);
+		$stmt -> bindParam(':calle', $usuario["calle"]);
+		$stmt -> bindParam(':provincia', $usuario["provincia"]);
+		$stmt -> bindParam(':municipio', $usuario["municipio"]);
+		$stmt -> execute();
 		
 		return true;
 	} catch(PDOException $e) {
-		$_SESSION['excepcion'] = $e->GetMessage();
+		$_SESSION['excepcion'] = $e -> GetMessage();
+		
 		return false;
-    }
+	}
 }
 
-function consultarUsuario($conexion,$nif,$pass) {
- 	$consulta = "SELECT COUNT(*) AS TOTAL FROM OPERARIO WHERE DNI=:nif AND PASSWORD=:pass";
-	$stmt = $conexion->prepare($consulta);
-	$stmt->bindParam(':nif',$nif);
-	$stmt->bindParam(':pass',$pass);
-	$stmt->execute();
-	return $stmt->fetchColumn();
+function consultarUsuario($conexion, $nif, $pass) {
+	$consulta = "SELECT COUNT(*) AS TOTAL FROM usuario WHERE dniusuario=:nif AND pass=:pass";
+	$stmt = $conexion -> prepare($consulta);
+	$stmt -> bindParam(':nif', $nif);
+	$stmt -> bindParam(':pass', $pass);
+	$stmt -> execute();
+	return $stmt -> fetchColumn();
 }

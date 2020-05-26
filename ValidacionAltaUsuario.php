@@ -52,7 +52,7 @@ function validarDatosUsuario($nuevoUsuario) {
 
 	// Validación del email
 
-	if (filter_var($nuevoUsuario['email'], FILTER_VALIDATE_EMAIL)) {
+	if (!filter_var($nuevoUsuario['email'], FILTER_VALIDATE_EMAIL)) {
 		$errores[] = '<p>Este email no es valido</p>';
 	}
 
@@ -63,13 +63,14 @@ function validarDatosUsuario($nuevoUsuario) {
 	}
 
 	// Validación de la contraseña
-	if ($nuevoUsuario['pass'] == '' || strlen($nuevoUsuario["pass"] < 8)) {
-		$errores[] = '<p>La contraseña no es valida : debe tener al menos 8 caracteres</p>';
-	} else if (!preg_match("/[a-z] + /", $nuevoUsuario["pass"]) || !preg_match("/[A-Z] + /", $nuevoUsuario["pass"]) || !preg_match("/[0-9] + /", $nuevoUsuario["pass"])) {
-		$errores[] = "<p>Contraseña no válida: debe contener mayusculas, minusculas y digitos</p>";
+	if (!isset($nuevoUsuario["pass"]) || strlen($nuevoUsuario["pass"]) < 8) {
+		$errores[] = "<p>Contraseña no válida: debe tener al menos 8 caracteres</p>";
+	} else if (!preg_match("/[a-z]+/", $nuevoUsuario["pass"]) || !preg_match("/[A-Z]+/", $nuevoUsuario["pass"]) || !preg_match("/[0-9]+/", $nuevoUsuario["pass"])) {
+		$errores[] = "<p>Contraseña no válida: debe contener letras mayúsculas y minúsculas y dígitos</p>";
 	} else if ($nuevoUsuario["pass"] != $nuevoUsuario["confirmpass"]) {
-		$errores[] = "<p> La confirmacion de contraseña no coincide con la contraseña</p>";
+		$errores[] = "<p>La confirmación de contraseña no coincide con la contraseña</p>";
 	}
+
 	
 	// Validación de la direccion
 	if ($nuevoUsuario['calle'] == '') {
