@@ -2,9 +2,9 @@
 
 	session_start();
 	$version = 1225;
-    require_once("gestionBD.php");
+    require_once("../gestionBD.php");
     require_once("gestionPedido.php");
-    require_once("Paginacion.php");
+    require_once("../Paginacion.php");
 	
 	// if (isset($_SESSION["libro"])){
 		// $libro = $_SESSION["libro"];

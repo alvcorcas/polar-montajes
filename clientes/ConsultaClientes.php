@@ -55,6 +55,9 @@ $_SESSION["paginacion"] = $paginacion;
 
 $filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
 
+if (isset($_SESSION['CLIENTE']))
+	$cliente = $_SESSION['CLIENTE'];
+
 cerrarConexionBD($conexion);
 ?>
 
@@ -162,43 +165,44 @@ cerrarConexionBD($conexion);
 
 		<form method="post" action="controladorClientes.php">
 
-			<div class="fila_empleado">
+			<div class="fila_cliente">
 
-				<div class="datos_empleado">
+				<div class="datos_cliente">
 
 					<input id="DNICLIENTE" name="DNICLIENTE"
 
 						type="hidden" value="<?php echo $fila["DNICLIENTE"]; ?>"/>
-
-					<input id="NOMBRE" name="NOMBRE"
-
-						type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
-
-					<input id="APELLIDOS" name="APELLIDOS"
-
-						type="hidden" value="<?php echo $fila["APELLIDOS"]; ?>"/>
-						
-						<input id="CORREO" name="CORREO"
-
-						type="hidden" value="<?php echo $fila["CORREO"]; ?>"/>
 						
 				<?php
 
 					if (isset($cliente) and ($cliente["DNICLIENTE"] == $fila["DNICLIENTE"])) { ?>
-
+						
+						<h2>Se están modificando los datos de <?php echo $fila["NOMBRE"] . " " . $fila["APELLIDOS"]; ?></h2>
 
 						<h3><input id="DNICLIENTE" name="DNICLIENTE" type="text" value="<?php echo $fila["DNICLIENTE"]; ?>"/>	</h3>
+						
+						<h3><input id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $fila["TELEFONO"]; ?>"/>	</h3>
+						
+						<h3><input id="CORREO" name="CORREO" type="text" value="<?php echo $fila["CORREO"]; ?>"/>	</h3>
+						
+						<h3><input id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $fila["DIRECCION"]; ?>"/>	</h3>
+						
+						<h3><input id="CODIGOPOSTAL" name="CODIGOPOSTAL" type="text" value="<?php echo $fila["CODIGOPOSTAL"]; ?>"/>	</h3>
 
-						<h4><?php echo $fila["NOMBRE"] . " " . $fila["APELLIDOS"]; ?></h4>
 
 				<?php }	else { ?>
-
 
 						<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
 
 						
-						<div class="fila"><b><td><?php echo $fila["NOMBRE"]?> </td><td><?php echo $fila["APELLIDOS"]?></td><td><?php echo $fila["DNICLIENTE"]?></td><td><?php echo $fila["CORREO"]; ?></td>
-							<td><?php echo $fila["TELEFONO"]?></td><td><?php echo $fila["DIRECCION"]; ?></td> <td><?php echo $fila["CODIGOPOSTAL"]?></td>
+						<div class="fila"><b>
+							<td><?php echo $fila["NOMBRE"]?> </td>
+							<td><?php echo $fila["APELLIDOS"]?></td>
+							<td><?php echo $fila["DNICLIENTE"]?></td>
+							<td><?php echo $fila["CORREO"]; ?></td>
+							<td><?php echo $fila["TELEFONO"]?></td>
+							<td><?php echo $fila["DIRECCION"]; ?></td>
+							<td><?php echo $fila["CODIGOPOSTAL"]?></td>
 						<td>
 				<?php } ?>
 				

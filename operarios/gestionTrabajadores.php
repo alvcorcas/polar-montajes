@@ -7,7 +7,7 @@ function consultarTrabajador($conexion) {
 
 function borrarcliente($conexion,$nif) {
 	try {
-		$stmt=$conexion->prepare('CALL pck_operario.eliminar(:nif)');
+		$stmt=$conexion->prepare('CALL borrar_operario(:nif)');
 		$stmt->bindParam(':nif',$nif);
 		$stmt->execute();
 		return "";
@@ -15,6 +15,7 @@ function borrarcliente($conexion,$nif) {
 		return $e->getMessage();
     }
 }
+
 function modificarcliente($conexion,$nif,$email) {
 	try {
 		$stmt=$conexion->prepare('CALL MODIFICAR_EMAIL(:nif,:email)');

@@ -1,57 +1,60 @@
 <?php
 
-	session_start();
-	$version = 1225;
-    require_once("gestionBD.php");
-    require_once("gestionCliente.php");
-    require_once("Paginacion.php");
-	
-	// if (isset($_SESSION["libro"])){
-		// $libro = $_SESSION["libro"];
-		// unset($_SESSION["libro"]);
-	// }
+session_start();
+$version = 1225;
+require_once ("../gestionBD.php");
+require_once ("gestionCliente.php");
+require_once ("../Paginacion.php");
 
-	// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
-	// ¿Hay una sesión activa?
+// if (isset($_SESSION["libro"])){
+// $libro = $_SESSION["libro"];
+// unset($_SESSION["libro"]);
+// }
 
-	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
-	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
+// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
+// ¿Hay una sesión activa?
 
-	$pag_tam = isset($_GET["PAG_TAM"])? (int)$_GET["PAG_TAM"]: (isset($paginacion)? (int)$paginacion["PAG_TAM"]: 5);
+if (isset($_SESSION["paginacion"]))
+	$paginacion = $_SESSION["paginacion"];
+$pagina_seleccionada = isset($_GET["PAG_NUM"]) ? (int)$_GET["PAG_NUM"] : (isset($paginacion) ? (int)$paginacion["PAG_NUM"] : 1);
 
-	if ($pagina_seleccionada < 1) $pagina_seleccionada = 1;
-	if ($pag_tam < 1) $pag_tam = 5;
+$pag_tam = isset($_GET["PAG_TAM"]) ? (int)$_GET["PAG_TAM"] : (isset($paginacion) ? (int)$paginacion["PAG_TAM"] : 5);
 
-	// Antes de seguir, borramos las variables de sección para no confundirnos más adelante
+if ($pagina_seleccionada < 1)
+	$pagina_seleccionada = 1;
+if ($pag_tam < 1)
+	$pag_tam = 5;
 
-	unset($_SESSION["paginacion"]);
+// Antes de seguir, borramos las variables de sección para no confundirnos más adelante
 
-	$conexion = crearConexionBD();
+unset($_SESSION["paginacion"]);
 
-	// La consulta que ha de paginarse
+$conexion = crearConexionBD();
 
-	$query = 'SELECT * FROM FACTURA, CLIENTE ' 
-			. 'WHERE FACTURA.DNICLIENTE = $_SESSION[login] ' ;
+// La consulta que ha de paginarse
+$dni = $_SESSION['login'];
+$query = "SELECT * FROM FACTURA NATURAL JOIN CLIENTE WHERE DNICLIENTE = '$dni'";
 
-	
-	// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
-	// En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
+// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
+// En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
 
-	$total_registros = total_consulta($conexion,$query);
-	$total_paginas = (int) ($total_registros / $pag_tam);
+$total_registros = total_consulta($conexion, $query);
+$total_paginas = (int)($total_registros / $pag_tam);
 
-	if ($total_registros % $pag_tam > 0) $total_paginas++;
-	if ($pagina_seleccionada > $total_paginas) $pagina_seleccionada = $total_paginas;
+if ($total_registros % $pag_tam > 0)
+	$total_paginas++;
+if ($pagina_seleccionada > $total_paginas)
+	$pagina_seleccionada = $total_paginas;
 
-	// Generamos los valores de sesión para página e intervalo para volver a ella después de una operación
+// Generamos los valores de sesión para página e intervalo para volver a ella después de una operación
 
-	$paginacion["PAG_NUM"] = $pagina_seleccionada;
-	$paginacion["PAG_TAM"] = $pag_tam;
-	$_SESSION["paginacion"] = $paginacion;
-	
-	$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
-	
-    cerrarConexionBD($conexion);
+$paginacion["PAG_NUM"] = $pagina_seleccionada;
+$paginacion["PAG_TAM"] = $pag_tam;
+$_SESSION["paginacion"] = $paginacion;
+
+$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
+
+cerrarConexionBD($conexion);
 ?>
 
 
@@ -68,7 +71,7 @@
 
 <body> 
 	<?php
-include_once ("cabecera.php");
+	include_once ("../cabecera.php");
 ?>
 <main>
 		<header>
@@ -143,7 +146,7 @@ include_once ("cabecera.php");
 	    <th>IVA</th>
 	    <th>Precio Total</th>
 	    <th>DNI del Operario </th>
-	     <th>DNI del Cliente </th>
+	     <th>DNI del Cliente (<?php echo var_dump($dni); ?>)</th>
         </tr>
     </thead>
     <tbody>
@@ -211,7 +214,7 @@ include_once ("cabecera.php");
 
 						<h3><input id="IDFACTURA" name="IDFACTURA" type="text" value="<?php echo $fila["IDFACTURA"]; ?>"/>	</h3>
 
-						<h4><?php echo $fila["FECHAEMISION"]." ".$fila["FECHAVENCIMIENTO"]; ?></h4>
+						<h4><?php echo $fila["FECHAEMISION"] . " " . $fila["FECHAVENCIMIENTO"]; ?></h4>
 
 				<?php }	else { ?>
 
@@ -219,8 +222,8 @@ include_once ("cabecera.php");
 						<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["FECHAEMISION"]; ?>"/>
 
 						
-						<div class="fila"><b><td><?php echo $fila["IDFACTURA"]?> </td><td><?php echo $fila["FECHAEMISION"]?></td><td><?php echo $fila["FECHAVENCIMIENTO"]?></td><td><?php echo $fila["TIPOPAGO"] ;?></td>
-							<td><?php echo $fila["PRECIOSINIVA"]?></td><td><?php echo $fila["IVA"] ;?></td> <td><?php echo $fila["PRECIOCONIVA"]?></td> <td><?php echo $fila["DNIOPERARIO"]?></td><td><?php echo $fila["DNICLIENTE"]?></td>
+						<div class="fila"><b><td><?php echo $fila["IDFACTURA"]?> </td><td><?php echo $fila["FECHAEMISION"]?></td><td><?php echo $fila["FECHAVENCIMIENTO"]?></td><td><?php echo $fila["TIPOPAGO"]; ?></td>
+							<td><?php echo $fila["PRECIOSINIVA"]?></td><td><?php echo $fila["IVA"]; ?></td> <td><?php echo $fila["PRECIOCONIVA"]?></td> <td><?php echo $fila["DNIOPERARIO"]?></td><td><?php echo $fila["DNICLIENTE"]?></td>
 				
 				<?php } ?>
 				
@@ -278,7 +281,7 @@ include_once ("cabecera.php");
 
 						<h3><input id="IDFACTURA" name="IDFACTURA" type="text" value="<?php echo $fila["IDFACTURA"]; ?>"/>	</h3>
 
-						<h4><?php echo $fila["FECHAEMISION"]." ".$fila["FECHAVENCIMIENTO"]; ?></h4>
+						<h4><?php echo $fila["FECHAEMISION"] . " " . $fila["FECHAVENCIMIENTO"]; ?></h4>
 
 				<?php }	else { ?>
 
@@ -286,8 +289,8 @@ include_once ("cabecera.php");
 						<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["FECHAEMISION"]; ?>"/>
 
 						
-						<div class="fila1"><b><td><?php echo $fila["IDFACTURA"]?> </td><td><?php echo $fila["FECHAEMISION"]?></td><td><?php echo $fila["FECHAVENCIMIENTO"]?></td><td><?php echo $fila["TIPOPAGO"] ;?></td>
-							<td><?php echo $fila["PRECIOSINIVA"]?></td><td><?php echo $fila["IVA"] ;?></td> <td><?php echo $fila["PRECIOCONIVA"]?></td> <td><?php echo $fila["DNIOPERARIO"]?></td><td><?php echo $fila["DNICLIENTE"]?></td>
+						<div class="fila1"><b><td><?php echo $fila["IDFACTURA"]?> </td><td><?php echo $fila["FECHAEMISION"]?></td><td><?php echo $fila["FECHAVENCIMIENTO"]?></td><td><?php echo $fila["TIPOPAGO"]; ?></td>
+							<td><?php echo $fila["PRECIOSINIVA"]?></td><td><?php echo $fila["IVA"]; ?></td> <td><?php echo $fila["PRECIOCONIVA"]?></td> <td><?php echo $fila["DNIOPERARIO"]?></td><td><?php echo $fila["DNICLIENTE"]?></td>
 					
 				<?php } ?>
 			

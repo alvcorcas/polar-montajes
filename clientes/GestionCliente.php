@@ -5,9 +5,9 @@ function consultarClientes($conexion) {
 	return $conexion -> query($consulta);
 }
 
-function borrarcliente($conexion, $nif) {
+function borrarcliente($conexion, $DNIcliente) {
 	try {
-		$stmt = $conexion -> prepare('CALL pck_cliente.eliminar(:nif)');
+		$stmt = $conexion -> prepare('CALL borrar_cliente(:nif)');
 		$stmt -> bindParam(':nif', $DNIcliente);
 		$stmt -> execute();
 		return "";
@@ -16,11 +16,14 @@ function borrarcliente($conexion, $nif) {
 	}
 }
 
-function modificarcliente($conexion, $nif) {
+function modificarcliente($conexion, $nif, $telefono, $correo, $direccion, $codigopostal) {
 	try {
-		$stmt = $conexion -> prepare('CALL MODIFICAR_EMAIL(:nif)');
-		$stmt -> bindParam(':nif', $DNIcliente);
-		$stmt -> bindParam(':email', $email);
+		$stmt = $conexion -> prepare('CALL modificar_cliente(:nif, :telefono, :correo, :direccion, :codigopostal)');
+		$stmt -> bindParam(':nif', $nif);
+		$stmt -> bindParam(':telefono', $telefono);
+		$stmt -> bindParam(':correo', $correo);
+		$stmt -> bindParam(':direccion', $direccion);
+		$stmt -> bindParam(':codigopostal', $codigopostal);
 		$stmt -> execute();
 		return "";
 	} catch(PDOException $e) {

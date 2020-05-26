@@ -2,9 +2,9 @@
 
 	session_start();
 	$version = 1225;
-    require_once("gestionBD.php");
-    require_once("gestionCliente.php");
-    require_once("Paginacion.php");
+    require_once("../gestionBD.php");
+    require_once("../clientes/gestionCliente.php");
+    require_once("../Paginacion.php");
 	
 	// if (isset($_SESSION["libro"])){
 		// $libro = $_SESSION["libro"];
@@ -60,14 +60,14 @@
 <head>
   <meta charset="utf-8">
    <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/Proyecto.css?v=<?= $version ?>" />
+  <link rel="stylesheet" type="text/css" href="../css/Proyecto.css?v=<?= $version ?>" />
 <script src="js/boton.js?v=<?= $version ?>"></script>
   <title>Gestión de Clientes: Lista de Facturas</title>
 </head>
 
 <body> 
 	<?php
-include_once ("cabecera.php");
+include_once ("../cabecera.php");
 ?>
 <main>
 		<header>

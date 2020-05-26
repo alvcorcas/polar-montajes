@@ -26,14 +26,14 @@ include_once ("cabecera.php");
 		<ul>
   <li><a href= "Principal.php">Polar Montajes:</a></li>
   <li><a href= "Servicios.php">Servicio</a></li>
-  <li><a href="operarios/ConsultaTrabajadores.php">Trabajadores</a></li>
+  <li><a href="operarios/Trabajadores.php">Trabajadores</a></li>
   <li><a href= "FacturaPorCliente.php">Ayuda</a></li>
   <li><a href="Contacto.php">Contact</a></li>
   <li><a href="About.php">About</a></li>
 	</ul>
 	
+	<a href="clientes/FacturaPorCliente.php" >Prueba</a>
 	
-	w
 	<footer>
 		<a> Universidad De Sevilla</a> <h5> Derechos Reservados| Miguel Ángel Nieva Arjona y Álvaro Cortés Casado</h5>
 	</footer>
