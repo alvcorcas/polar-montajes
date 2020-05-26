@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+require_once ("gestionBD.php");
 // Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
 if (isset($_SESSION["formulario"])) {
 	// Recogemos los datos del formulario
@@ -11,51 +11,38 @@ if (isset($_SESSION["formulario"])) {
 	$nuevoUsuario["perfil"] = $_REQUEST["perfil"];
 	$nuevoUsuario["pass"] = $_REQUEST["pass"];
 	$nuevoUsuario["confirmpass"] = $_REQUEST["confirmpass"];
-	$nuevoUsuario["provincia"] = $_REQUEST["provincia"];
 	$nuevoUsuario["calle"] = $_REQUEST["calle"];
+	$nuevoUsuario["provincia"] = $_REQUEST["provincia"];
+	$nuevoUsuario["municipio"] = $_REQUEST["municipio"];
 
 	// Guardar la variable local con los datos del formulario en la sesión.
 	$_SESSION['formulario'] = $nuevoUsuario;
-
-	// Validamos el formulario en servidor
-	$errores = validarDatosUsuario($nuevoUsuario);
-
-	$_SESSION['errores'] = $errores;
-	print_r($errores);
-
-	// Si se han detectado errores
-	if (count($errores) > 0) {
-		// Guardo en la sesión los mensajes de error
-		$_SESSION['errores'] = $errores;
-		// Redirigimos al usuario al formulario
-		Header("Location:FormAltaUsuario.php");
-
-		// Si NO se han detectado errores
-		// Redirigimos al usuario a la página de éxito
-
-	} else {
-
-		Header('Location: accionAltaUsuario.php');
-
-	}
-
 	// Si se ha llegado a esta página sin haber rellenado el formulario, se redirige al usuario al formulario
 } else {
 	Header("Location:FormAltaUsuario.php");
 }
 
-// Formatear la fecha
-function getFechaFormateada($fecha) {
-	$fechaNacimiento = date('d/m/Y', strtotime($fecha));
 
-	return $fechaNacimiento;
-}
+// Validamos el formulario en servidor
+$conexion = crearConexionBD();
+$errores = validarDatosUsuario($nuevoUsuario);
+cerrarConexionBD($conexion);
+
+// Si se han detectado errores
+if (count($errores) > 0) {
+	// Guardo en la sesión los mensajes de error y volvemos al formulario
+	$_SESSION["errores"] = $errores;
+	Header('Location: formAltaUsuario.php');
+} else
+	// Si todo va bien, vamos a la página de acción (inserción del usuario en la base de datos)
+	Header('Location: accionAltaUsuario.php');
+
 
 function validarDatosUsuario($nuevoUsuario) {
 	// Validación del NIF (opcional)
 
 	if ($nuevoUsuario['nif'] == '') {
-		$errores[] = '<p>El nif no puede estar vacio';
+		$errores[] = '<p>El nif no puede estar vacio</p>';
 	}
 
 	// Validación del Nombre
@@ -66,13 +53,13 @@ function validarDatosUsuario($nuevoUsuario) {
 	// Validación del email
 
 	if (filter_var($nuevoUsuario['email'], FILTER_VALIDATE_EMAIL)) {
-		$errores[] = '<p>Este email no es valido';
+		$errores[] = '<p>Este email no es valido</p>';
 	}
 
 	// Validación del perfil (opcional)
 
 	if ($nuevoUsuario['perfil'] == '') {
-		$errores[] = '<p>El perfil no puede estar vacio';
+		$errores[] = '<p>El perfil no puede estar vacio</p>';
 	}
 
 	// Validación de la contraseña
@@ -83,12 +70,23 @@ function validarDatosUsuario($nuevoUsuario) {
 	} else if ($nuevoUsuario["pass"] != $nuevoUsuario["confirmpass"]) {
 		$errores[] = "<p> La confirmacion de contraseña no coincide con la contraseña</p>";
 	}
-
-	// Validación de la dirección (opcional)
-
+	
+	// Validación de la direccion
 	if ($nuevoUsuario['calle'] == '') {
-		$errores[] = '<p>La direccion no puede estar vacia';
+		$errores[] = '<p>La direccion no puede estar vacia</p>';
 	}
+	
+	// Validación de la provincia
+	if ($nuevoUsuario['provincia'] == '') {
+		$errores[] = '<p>La provincia no puede estar vacia</p>';
+	}
+	
+	// Validación del municipio
+	if ($nuevoUsuario['municipio'] == '') {
+		$errores[] = '<p>El municipio no puede estar vacio</p>';
+	}
+
+	
 
 	return $errores;
 }

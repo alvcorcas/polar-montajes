@@ -1,8 +1,8 @@
 <?php
 	session_start();
 
-	require_once("gestionBD.php");
-	require_once("gestionUsuario.php");
+	require_once("../gestionBD.php");
+	require_once("../gestionUsuario.php");
 	if (isset($_SESSION["Usuario"])){
 		$libro = $_SESSION["Usuario"];
 		unset($_SESSION["Usuario"]);

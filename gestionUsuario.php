@@ -3,7 +3,7 @@
 function alta_usuario($conexion,$usuario) {
 
 	try {
-		$consulta = "CALL INSERTAR_USUARIO(:nif, :nombre, :ape, :dir, :mun,:email, :pass, :perfil)";
+		$consulta = "CALL INSERTAR_USUARIO(:nif, :nombre,:ape,:perfil,:email, :pass, :dir,:provincia :mun)";
 		$stmt=$conexion->prepare($consulta);
 		$stmt->bindParam(':nif',$usuario["nif"]);
 		$stmt->bindParam(':nombre',$usuario["nombre"]);
@@ -12,8 +12,7 @@ function alta_usuario($conexion,$usuario) {
 		$stmt->bindParam(':mun',$usuario["municipio"]);
 		$stmt->bindParam(':email',$usuario["email"]);
 		$stmt->bindParam(':pass',$usuario["pass"]);
-		$stmt->bindParam(':perfil',$usuario["perfil"]);
-		
+		$stmt->bindParam(':perfil',$usuario["perfil"]);		
 		$stmt->execute();
 		
 		return true;

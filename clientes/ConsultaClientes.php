@@ -1,56 +1,61 @@
 <?php
 
-	session_start();
-	$version = 5;
-    require_once("gestionBD.php");
-    require_once("gestionCliente.php");
-    require_once("Paginacion.php");
-	
-	// if (isset($_SESSION["libro"])){
-		// $libro = $_SESSION["libro"];
-		// unset($_SESSION["libro"]);
-	// }
+session_start();
+$version = 5;
+require_once ("../gestionBD.php");
+require_once ("gestionCliente.php");
+require_once ("../Paginacion.php");
 
-	// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
-	// ¿Hay una sesión activa?
+// if (isset($_SESSION["libro"])){
+// $libro = $_SESSION["libro"];
+// unset($_SESSION["libro"]);
+// }
 
-	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
-	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
+// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
+// ¿Hay una sesión activa?
 
-	$pag_tam = isset($_GET["PAG_TAM"])? (int)$_GET["PAG_TAM"]: (isset($paginacion)? (int)$paginacion["PAG_TAM"]: 5);
+if (isset($_SESSION["paginacion"]))
+	$paginacion = $_SESSION["paginacion"];
+$pagina_seleccionada = isset($_GET["PAG_NUM"]) ? (int)$_GET["PAG_NUM"] : (isset($paginacion) ? (int)$paginacion["PAG_NUM"] : 1);
 
-	if ($pagina_seleccionada < 1) $pagina_seleccionada = 1;
-	if ($pag_tam < 1) $pag_tam = 5;
+$pag_tam = isset($_GET["PAG_TAM"]) ? (int)$_GET["PAG_TAM"] : (isset($paginacion) ? (int)$paginacion["PAG_TAM"] : 5);
 
-	// Antes de seguir, borramos las variables de sección para no confundirnos más adelante
+if ($pagina_seleccionada < 1)
+	$pagina_seleccionada = 1;
+if ($pag_tam < 1)
+	$pag_tam = 5;
 
-	unset($_SESSION["paginacion"]);
+// Antes de seguir, borramos las variables de sección para no confundirnos más adelante
 
-	$conexion = crearConexionBD();
+unset($_SESSION["paginacion"]);
 
-	// La consulta que ha de paginarse
+$conexion = crearConexionBD();
 
-	$query = "SELECT * FROM CLIENTE"; //consulta_paginada($conexion, $query, 3, 3);
+// La consulta que ha de paginarse
 
-	
-	// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
-	// En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
+$query = "SELECT * FROM CLIENTE";
+//consulta_paginada($conexion, $query, 3, 3);
 
-	$total_registros = total_consulta($conexion,$query);
-	$total_paginas = (int) ($total_registros / $pag_tam);
+// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
+// En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
 
-	if ($total_registros % $pag_tam > 0) $total_paginas++;
-	if ($pagina_seleccionada > $total_paginas) $pagina_seleccionada = $total_paginas;
+$total_registros = total_consulta($conexion, $query);
+$total_paginas = (int)($total_registros / $pag_tam);
 
-	// Generamos los valores de sesión para página e intervalo para volver a ella después de una operación
+if ($total_registros % $pag_tam > 0)
+	$total_paginas++;
+if ($pagina_seleccionada > $total_paginas)
+	$pagina_seleccionada = $total_paginas;
 
-	$paginacion["PAG_NUM"] = $pagina_seleccionada;
-	$paginacion["PAG_TAM"] = $pag_tam;
-	$_SESSION["paginacion"] = $paginacion;
-	
-	$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
-	
-    cerrarConexionBD($conexion);
+// Generamos los valores de sesión para página e intervalo para volver a ella después de una operación
+
+$paginacion["PAG_NUM"] = $pagina_seleccionada;
+$paginacion["PAG_TAM"] = $pag_tam;
+$_SESSION["paginacion"] = $paginacion;
+
+$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
+
+cerrarConexionBD($conexion);
 ?>
 
 
@@ -60,14 +65,14 @@
 <head>
   <meta charset="utf-8">
    <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/Proyecto.css?v=<?= $version ?>" />
+  <link rel="stylesheet" type="text/css" href="../css/Proyecto.css?v=<?= $version ?>" />
 <script src="js/boton.js?v=<?= $version ?>"></script>
   <title>Gestión de Clientes: Lista de Clientes</title>
 </head>
 
 <body> 
 	<?php
-include_once ("cabecera.php");
+	include_once ("../cabecera.php");
 ?>
 <main>
 		<header>
@@ -184,7 +189,7 @@ include_once ("cabecera.php");
 
 						<h3><input id="DNICLIENTE" name="DNICLIENTE" type="text" value="<?php echo $fila["DNICLIENTE"]; ?>"/>	</h3>
 
-						<h4><?php echo $fila["NOMBRE"]." ".$fila["APELLIDOS"]; ?></h4>
+						<h4><?php echo $fila["NOMBRE"] . " " . $fila["APELLIDOS"]; ?></h4>
 
 				<?php }	else { ?>
 
@@ -192,8 +197,8 @@ include_once ("cabecera.php");
 						<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
 
 						
-						<div class="fila"><b><td><?php echo $fila["NOMBRE"]?> </td><td><?php echo $fila["APELLIDOS"]?></td><td><?php echo $fila["DNICLIENTE"]?></td><td><?php echo $fila["CORREO"] ;?></td>
-							<td><?php echo $fila["TELEFONO"]?></td><td><?php echo $fila["DIRECCION"] ;?></td> <td><?php echo $fila["CODIGOPOSTAL"]?></td>
+						<div class="fila"><b><td><?php echo $fila["NOMBRE"]?> </td><td><?php echo $fila["APELLIDOS"]?></td><td><?php echo $fila["DNICLIENTE"]?></td><td><?php echo $fila["CORREO"]; ?></td>
+							<td><?php echo $fila["TELEFONO"]?></td><td><?php echo $fila["DIRECCION"]; ?></td> <td><?php echo $fila["CODIGOPOSTAL"]?></td>
 						<td>
 				<?php } ?>
 				
