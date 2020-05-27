@@ -115,7 +115,7 @@ cerrarConexionBD($conexion);
 
 						type="hidden" value="<?php echo $fila["DNIOPERARIO"]; ?>"/>
 
- 					 <button type="button" class="collapsible"><?php echo $fila["NOMBRE"] . "  " . $fila["APELLIDOS"]; ?></button>
+ 					 <button type="button" class="collapsible" style="background-color: grey"><?php echo $fila["NOMBRE"] . "  " . $fila["APELLIDOS"]; ?></button>
  						 <div class="content">
   						<p><strong><em>DNI:</em></strong> <?php echo $fila["DNIOPERARIO"]; ?> </p>
   						<?php if (isset($operario) and ($operario["DNIOPERARIO"] == $fila["DNIOPERARIO"])) {?>
@@ -169,7 +169,7 @@ cerrarConexionBD($conexion);
 
 						type="hidden" value="<?php echo $fila["DNIOPERARIO"]; ?>"/>
 
- 					 <button type="button" class="collapsible"><?php echo $fila["NOMBRE"] . "  " . $fila["APELLIDOS"]; ?></button>
+ 					 <button type="button" class="collapsible" style="background-color: lightyellow; color: black"><?php echo $fila["NOMBRE"] . "  " . $fila["APELLIDOS"]; ?></button>
  						 <div class="content">
   						<p><strong><em>DNI:</em></strong> <?php echo $fila["DNIOPERARIO"]; ?> </p>
   						<?php if (isset($operario) and ($operario["DNIOPERARIO"] == $fila["DNIOPERARIO"])) {?>

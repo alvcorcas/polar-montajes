@@ -45,7 +45,7 @@ include_once ("../cabecera.php");
 			</header>
 			
 	
-<button type="button" class="collapsible">¿Cuanto suele tardar Polar Montajes en realizar una reparación?</button>
+<button type="button" class="collapsible" style="background-color: indianred">¿Cuanto suele tardar Polar Montajes en realizar una reparación?</button>
 <div class="content">
   <p>Este servicio depende del tiempo que tarden nuestros profesionales en encontrar el problema. Normalmente se hace una inspección
   	detallada sobre toda la instalación, para encontrar el fallo y poder encontrar otros posibles deterioros o problemas que pudiese
@@ -53,38 +53,38 @@ include_once ("../cabecera.php");
   	<strong>varios días</strong> para estructuras más grandes. La <strong><em> <a href="servicios.php">Reparación</a> </em></strong> nos suele llevar <strong>un día</strong> más, o
   	<strong>varios</strong> para estructuras grandes.</p>
 </div>
-<button type="button" class="collapsible">¿Cuanto suele tardar Polar Montajes en realizar un Mantenimiento?</button>
+<button type="button" class="collapsible" style="background-color: indianred">¿Cuanto suele tardar Polar Montajes en realizar un Mantenimiento?</button>
 <div class="content">
   <p>Este es el servicio que menos tiempo nos conlleva realizar. En este caso, el tiempo estimado para el <strong><em> <a href="servicios.php">Mantenimiento</a> </em></strong>
   	es de <strong>un día</strong>, a lo sumo <strong>dos días</strong> para grandes estructuras. Este servicio consisté de una multitud de 
   	pruebas a los componentes para detectar fallos o en su caso, comprobar que todo va como debe y garantizar la seguridad del cliente.
   </p>
 </div>
-<button type="button" class="collapsible">¿Cuanto suele tardar Polar Montajes en realizar una Instalación Eléctrica?</button>
+<button type="button" class="collapsible" style="background-color: indianred">¿Cuanto suele tardar Polar Montajes en realizar una Instalación Eléctrica?</button>
 <div class="content">
   <p>La <strong><em> <a href="servicios.php">Instalación Eléctrica</a> </em></strong> es el servicio que más tiempo tardamos en realizar, pues es el más complejo y a la vez
   	que largo en cuanto al tiempo que requiere. Normalmente se tarda entre <strong><em>1 y 3 días</em></strong> en recoger todos los detalles de la instalación. Entre <strong><em>1 y 4 días</em></strong>
   	 nos lleva realizar los planos y pasos previos a la instalación. Luego, suele llevarse entre <strong><em>1 y 14 días</em></strong> la instalación y por último otro
   	 <strong><em> par de días</em></strong> en realizar todas las pruebas necesarias.</p>
 </div>
-<button type="button" class="collapsible">¿De qué métodos de pago dispone Polar Montajes?</button>
+<button type="button" class="collapsible" style="background-color: indianred">¿De qué métodos de pago dispone Polar Montajes?</button>
 <div class="content">
   <p><strong><em>Polar Montajes</em></strong> dispone de <Strong>dos</Strong> métodos de pago. Para facturas de menos 500 euros, se podrá
   	abonar tanto en <Strong>metálico</Strong> como por <Strong>transferencia bancaria</Strong>. Para facturas de mas de 500 euros, solo se podrá pagar mediante <Strong>transferencia bancaria</Strong>
 </p>
 </div>
-<button type="button" class="collapsible">¿Cuántos empleados realizan los servicios?</button>
+<button type="button" class="collapsible" style="background-color: indianred">¿Cuántos empleados realizan los servicios?</button>
 <div class="content">
   <p><strong><em>Polar Montajes</em></strong> dispone de empleados que normalmente trabajan en grupos de dos. Para proyectos grandes, trabajan al mismo tiempo entre 4 y 6 empleados.
 </p>
 </div>
-<button type="button" class="collapsible">¿De cuánto tiempo dispongo para pagar mi factura?</button>
+<button type="button" class="collapsible" style="background-color: indianred">¿De cuánto tiempo dispongo para pagar mi factura?</button>
 <div class="content">
   <p><strong><em>Polar Montajes</em></strong>, salvo casos excepcionales como proyectos de muchos miles de euros, deja como máximo un mes
   	desde que se firma ésta para abonar la cantidad establecida.
 </p>
 </div>
-<button type="button" class="collapsible">¿Suelen dejar satisfechos a los clientes?</button>
+<button type="button" class="collapsible" style="background-color: indianred">¿Suelen dejar satisfechos a los clientes?</button>
 <div class="content">
   <p>En <strong><em>Polar Montajes</em></strong> trabajamos a diario para ofrecer el mejor servicio posible a nuestros clientes, pues es la satisfacción de éstos lo que más nos importa.
   	Accede a <a href="valoraciones.php">Valoraciones</a> para leer la opinión de clientes que ya han contratado servicios de nuestra empresa.

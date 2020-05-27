@@ -10,6 +10,7 @@ if (!isset($_SESSION['formulario'])) {
 	$formulario['apellidos'] = "";
 	$formulario['perfil'] = "Trabajador";
 	$formulario['email'] = "";
+	$formulario['telefono'] = "";
 	$formulario['pass'] = "";
 	$formulario['calle'] = "";
 	$formulario['provincia'] = "";
@@ -40,19 +41,11 @@ $conexion = crearConexionBD();
 	</head>
 
 	<body>
-		<!-- <script>
-			// Inicialización de elementos y eventos cuando el documento se carga completamente
-			$(document).ready(function() {
-				$("#altaUsuario").on("submit", function() {
-					return validateForm();
-				});
-
-				$("#pass").on("keyup", function() {
-					// Calculo el color
-					passwordColor();
-				});
-			});
-		</script> -->
+		<script>
+			function prueba(){
+				
+			}
+		</script>
 
 		<?php
 		include_once ("../cabecera.php");
@@ -74,7 +67,7 @@ $conexion = crearConexionBD();
 		<hr	 />
 		</header>
 
-		<form id="altaUsuario" method="post" action="validacionUsuario.php"> <!-- novalidate="novalidate" -->
+		<form id="altaUsuario" method="post" action="validacionUsuario.php">
 		<p>
 		<i>Los campos obligatorios están marcados con </i><em>*</em>
 		</p>
@@ -110,6 +103,9 @@ $conexion = crearConexionBD();
 		<br />
 		<label for="email">Email:<em>*</em></label>
 		<input id="email" name="email"  type="email" placeholder="usuario@dominio.extension"  value="<?php echo $formulario['email']; ?>" required style="margin-left:107px";><br>
+		<br />
+		<label for="telefono">Telefono:<em>*</em></label>
+		<input id="telefono" name="telefono"  type="telefono" placeholder="Numero de telefono" pattern="^[0-9]{9}"  value="<?php echo $formulario['telefono']; ?>" required style="margin-left:107px";><br>
 		<hr	 />
 
 		<h3>Datos de usuario</h3>
@@ -122,22 +118,20 @@ $conexion = crearConexionBD();
 		<input type="password" name="confirmpass" id="confirmpass" placeholder="Confirmación de contraseña" style="margin-left:19px";>
 		<br>
 		<hr	 />
-
+	
+	
+		<p id="client"></p>
 		<h3>Dirección</h3>
 		<hr width=27%  align="left" size=3 >
-
-		<div><label for="calle">Calle/Avda.:<em>*</em></label>
+		<div><label for="calle">Dirección.:<em>*</em></label>
 		<input id="calle" name="calle" type="text" value="<?php echo $formulario['calle']; ?>" required style="margin-left:67px";>
 		</div>
 		<br />
-		<div><label for="provincia">Provincia:<em>*</em></label>
+		<div><label for="Codigo Postal">Provincia:<em>*</em></label>
 		<input id="provincia" name="provincia" type="text" value="<?php echo $formulario['provincia']; ?>" style="margin-left:81px"; required >
 		</div>
-		<br />
-		<div><label for="municipio">Municipio:<em>*</em></label>
-		<input id="municipio" name="municipio" type="text" required value="<?php echo $formulario['municipio']; ?>" style="margin-left:76px";>
-		</div>
 		<hr	 />
+		
 		<div><input type="submit" value="Enviar" /></div>
 		</form>
 		<?php
