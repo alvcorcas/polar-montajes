@@ -159,8 +159,10 @@ cerrarConexionBD($conexion);
 		foreach($filas as $fila) {
 
 	?>
+	<?php
 
-<tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">        
+			if($fila["OCULTO"] == 1) { ?>
+<tr class="fila1" data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">        
 	 <article class="cliente">
 
 		<form method="post" action="controladorClientes.php">
@@ -220,7 +222,72 @@ cerrarConexionBD($conexion);
 					</button>
 				</div>
 				</td>
-				</b></div>
+				</b>
+				<?php }	else { ?>
+					
+					<tr class="fila" data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">        
+	 <article class="cliente">
+
+		<form method="post" action="controladorClientes.php">
+
+			<div class="fila_cliente">
+
+				<div class="datos_cliente">
+
+					<input id="DNICLIENTE" name="DNICLIENTE"
+
+						type="hidden" value="<?php echo $fila["DNICLIENTE"]; ?>"/>
+						
+						<div class="fila"><b>
+							<td><?php echo $fila["NOMBRE"]?> </td>
+							<td><?php echo $fila["APELLIDOS"]?></td>
+							<td><?php echo $fila["DNICLIENTE"]?></td>
+							<?php
+
+					if (isset($cliente) and ($cliente["DNICLIENTE"] == $fila["DNICLIENTE"])) { ?>
+						<td><input id="CORREO" name="CORREO" type="text" value="<?php echo $fila["CORREO"]; ?>"/>	</td>
+						<td><input id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $fila["TELEFONO"]; ?>"/>	</td>
+						<td><input id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $fila["DIRECCION"]; ?>"/>	</td>
+						<td><input id="CODIGOPOSTAL" name="CODIGOPOSTAL" type="text" value="<?php echo $fila["CODIGOPOSTAL"]; ?>"/>	</td>
+						<?php }	else { ?>
+							<td><?php echo $fila["CORREO"]; ?></td>
+							<td><?php echo $fila["TELEFONO"]?></td>
+							<td><?php echo $fila["DIRECCION"]; ?></td>
+							<td><?php echo $fila["CODIGOPOSTAL"]?></td>
+						
+				<?php } ?>
+				<td>
+					<div id="botones_fila">
+
+				<?php if (isset($cliente) and ($cliente["DNICLIENTE"] == $fila["DNICLIENTE"])) { ?>
+
+						<button id="grabar" name="grabar" type="submit" class="editar_fila">
+
+							<img src="../imagenes/pngocean_opt.png" class="editar_fila" alt="Guardar modificación">
+
+						</button>
+
+				<?php } else { ?>
+
+						<button id="editar" name="editar" type="submit" class="editar_fila">
+
+							<img src="../imagenes/pngocean_opt.png" class="editar_fila" alt="Editar Cliente">
+
+						</button>
+					
+				<?php } ?>
+						</td>
+					<td>
+					<button id="borrar" name="borrar" type="submit" class="editar_fila">
+
+						<img src="../imagenes/borrar.png" class="editar_fila" alt="Borrar libro" >
+
+					</button>
+				</div>
+				</td>
+				</b>
+				<?php } ?>	
+				</div>
 
 			</div>
 
