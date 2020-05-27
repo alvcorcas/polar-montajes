@@ -67,13 +67,26 @@ cerrarConexionBD($conexion);
 	<br />
 	<br />
 	<br />
-		<ul>
+<ul>
   <li><a href= "../principal/index.php">Polar Montajes:</a></li>
   <li><a href= "../principal/servicios.php">Servicio</a></li>
-  <li><a href="consultaTrabajadores.php">Trabajadores</a></li>
-  <li><a href= "../principal/ayuda.php">Ayuda</a></li>
-  <li><a href="../principal/contacto.php">Contact</a></li>
-  <li><a href="../principal/about.php">About</a></li>
+  <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
+  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Cliente'){?>
+  	<li><a href="facturasPorCliente.php">Mis facturas</a></li>
+  	<?php }?>
+  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
+  	<li><a href="../facturas/Facturas.php">Facturas</a></li>
+  	<?php }?>
+  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
+  	<li><a href="../clientes/ConsultaClientes.php">Clientes</a></li>
+  	<?php }?>
+  	<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
+  	<li><a href="../pedidos/consultaPedidos.php">Pedidos</a></li>
+  	<?php }?>
+  <li><a href="contacto.php">Contact</a></li>
+  <li><a href="about.php">About</a></li>
+  <li><a href="../usuarios/login.php">Login</a></li>
+  <li><a href="../usuarios/logout.php">Logout</a></li>
 	</ul>
 	</div>
 	<header>
@@ -84,6 +97,11 @@ cerrarConexionBD($conexion);
 		//Para cada operario en la consulta
 		foreach($filas as $fila) {
 	?>
+<?php
+
+				
+				if($fila["OCULTO"] == 1) { ?>
+	<tr class="fila1" data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">        
 
 	<article class="libro">
 
@@ -134,10 +152,65 @@ cerrarConexionBD($conexion);
 
 					</button>
   						 	</div>
-  						</div>
-  						
-
+  						</td>
 				
+				</b>
+					<?php }	else { ?>
+			<tr class="fila" data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">  
+  						<article class="libro">
+
+		<form method="post" action="controladorTrabajadores.php">
+
+			<div class="fila_libro">
+
+				<div class="datos_libro">
+
+					<input id="DNIOPERARIO" name="DNIOPERARIO"
+
+						type="hidden" value="<?php echo $fila["DNIOPERARIO"]; ?>"/>
+
+ 					 <button type="button" class="collapsible"><?php echo $fila["NOMBRE"] . "  " . $fila["APELLIDOS"]; ?></button>
+ 						 <div class="content">
+  						<p><strong><em>DNI:</em></strong> <?php echo $fila["DNIOPERARIO"]; ?> </p>
+  						<?php if (isset($operario) and ($operario["DNIOPERARIO"] == $fila["DNIOPERARIO"])) {?>
+							  <input id="CORREO" name="CORREO" type="text" value="<?php echo $fila["CORREO"]; ?>"/>
+							  <br />
+							  <input id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $fila["TELEFONO"]; ?>"/>
+						  <?php } else {?>
+  						 	<p><strong><em>Correo:</em></strong><?php echo $fila["CORREO"]; ?> </p>
+  						 	<p><strong><em>Teléfono:</em></strong><?php echo $fila["TELEFONO"]; ?></p>
+  						 <?php } ?>
+  						 	<div id="botones_fila" >
+
+				<?php if (isset($operario) and ($operario["DNIOPERARIO"] == $fila["DNIOPERARIO"])) { ?>
+
+						<button id="grabar" name="grabar" type="submit" class="editar_fila">
+
+							<img src="../imagenes/pngocean_opt.png" class="editar_fila" alt="Guardar modificación">
+
+						</button>
+
+				<?php } else { ?>
+
+						<button id="editar" name="editar" type="submit" class="editar_fila">
+
+							<img src="../imagenes/pngocean_opt.png" class="editar_fila" alt="Editar operario">
+
+						</button>
+
+				<?php } ?>
+
+					<button id="borrar" name="borrar" type="submit" class="editar_fila">
+
+						<img src="../imagenes/borrar.png" class="editar_fila" alt="Borrar operario">
+
+					</button>
+  						 	</div>
+  						</td>
+				
+				</b>
+
+				<?php } ?>	
 
 				</div>
 			</div>
