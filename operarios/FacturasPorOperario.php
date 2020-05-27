@@ -3,7 +3,7 @@
 session_start();
 $version = 1225;
 require_once ("../gestionBD.php");
-require_once ("gestionCliente.php");
+require_once ("gestionTrabajador.php");
 require_once ("../paginacion.php");
 
 // if (isset($_SESSION["libro"])){
@@ -33,7 +33,7 @@ $conexion = crearConexionBD();
 
 // La consulta que ha de paginarse
 $dni = $_SESSION['login'];
-$query = "SELECT * FROM FACTURA NATURAL JOIN CLIENTE WHERE DNICLIENTE = '$dni'";
+$query = "SELECT * FROM FACTURA NATURAL JOIN OPERARIO WHERE DNIOPERARIO = '$dni'";
 
 // Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
 // En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
@@ -84,10 +84,10 @@ cerrarConexionBD($conexion);
   <li><a href= "../principal/servicios.php">Servicio</a></li>
   <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
   <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Cliente'){?>
-  	<li><a href="facturasPorCliente.php">Mis facturas</a></li>
+  	<li><a href="../clientes/facturasPorCliente.php">Mis facturas</a></li>
   	<?php }?>
   <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
-  	<li><a href="../facturas/Facturas.php">Facturas</a></li>
+  	<li><a href="FacturasPorOperario.php">Mis facturas</a></li>
   	<?php }?>
   <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
   	<li><a href="../clientes/ConsultaClientes.php">Clientes</a></li>
