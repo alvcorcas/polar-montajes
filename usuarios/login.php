@@ -1,7 +1,7 @@
 <?php
 session_start();
 $version = 6;
-include_once ("gestionBD.php");
+include_once ("../gestionBD.php");
 include_once ("gestionUsuario.php");
 
 if (isset($_POST['submit'])) {
@@ -10,21 +10,23 @@ if (isset($_POST['submit'])) {
 
 	$conexion = crearConexionBD();
 	$num_usuarios = consultarUsuario($conexion, $nif, $pass);
-	cerrarConexionBD($conexion);
+	
 
 	if ($num_usuarios == 0)
 		$login = "error";
 	else {
 		$_SESSION['login'] = $nif;
-		Header("Location: Principal.php");
+		$_SESSION['perfil'] = obtenerPerfil($conexion, $nif);
+		Header("Location: ../principal/index.php");
 	}
+	cerrarConexionBD($conexion);
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="css/login.css?v=<?= $version ?>" />
+		<link rel="stylesheet" type="text/css" href="../css/login.css?v=<?= $version ?>" />
 
 		<title>Polar Montajes: Login</title>
 	</head>
@@ -32,7 +34,7 @@ if (isset($_POST['submit'])) {
 	<body>
 
 		<?php
-		include_once ("cabecera.php");
+		include_once ("../cabecera.php");
 		?>
 		<main>
 			<header>
@@ -74,7 +76,7 @@ if (isset($_POST['submit'])) {
 						</form>
 
 						<p style="margin-right:25px;">
-							¿No estás registrado? <a href="FormAltaUsuario.php">¡Registrate!</a>
+							¿No estás registrado? <a href="formularioAltaUsuario.php">¡Registrate!</a>
 						</p>
 					</fieldset>
 				</div>

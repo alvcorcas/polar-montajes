@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once ("gestionBD.php");
+require_once ("../gestionBD.php");
 // Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
 if (isset($_SESSION["formulario"])) {
 	// Recogemos los datos del formulario
@@ -19,7 +19,7 @@ if (isset($_SESSION["formulario"])) {
 	$_SESSION['formulario'] = $nuevoUsuario;
 	// Si se ha llegado a esta página sin haber rellenado el formulario, se redirige al usuario al formulario
 } else {
-	Header("Location:FormAltaUsuario.php");
+	Header("Location:formularioAltaUsuario.php");
 }
 
 
@@ -32,7 +32,7 @@ cerrarConexionBD($conexion);
 if (count($errores) > 0) {
 	// Guardo en la sesión los mensajes de error y volvemos al formulario
 	$_SESSION["errores"] = $errores;
-	Header('Location: formAltaUsuario.php');
+	Header('Location: formularioAltaUsuario.php');
 } else
 	// Si todo va bien, vamos a la página de acción (inserción del usuario en la base de datos)
 	Header('Location: accionAltaUsuario.php');

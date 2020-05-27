@@ -32,3 +32,12 @@ function consultarUsuario($conexion, $nif, $pass) {
 	$stmt -> execute();
 	return $stmt -> fetchColumn();
 }
+
+function obtenerPerfil($conexion, $nif) {
+	$consulta = "SELECT PERFIL FROM usuario WHERE dniusuario=:nif";
+	$stmt = $conexion -> prepare($consulta);
+	$stmt -> bindParam(':nif', $nif);
+	$stmt -> execute();
+	return $stmt -> fetchColumn();
+}
+

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once ("gestionBD.php");
+require_once ("../gestionBD.php");
 
 if (!isset($_SESSION['formulario'])) {
 	// Inicializamos la variable con los datos del formulario asignando valores por defecto a los elementos
@@ -32,7 +32,7 @@ $conexion = crearConexionBD();
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="css/login.css" />
+		<link rel="stylesheet" type="text/css" href="../css/login.css" />
 		<script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
 		<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript"></script>-->
 		<script src="js/validacion_cliente_alta_usuario.js" type="text/javascript"></script>
@@ -55,7 +55,7 @@ $conexion = crearConexionBD();
 		</script> -->
 
 		<?php
-		include_once ("Cabecera.php");
+		include_once ("../cabecera.php");
 		?>
 
 		<?php
@@ -74,7 +74,7 @@ $conexion = crearConexionBD();
 		<hr	 />
 		</header>
 
-		<form id="altaUsuario" method="post" action="ValidacionAltaUsuario.php"> <!-- novalidate="novalidate" -->
+		<form id="altaUsuario" method="post" action="validacionUsuario.php"> <!-- novalidate="novalidate" -->
 		<p>
 		<i>Los campos obligatorios están marcados con </i><em>*</em>
 		</p>
