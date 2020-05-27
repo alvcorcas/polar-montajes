@@ -6,7 +6,7 @@ session_start();
 		unset($_SESSION["CLIENTE"]);
 		
 		require_once("../gestionBD.php");
-		require_once("GestionCliente.php");
+		require_once("gestionCliente.php");
 		
 		$conexion = crearConexionBD();		
 		$excepcion = borrarcliente($conexion,$cliente["DNICLIENTE"]);

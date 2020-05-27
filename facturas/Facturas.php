@@ -4,7 +4,7 @@
 	$version = 1225;
     require_once("../gestionBD.php");
     require_once("../clientes/gestionCliente.php");
-    require_once("../Paginacion.php");
+    require_once("../paginacion.php");
 	
 	// if (isset($_SESSION["libro"])){
 		// $libro = $_SESSION["libro"];
@@ -76,12 +76,12 @@ include_once ("../cabecera.php");
 			</header>
 
 		<ul>
-  <li><a href= "Principal.php">Polar Montajes:</a></li>
-  <li><a href= "Servicios.php">Servicio</a></li>
-  <li><a href="Trabajadores.php">Trabajadores</a></li>
-  <li><a href= "Ayuda.php">Ayuda</a></li>
-  <li><a href="Contacto.php">Contact</a></li>
-  <li><a href="About.php">About</a></li>
+  <li><a href= "../principal/index.php">Polar Montajes:</a></li>
+  <li><a href= "../principal/servicios.php">Servicio</a></li>
+  <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
+  <li><a href= "../principal/ayuda.php">Ayuda</a></li>
+  <li><a href="../principal/contacto.php">Contact</a></li>
+  <li><a href="../principal/about.php">About</a></li>
 	</ul>
 
 
@@ -102,13 +102,13 @@ include_once ("../cabecera.php");
 
 			<?php }	else { ?>
 
-						<a href="Facturas.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="facturas.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
 			<?php } ?>
 
 		</div>
 		<div style="text-align:center;">
-			<form method="get" action="Facturas.php">
+			<form method="get" action="facturas.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 

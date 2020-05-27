@@ -14,12 +14,12 @@
 		
 		$_SESSION["FACTURA"] = $factura;
 	
-	if (isset($_REQUEST["editar"])) Header("Location: Facturas.php"); 
-		else if (isset($_REQUEST["grabar"])) Header("Location: ModificarCliente.php");
-		else /* if (isset($_REQUEST["borrar"])) */ Header("Location: borrarCliente.php"); 
+	if (isset($_REQUEST["editar"])) Header("Location: facturas.php"); 
+		else if (isset($_REQUEST["grabar"])) Header("Location: modificarCliente.php");
+		else  Header("Location: borrarCliente.php"); 
 	}
 	else 
-		Header("Location: Facturas.php");
+		Header("Location: facturas.php");
 
 ?>
 

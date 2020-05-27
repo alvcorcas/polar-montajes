@@ -6,7 +6,7 @@ if (isset($_SESSION["CLIENTE"])) {
 	unset($_SESSION["CLIENTE"]);
 
 	require_once ("../gestionBD.php");
-	require_once ("GestionCliente.php");
+	require_once ("gestionCliente.php");
 
 	$conexion = crearConexionBD();
 	$excepcion = modificarcliente($conexion, $cliente["DNICLIENTE"], $cliente["TELEFONO"], $cliente["CORREO"], $cliente["DIRECCION"], $cliente["CODIGOPOSTAL"]);
@@ -16,8 +16,8 @@ if (isset($_SESSION["CLIENTE"])) {
 		$_SESSION["destino"] = "consultaClientes.php";
 		Header("Location: excepcion.php");
 	} else
-		Header("Location: ConsultaClientes.php");
+		Header("Location: consultaClientes.php");
 } else
-	Header("Location: ConsultaClientes.php");
+	Header("Location: consultaClientes.php");
 // Se ha tratado de acceder directamente a este PHP
 ?>

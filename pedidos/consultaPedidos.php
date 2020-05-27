@@ -4,7 +4,7 @@
 	$version = 1225;
     require_once("../gestionBD.php");
     require_once("gestionPedido.php");
-    require_once("../Paginacion.php");
+    require_once("../paginacion.php");
 	
 	// if (isset($_SESSION["libro"])){
 		// $libro = $_SESSION["libro"];
@@ -60,14 +60,14 @@
 <head>
   <meta charset="utf-8">
    <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/Proyecto.css?v=<?= $version ?>" />
+  <link rel="stylesheet" type="text/css" href="../css/Proyecto.css?v=<?= $version ?>" />
 <script src="js/boton.js?v=<?= $version ?>"></script>
   <title>Gestión de Clientes: Lista de Facturas</title>
 </head>
 
 <body> 
 	<?php
-include_once ("cabecera.php");
+include_once ("../cabecera.php");
 ?>
 <main>
 		<header>
@@ -76,12 +76,12 @@ include_once ("cabecera.php");
 			</header>
 
 		<ul>
-  <li><a href= "Principal.php">Polar Montajes:</a></li>
-  <li><a href= "Servicios.php">Servicio</a></li>
-  <li><a href="Trabajadores.php">Trabajadores</a></li>
-  <li><a href= "Ayuda.php">Ayuda</a></li>
-  <li><a href="Contacto.php">Contact</a></li>
-  <li><a href="About.php">About</a></li>
+  <li><a href= "../principal/index.php">Polar Montajes:</a></li>
+  <li><a href= "../principal/servicios.php">Servicio</a></li>
+  <li><a href="../operarios/trabajadores.php">Trabajadores</a></li>
+  <li><a href= "../principal/ayuda.php">Ayuda</a></li>
+  <li><a href="../principal/contacto.php">Contact</a></li>
+  <li><a href="../principal/about.php">About</a></li>
 	</ul>
 
 
@@ -102,13 +102,13 @@ include_once ("cabecera.php");
 
 			<?php }	else { ?>
 
-						<a href="Pedidos.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="pedidos.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
 			<?php } ?>
 
 		</div>
 		<div style="text-align:center;">
-			<form method="get" action="Pedidos.php">
+			<form method="get" action="pedidos.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -156,7 +156,7 @@ include_once ("cabecera.php");
 <tr class="fila1" data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">        
 	 <article class="cliente">
 
-		<form method="post" action="ControladorPedidos.php">
+		<form method="post" action="controladorPedidos.php">
 
 			<div class="fila_empleado">
 
@@ -239,7 +239,7 @@ include_once ("cabecera.php");
 						<tr class="fila" data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">        
 	 <article class="cliente">
 
-		<form method="post" action="ControladorPedido.php">
+		<form method="post" action="controladorPedido.php">
 
 			<div class="fila_empleado">
 

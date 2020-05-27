@@ -4,7 +4,7 @@ session_start();
 $version = 5;
 require_once ("../gestionBD.php");
 require_once ("gestionCliente.php");
-require_once ("../Paginacion.php");
+require_once ("../paginacion.php");
 
 // if (isset($_SESSION["libro"])){
 // $libro = $_SESSION["libro"];
@@ -84,12 +84,12 @@ cerrarConexionBD($conexion);
 			</header>
 
 		<ul>
-  <li><a href= "Principal.php">Polar Montajes:</a></li>
-  <li><a href= "Servicios.php">Servicio</a></li>
-  <li><a href="Trabajadores.php">Trabajadores</a></li>
-  <li><a href= "Ayuda.php">Ayuda</a></li>
-  <li><a href="Contacto.php">Contact</a></li>
-  <li><a href="About.php">About</a></li>
+  <li><a href= "../principal/index.php">Polar Montajes:</a></li>
+  <li><a href= "../principal/servicios.php">Servicio</a></li>
+  <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
+  <li><a href= "../principal/ayuda.php">Ayuda</a></li>
+  <li><a href="../principal/contacto.php">Contact</a></li>
+  <li><a href="../principal/about.php">About</a></li>
 	</ul>
 
 
@@ -110,13 +110,13 @@ cerrarConexionBD($conexion);
 
 			<?php }	else { ?>
 
-						<a href="ConsultaClientes.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="consultaClientes.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
 			<?php } ?>
 
 		</div>
 		<div style="text-align:center;">
-			<form method="get" action="ConsultaClientes.php">
+			<form method="get" action="consultaClientes.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -173,46 +173,32 @@ cerrarConexionBD($conexion);
 
 						type="hidden" value="<?php echo $fila["DNICLIENTE"]; ?>"/>
 						
-				<?php
-
-					if (isset($cliente) and ($cliente["DNICLIENTE"] == $fila["DNICLIENTE"])) { ?>
-						
-						<h2>Se están modificando los datos de <?php echo $fila["NOMBRE"] . " " . $fila["APELLIDOS"]; ?></h2>
-
-						<h3><input id="DNICLIENTE" name="DNICLIENTE" type="text" value="<?php echo $fila["DNICLIENTE"]; ?>"/>	</h3>
-						
-						<h3><input id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $fila["TELEFONO"]; ?>"/>	</h3>
-						
-						<h3><input id="CORREO" name="CORREO" type="text" value="<?php echo $fila["CORREO"]; ?>"/>	</h3>
-						
-						<h3><input id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $fila["DIRECCION"]; ?>"/>	</h3>
-						
-						<h3><input id="CODIGOPOSTAL" name="CODIGOPOSTAL" type="text" value="<?php echo $fila["CODIGOPOSTAL"]; ?>"/>	</h3>
-
-
-				<?php }	else { ?>
-
-						<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
-
-						
 						<div class="fila"><b>
 							<td><?php echo $fila["NOMBRE"]?> </td>
 							<td><?php echo $fila["APELLIDOS"]?></td>
 							<td><?php echo $fila["DNICLIENTE"]?></td>
+							<?php
+
+					if (isset($cliente) and ($cliente["DNICLIENTE"] == $fila["DNICLIENTE"])) { ?>
+						<td><input id="CORREO" name="CORREO" type="text" value="<?php echo $fila["CORREO"]; ?>"/>	</td>
+						<td><input id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $fila["TELEFONO"]; ?>"/>	</td>
+						<td><input id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $fila["DIRECCION"]; ?>"/>	</td>
+						<td><input id="CODIGOPOSTAL" name="CODIGOPOSTAL" type="text" value="<?php echo $fila["CODIGOPOSTAL"]; ?>"/>	</td>
+						<?php }	else { ?>
 							<td><?php echo $fila["CORREO"]; ?></td>
 							<td><?php echo $fila["TELEFONO"]?></td>
 							<td><?php echo $fila["DIRECCION"]; ?></td>
 							<td><?php echo $fila["CODIGOPOSTAL"]?></td>
-						<td>
+						
 				<?php } ?>
-				
+				<td>
 					<div id="botones_fila">
 
 				<?php if (isset($cliente) and ($cliente["DNICLIENTE"] == $fila["DNICLIENTE"])) { ?>
 
 						<button id="grabar" name="grabar" type="submit" class="editar_fila">
 
-							<img src="imagenes/pngocean_opt.png" class="editar_fila" alt="Guardar modificación">
+							<img src="../imagenes/pngocean_opt.png" class="editar_fila" alt="Guardar modificación">
 
 						</button>
 
@@ -220,16 +206,16 @@ cerrarConexionBD($conexion);
 
 						<button id="editar" name="editar" type="submit" class="editar_fila">
 
-							<img src="imagenes/pngocean_opt.png" class="editar_fila" alt="Editar Cliente">
+							<img src="../imagenes/pngocean_opt.png" class="editar_fila" alt="Editar Cliente">
 
 						</button>
-					</td>
-					<td>
+					
 				<?php } ?>
-						
+						</td>
+					<td>
 					<button id="borrar" name="borrar" type="submit" class="editar_fila">
 
-						<img src="imagenes/borrar.png" class="editar_fila" alt="Borrar libro" >
+						<img src="../imagenes/borrar.png" class="editar_fila" alt="Borrar libro" >
 
 					</button>
 				</div>

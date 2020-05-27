@@ -1,21 +1,22 @@
 <?php
 session_start();
 
-if (isset($_REQUEST["DNI"])) {
+if (isset($_REQUEST["DNIOPERARIO"])) {
 	$operario["DNIOPERARIO"] = $_REQUEST["DNIOPERARIO"];
-	$operario["NOMBRE"] = $_REQUEST["NOMBRE"];
-	$operario["APELLIDOS"] = $_REQUEST["APELLIDOS"];
-	$operario["TELEFONO"] = $_REQUEST["TELEFONO"];
-	$operario["CORREO"] = $_REQUEST["CORREO"];
-	$_SESSION["OPERARIO"] = $operario;
 
-	if (isset($_REQUEST["editar"]))
-		Header("Location: Trabajadores.php");
-	else if (isset($_REQUEST["grabar"]))
-		Header("Location: ModificarCliente.php");
-	else/* if (isset($_REQUEST["borrar"])) */
-		Header("Location: borrarCliente.php");
+	if (isset($_REQUEST["editar"])) {
+		$_SESSION["OPERARIO"] = $operario;
+		Header("Location: consultaTrabajadores.php");
+	} else if (isset($_REQUEST["grabar"])){
+		$operario["CORREO"] = $_REQUEST["CORREO"];
+		$operario["TELEFONO"] = $_REQUEST["TELEFONO"];
+		$_SESSION["OPERARIO"] = $operario;
+		Header("Location: modificarTrabajador.php");
+	}else {
+		$_SESSION["OPERARIO"] = $operario;
+		Header("Location: borrarTrabajador.php");
+	}
 } else
-	Header("Location: Trabajadores.php");
+	Header("Location: consultaTrabajadores.php");
 ?>
 

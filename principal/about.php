@@ -9,7 +9,7 @@
 <head>
 	
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/Proyecto.css?v=<?= $version ?>" />
+  <link rel="stylesheet" type="text/css" href="../css/Proyecto.css?v=<?= $version ?>" />
 <script src="js/boton.js?v=<?= $version ?>"></script>
    
   <title>Gestión de Clientes: Pagina Principal</title>
@@ -20,7 +20,7 @@
 	<div>
 		<div>
 	<?php
-include_once ("cabecera.php");
+include_once ("../cabecera.php");
 ?>
 
 <main>
@@ -31,12 +31,12 @@ include_once ("cabecera.php");
 	<br />
 	<br />
 		<ul>
-  <li><a href= "Principal.php">Polar Montajes:</a></li>
-  <li><a href= "Servicios.php">Servicio</a></li>
-  <li><a href="Trabajadores.php">Trabajadores</a></li>
-  <li><a href= "Ayuda.php">Ayuda</a></li>
-  <li><a href="Contacto.php">Contact</a></li>
-  <li><a href="About.php">About</a></li>
+  <li><a href= "index.php">Polar Montajes:</a></li>
+  <li><a href= "servicios.php">Servicio</a></li>
+  <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
+  <li><a href= "ayuda.php">Ayuda</a></li>
+  <li><a href="contacto.php">Contact</a></li>
+  <li><a href="about.php">About</a></li>
 	</ul>
 	</div>
 	<header>
@@ -50,19 +50,19 @@ include_once ("cabecera.php");
   <p>Este servicio depende del tiempo que tarden nuestros profesionales en encontrar el problema. Normalmente se hace una inspección
   	detallada sobre toda la instalación, para encontrar el fallo y poder encontrar otros posibles deterioros o problemas que pudiese
   	haber en la instalación. Esta <strong>inspección</strong> suele llevarse a cabo en <strong>un día</strong> para estructuras de tamaño normal y de 
-  	<strong>varios días</strong> para estructuras más grandes. La <strong><em> <a href="Servicios.php">Reparación</a> </em></strong> nos suele llevar <strong>un día</strong> más, o
+  	<strong>varios días</strong> para estructuras más grandes. La <strong><em> <a href="servicios.php">Reparación</a> </em></strong> nos suele llevar <strong>un día</strong> más, o
   	<strong>varios</strong> para estructuras grandes.</p>
 </div>
 <button type="button" class="collapsible">¿Cuanto suele tardar Polar Montajes en realizar un Mantenimiento?</button>
 <div class="content">
-  <p>Este es el servicio que menos tiempo nos conlleva realizar. En este caso, el tiempo estimado para el <strong><em> <a href="Servicios.php">Mantenimiento</a> </em></strong>
+  <p>Este es el servicio que menos tiempo nos conlleva realizar. En este caso, el tiempo estimado para el <strong><em> <a href="servicios.php">Mantenimiento</a> </em></strong>
   	es de <strong>un día</strong>, a lo sumo <strong>dos días</strong> para grandes estructuras. Este servicio consisté de una multitud de 
   	pruebas a los componentes para detectar fallos o en su caso, comprobar que todo va como debe y garantizar la seguridad del cliente.
   </p>
 </div>
 <button type="button" class="collapsible">¿Cuanto suele tardar Polar Montajes en realizar una Instalación Eléctrica?</button>
 <div class="content">
-  <p>La <strong><em> <a href="Servicios.php">Instalación Eléctrica</a> </em></strong> es el servicio que más tiempo tardamos en realizar, pues es el más complejo y a la vez
+  <p>La <strong><em> <a href="servicios.php">Instalación Eléctrica</a> </em></strong> es el servicio que más tiempo tardamos en realizar, pues es el más complejo y a la vez
   	que largo en cuanto al tiempo que requiere. Normalmente se tarda entre <strong><em>1 y 3 días</em></strong> en recoger todos los detalles de la instalación. Entre <strong><em>1 y 4 días</em></strong>
   	 nos lleva realizar los planos y pasos previos a la instalación. Luego, suele llevarse entre <strong><em>1 y 14 días</em></strong> la instalación y por último otro
   	 <strong><em> par de días</em></strong> en realizar todas las pruebas necesarias.</p>
@@ -87,7 +87,7 @@ include_once ("cabecera.php");
 <button type="button" class="collapsible">¿Suelen dejar satisfechos a los clientes?</button>
 <div class="content">
   <p>En <strong><em>Polar Montajes</em></strong> trabajamos a diario para ofrecer el mejor servicio posible a nuestros clientes, pues es la satisfacción de éstos lo que más nos importa.
-  	Accede a <a href="Valoraciones.php">Valoraciones</a> para leer la opinión de clientes que ya han contratado servicios de nuestra empresa.
+  	Accede a <a href="valoraciones.php">Valoraciones</a> para leer la opinión de clientes que ya han contratado servicios de nuestra empresa.
 </p>
 </div>
 <script>

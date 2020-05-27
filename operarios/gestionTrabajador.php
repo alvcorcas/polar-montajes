@@ -5,7 +5,7 @@ function consultarTrabajador($conexion) {
 	return $conexion->query($consulta);
 }
 
-function borrarcliente($conexion,$nif) {
+function borraroperario($conexion,$nif) {
 	try {
 		$stmt=$conexion->prepare('CALL borrar_operario(:nif)');
 		$stmt->bindParam(':nif',$nif);
@@ -16,11 +16,12 @@ function borrarcliente($conexion,$nif) {
     }
 }
 
-function modificarcliente($conexion,$nif,$email) {
+function modificaroperario($conexion, $nif, $correo, $telefono) {
 	try {
-		$stmt=$conexion->prepare('CALL MODIFICAR_EMAIL(:nif,:email)');
+		$stmt=$conexion->prepare('CALL modificar_operario(:nif, :correo, :telefono)');
 		$stmt->bindParam(':nif',$nif);
-		$stmt->bindParam(':email',$email);
+		$stmt->bindParam(':correo',$correo);
+		$stmt->bindParam(':telefono',$telefono);
 		$stmt->execute();
 		return "";
 	} catch(PDOException $e) {

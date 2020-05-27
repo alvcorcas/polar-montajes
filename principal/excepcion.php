@@ -15,15 +15,15 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/Proyecto.css" />
+  <link rel="stylesheet" type="text/css" href="../css/Proyecto.css" />
   <title>Gestión de biblioteca: ¡Se ha producido un problema!</title>
 </head>
 <body>	
 	
 <?php	
-	include_once("Cabecera.php"); 
+	include_once("../cabecera.php"); 
 ?>	
-
+	<?php echo var_dump($_SESSION["OPERARIO"]);?>
 	<div>
 		<h2>Ups!</h2>
 		<?php if ($destino<>"") { ?>

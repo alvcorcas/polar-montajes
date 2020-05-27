@@ -4,7 +4,7 @@ session_start();
 $version = 1225;
 require_once ("../gestionBD.php");
 require_once ("gestionCliente.php");
-require_once ("../Paginacion.php");
+require_once ("../paginacion.php");
 
 // if (isset($_SESSION["libro"])){
 // $libro = $_SESSION["libro"];
@@ -64,7 +64,7 @@ cerrarConexionBD($conexion);
 <head>
   <meta charset="utf-8">
    <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/Proyecto.css?v=<?= $version ?>" />
+  <link rel="stylesheet" type="text/css" href="../css/Proyecto.css?v=<?= $version ?>" />
 <script src="js/boton.js?v=<?= $version ?>"></script>
   <title>Gestión de Clientes: Lista de Facturas</title>
 </head>
@@ -80,12 +80,12 @@ cerrarConexionBD($conexion);
 			</header>
 
 		<ul>
-  <li><a href= "Principal.php">Polar Montajes:</a></li>
-  <li><a href= "Servicios.php">Servicio</a></li>
-  <li><a href="Trabajadores.php">Trabajadores</a></li>
-  <li><a href= "Ayuda.php">Ayuda</a></li>
-  <li><a href="Contacto.php">Contact</a></li>
-  <li><a href="About.php">About</a></li>
+  <li><a href= "../principal/index.php">Polar Montajes:</a></li>
+  <li><a href= "../principal/Servicios.php">Servicio</a></li>
+  <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
+  <li><a href= "../principal/Ayuda.php">Ayuda</a></li>
+  <li><a href="../principal/Contacto.php">Contact</a></li>
+  <li><a href="../principal/About.php">About</a></li>
 	</ul>
 
 
@@ -146,7 +146,7 @@ cerrarConexionBD($conexion);
 	    <th>IVA</th>
 	    <th>Precio Total</th>
 	    <th>DNI del Operario </th>
-	     <th>DNI del Cliente (<?php echo var_dump($dni); ?>)</th>
+	     <th>DNI del Cliente</th>
         </tr>
     </thead>
     <tbody>

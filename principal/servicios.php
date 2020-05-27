@@ -9,7 +9,7 @@
 <head>
 	
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/Proyecto.css?v=<?= $version ?>" />
+  <link rel="stylesheet" type="text/css" href="../css/Proyecto.css?v=<?= $version ?>" />
 <script src="js/boton.js?v=<?= $version ?>"></script>
    
   <title>Gestión de Clientes: Pagina Principal</title>
@@ -20,7 +20,7 @@
 	<div>
 		<div>
 	<?php
-include_once ("cabecera.php");
+include_once ("../cabecera.php");
 ?>
 
 <main>
@@ -31,12 +31,12 @@ include_once ("cabecera.php");
 	<br />
 	<br />
 		<ul>
-  <li><a href= "Principal.php">Polar Montajes:</a></li>
-  <li><a href= "Servicios.php">Servicio</a></li>
-  <li><a href="Trabajadores.php">Trabajadores</a></li>
-  <li><a href= "Ayuda.php">Ayuda</a></li>
-  <li><a href="Contacto.php">Contact</a></li>
-  <li><a href="About.php">About</a></li>
+  <li><a href= "index.php">Polar Montajes:</a></li>
+  <li><a href= "servicios.php">Servicio</a></li>
+  <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
+  <li><a href= "ayuda.php">Ayuda</a></li>
+  <li><a href="contacto.php">Contact</a></li>
+  <li><a href="about.php">About</a></li>
 	</ul>
 	</div>
 	<header>
@@ -50,7 +50,7 @@ include_once ("cabecera.php");
 	<hr width=28%  align="center" size=3>
    <div>
    <div class="img" >
-<img src="imagenes/Reparación.jpg" align="left" width="200" height="250">
+<img src="../imagenes/Reparación.jpg" align="left" width="200" height="250">
 </div>
 <div class ="text">
 	<div class="pp">
@@ -61,7 +61,7 @@ include_once ("cabecera.php");
 	mejores previamente acordadas.</p>
 	<p><strong>3-</strong> Pruebas finales de verificación y posterior aprobado por parte del cliente.</p>
 	
-	Contáctanos <a href="Contacto.php">aqui </a>para más información o casos puntuales.
+	Contáctanos <a href="contacto.php">aqui </a>para más información o casos puntuales.
 	</div>
 	<br />
 <br />
@@ -79,7 +79,7 @@ include_once ("cabecera.php");
 	<hr width=28%  align="center" size=3>
    <div>
    <div class="img" >
-<img src="imagenes/mantenimiento.jpg" align="left" width="200" height="180">
+<img src="../imagenes/mantenimiento.jpg" align="left" width="200" height="180">
 	</div>
 	<div class ="text">
 		<br />
@@ -89,7 +89,7 @@ include_once ("cabecera.php");
 	interesado en solicitar este servicio, lo inspeccionaremos de manera detallada corrigiendo fallos o componentes defectuosos, para asegurar
 	la instalación.</br>
 	<br>
-	Contáctanos <a href="Contacto.php">aqui </a>para más información o casos puntuales.
+	Contáctanos <a href="contacto.php">aqui </a>para más información o casos puntuales.
 	</div>
 	<br />
 <br />
@@ -108,7 +108,7 @@ include_once ("cabecera.php");
 	<hr width=28%  align="center" size=3>
 	 <div>
 	 	<div class="img">
-<img src="imagenes/instalacion.jpg" align="left" width="200" height="180">
+<img src="../imagenes/instalacion.jpg" align="left" width="200" height="180">
 </div>
 <div class = "text">
 	<br />
@@ -120,7 +120,7 @@ include_once ("cabecera.php");
 	con empleados experimentados en estos tipos de instalación y con una gran variedad de material de trabajo, tecnológicamente modernizado
 	que nos permitirá reducir el tiempo de instalación al mínimo posible. </br>
 	<br>
-	Contáctanos <a href="Contacto.php">aqui </a>para más información o casos puntuales.
+	Contáctanos <a href="contacto.php">aqui </a>para más información o casos puntuales.
 	</div>
 	<br />
 <br />
