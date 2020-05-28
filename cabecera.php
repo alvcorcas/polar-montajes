@@ -1,5 +1,5 @@
 <header>
-		<img src="../imagenes/Logo.png" alt="Instalaciones Eléctricas" ><h1>Instalaciones Eléctricas</h1>
+		<a href="../principal/index.php"><img src="../imagenes/Logo.png" alt="Instalaciones Eléctricas" ></a> <h1>Instalaciones Eléctricas</h1>
 		<br />
 		<br />
 		<br />
