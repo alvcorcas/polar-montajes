@@ -12,9 +12,8 @@ if (!isset($_SESSION['formulario'])) {
 	$formulario['email'] = "";
 	$formulario['telefono'] = "";
 	$formulario['pass'] = "";
-	$formulario['calle'] = "";
-	$formulario['provincia'] = "";
-	$formulario['municipio'] = "";
+	$formulario['direccion'] = "";
+	$formulario['codigoPostal'] = "";
 	// Guardamos los datos en la sesión
 	$_SESSION['formulario'] = $formulario;
 } else {
@@ -42,9 +41,6 @@ $conexion = crearConexionBD();
 
 	<body>
 		<script>
-			function prueba(){
-				
-			}
 		</script>
 
 		<?php
@@ -121,14 +117,14 @@ $conexion = crearConexionBD();
 	
 	
 		<p id="client"></p>
-		<h3>Dirección</h3>
+		<h3>Dirección (rellenar unicamente si eres cliente)</h3>
 		<hr width=27%  align="left" size=3 >
-		<div><label for="calle">Dirección.:<em>*</em></label>
-		<input id="calle" name="calle" type="text" value="<?php echo $formulario['calle']; ?>" required style="margin-left:67px";>
+		<div><label for="direccion">Dirección:</label>
+		<input id="direccion" name="direccion" type="text" value="<?php echo $formulario['direccion']; ?>"  style="margin-left:67px";>
 		</div>
 		<br />
-		<div><label for="Codigo Postal">Provincia:<em>*</em></label>
-		<input id="provincia" name="provincia" type="text" value="<?php echo $formulario['provincia']; ?>" style="margin-left:81px"; required >
+		<div><label for="codigoPostal">Codigo postal:</label>
+		<input id="codigoPostal" name="codigoPostal" type="text" pattern="^41[0-9]{3}"value="<?php echo $formulario['codigoPostal']; ?>" style="margin-left:81px";  >
 		</div>
 		<hr	 />
 		

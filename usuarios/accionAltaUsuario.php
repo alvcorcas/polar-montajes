@@ -43,8 +43,11 @@ include_once ("../cabecera.php");
 			<li><?php echo " Apellidos: " . $nuevoUsuario["apellidos"]; ?></li>
 			<li><?php echo " e-mail: " . $nuevoUsuario["email"]; ?></li>
 			<li><?php echo " Perfil: " . $nuevoUsuario["perfil"]; ?></li>
-			<li><?php echo " Provincia: " . $nuevoUsuario["provincia"]; ?></li>
-			<li><?php echo " Dirección: " . $nuevoUsuario["calle"]; ?></li>
+			li><?php echo " Telefono: " . $nuevoUsuario["telefono"]; ?></li>
+			<?php if ($nuevoUsuario["perfil"] == 'Cliente') {?>
+			<li><?php echo " Codigo Postal: " . $nuevoUsuario["codigoPostal"]; ?></li>
+			<li><?php echo " Dirección: " . $nuevoUsuario["direccion"]; ?></li>
+			<?php } ?>
 			
 				
 				</ul>		
@@ -53,15 +56,18 @@ include_once ("../cabecera.php");
 			</div>
 		</div>
 		<?php } else { ?>
-				<h1>El usuario ya existe en la base de datos o no se ha conseguido insertar correctamente.</h1>
+				<h1>El usuario ya existe en la base de datos</h1>
 				<ul>
 			<li><?php echo "NIF: " . $nuevoUsuario["nif"]; ?></li>
 			<li><?php echo " Nombre: " . $nuevoUsuario["nombre"]; ?></li>
 			<li><?php echo " Apellidos: " . $nuevoUsuario["apellidos"]; ?></li>
 			<li><?php echo " e-mail: " . $nuevoUsuario["email"]; ?></li>
 			<li><?php echo " Perfil: " . $nuevoUsuario["perfil"]; ?></li>
-			<li><?php echo " Provincia: " . $nuevoUsuario["provincia"]; ?></li>
-			<li><?php echo " Dirección: " . $nuevoUsuario["calle"]; ?></li>
+			<li><?php echo " Telefono: " . $nuevoUsuario["telefono"]; ?></li>
+			<?php if ($nuevoUsuario["perfil"] == 'Cliente') {?>
+			<li><?php echo " Codigo Postal: " . $nuevoUsuario["codigoPostal"]; ?></li>
+			<li><?php echo " Dirección: " . $nuevoUsuario["direccion"]; ?></li>
+			<?php } ?>
 				</ul>	
 				<div >	
 					Pulsa <a href="formularioAltaUsuario.php">aquí</a> para volver al formulario.

@@ -11,9 +11,9 @@ if (isset($_SESSION["formulario"])) {
 	$nuevoUsuario["perfil"] = $_REQUEST["perfil"];
 	$nuevoUsuario["pass"] = $_REQUEST["pass"];
 	$nuevoUsuario["confirmpass"] = $_REQUEST["confirmpass"];
-	$nuevoUsuario["calle"] = $_REQUEST["calle"];
-	$nuevoUsuario["provincia"] = $_REQUEST["provincia"];
-	$nuevoUsuario["municipio"] = $_REQUEST["municipio"];
+	$nuevoUsuario["telefono"] = $_REQUEST["telefono"];
+	$nuevoUsuario["direccion"] = $_REQUEST["direccion"];
+	$nuevoUsuario["codigoPostal"] = $_REQUEST["codigoPostal"];
 
 	// Guardar la variable local con los datos del formulario en la sesión.
 	$_SESSION['formulario'] = $nuevoUsuario;
@@ -21,7 +21,6 @@ if (isset($_SESSION["formulario"])) {
 } else {
 	Header("Location:formularioAltaUsuario.php");
 }
-
 
 // Validamos el formulario en servidor
 $conexion = crearConexionBD();
@@ -55,6 +54,13 @@ function validarDatosUsuario($nuevoUsuario) {
 	if (!filter_var($nuevoUsuario['email'], FILTER_VALIDATE_EMAIL)) {
 		$errores[] = '<p>Este email no es valido</p>';
 	}
+	
+	// Validación del email
+
+	if ($nuevoUsuario['telefono'] == '') {
+		$errores[] = '<p>Este email no es valido</p>';
+	}
+	
 
 	// Validación del perfil (opcional)
 
@@ -73,21 +79,14 @@ function validarDatosUsuario($nuevoUsuario) {
 
 	
 	// Validación de la direccion
-	if ($nuevoUsuario['calle'] == '') {
-		$errores[] = '<p>La direccion no puede estar vacia</p>';
+	if ($nuevoUsuario['perfil'] == 'Cliente' and $nuevoUsuario['direccion'] == '') {
+		$errores[] = '<p>La direccion no puede estar vacia si eres ciente</p>';
 	}
 	
-	// Validación de la provincia
-	if ($nuevoUsuario['provincia'] == '') {
-		$errores[] = '<p>La provincia no puede estar vacia</p>';
+	// Validación del codigoPostal
+	if ($nuevoUsuario['perfil'] == 'Cliente' and $nuevoUsuario['codigoPostal'] == '') {
+		$errores[] = '<p>El codigo postal no puede estar vacio si eres cliente</p>';
 	}
-	
-	// Validación del municipio
-	if ($nuevoUsuario['municipio'] == '') {
-		$errores[] = '<p>El municipio no puede estar vacio</p>';
-	}
-
-	
 
 	return $errores;
 }
