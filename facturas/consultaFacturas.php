@@ -3,7 +3,7 @@
 session_start();
 $version = 1225;
 require_once ("../gestionBD.php");
-require_once ("../facturas/gestionFacturas.php");
+require_once ("gestionFactura.php");
 require_once ("../paginacion.php");
 
 // if (isset($_SESSION["libro"])){
