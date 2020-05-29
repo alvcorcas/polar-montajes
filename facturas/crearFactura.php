@@ -22,7 +22,6 @@ if (isset($_SESSION["errores"])) {
 	$errores = $_SESSION["errores"];
 	unset($_SESSION["errores"]);
 }
-$conexion = crearConexionBD();
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +39,7 @@ $conexion = crearConexionBD();
 		?>
 
 		<header>
-			<h2>Facturas</h2>
+			<h2>Creación de facturas: En primer lugar rellene el formulario de la izquierda y haga click en enviar factura. A continuación, añada tantas filas en la tabla como  lineas tenga la factura y seleccione en enviar lineasFactura</h2>
 			<hr	 />
 		</header>
 
@@ -155,7 +154,6 @@ $conexion = crearConexionBD();
 				<input id="dniCliente" name="dniCliente" type="text" placeholder="12345678X" pattern="^[0-9]{8}[A-Z]" title="Ocho dígitos seguidos de una letra mayúscula">
 				<br>
 				<br>
-				<input type="submit" value="Enviar">
 			</form>
 
 			<table id="myTable" style="width:100%" >
@@ -169,13 +167,27 @@ $conexion = crearConexionBD();
 					<button type="button" onclick="addRow()">
 						Añadir fila
 					</button></th>
+					<th>
+					<button type="button" onclick="deleteRow()">
+						Eliminar fila
+					</button></th>
 				</tr>
-
 			</table>
-
 		</div>
-
+		
+		<button onclick="enviarLineasFactura()">
+			Enviar lineas de factura
+		</button>
+		<button onclick="enviarFactura()">
+			Enviar factura
+		</button>
+		
 		<script>
+			function enviarFactura(){
+				
+			}
+			
+			
 			function addRow() {
 				var table = document.getElementById("myTable");
 				var row = table.insertRow();
@@ -184,18 +196,45 @@ $conexion = crearConexionBD();
 				var cell3 = row.insertCell(2);
 				var cell4 = row.insertCell(3);
 				var cell5 = row.insertCell(4);
-				var cell6 = row.insertCell(5);
-				cell1.innerHTML = '<input type="text" name="cantidad" pattern="[0-9]"/>';
-				cell2.innerHTML = '<input type="text" name="descripcion"/>';
-				cell3.innerHTML = '<input type="text" name="precioUnitario" pattern="[0-9]"/>';
-				cell4.innerHTML = '<input type="text" name="precioTotal" pattern="[0-9]"/>';
-				cell5.innerHTML = '<input type="text" name="OID_S" placeholder="Id numérico" pattern="[0-9]"/>';
-				cell6.innerHTML = '<input type="button" value="Borrar fila" onclick="deleteRow(this)">';
+				var i = table.rows.length - 1;
+				cell1.innerHTML = '<input type="text" id="cantidad' + i + '" name="cantidad" pattern="[0-9]"/>';
+				cell2.innerHTML = '<input type="text" id="descripcion' + i + '" name="descripcion"/>';
+				cell3.innerHTML = '<input type="text" id="precioUnitario' + i + '" name="precioUnitario" pattern="[0-9]"/>';
+				cell4.innerHTML = '<input type="text" id="precioTotal' + i + '" name="precioTotal" pattern="[0-9]"/>';
+				cell5.innerHTML = '<input type="text" id="oid_s' + i + '" name="OID_S" placeholder="Id numérico" pattern="[0-9]"/>';
 			}
 
-			function deleteRow(r) {
-				var i = r.parentNode.parentNode.rowIndex;
-				document.getElementById("myTable").deleteRow(i);
+			function deleteRow() {
+				var tabla = document.getElementById("myTable");
+				var nFilas = tabla.rows.length;
+				if (nFilas != 1)
+					tabla.deleteRow(nFilas - 1);
+			}
+
+			function enviarLineasFactura() {
+				var cantidad;
+				var descripcion;
+				var precioUnitario;
+				var precioTotal;
+				var oid_s;
+				var numeroFilas = document.getElementById("myTable").rows.length;
+				for (var i = 1; i < numeroFilas; i++) {
+					cantidad = document.getElementById("cantidad" + i).value;
+					// alert(cantidad);
+					descripcion = document.getElementById("descripcion" + i).value;
+					// alert(descripcion);
+					precioUnitario = document.getElementById("precioUnitario" + i).value;
+					// alert(precioUnitario);
+					precioTotal = document.getElementById("precioTotal" + i).value;
+					// alert(precioTotal);
+					oid_s = document.getElementById("oid_s" + i).value;
+					// alert(oid_s);
+					alert("crearLineaFactura.php?cantidad=" + cantidad + "&descripcion=" + descripcion + "&precioUnitario=" + precioUnitario + "&precioTotal=" + precioTotal + "&oid_s=" + oid_s);
+					var xhttp;
+					xhttp = new XMLHttpRequest();
+					xhttp.open("GET", "crearLineaFactura.php?cantidad=" + cantidad + "&descripcion=" + descripcion + "&precioUnitario=" + precioUnitario + "&precioTotal=" + precioTotal + "&oid_s=" + oid_s, true);
+					xhttp.send();
+				}
 			}
 		</script>
 
