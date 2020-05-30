@@ -1,26 +1,26 @@
 <?php
 session_start();
 
-if (isset($_REQUEST["IDFACTURA"])) {
-	$factura["IDFACTURA"] = $_REQUEST["IDFACTURA"];
+if (isset($_POST["IDFACTURA"])) {
+	$factura["IDFACTURA"] = $_POST["IDFACTURA"];
 
-	if (isset($_REQUEST["editar"])) {
-		$_SESSION['FACTURA'] = $factura;
+	if (isset($_POST["editar"])) {
+		$_SESSION['factura'] = $factura;
 		Header("Location: consultaFacturas.php");
-	} else if (isset($_REQUEST["grabar"])) {
-		$factura["PRECIOSINIVA"] = $_REQUEST["PRECIOSINIVA"];
-		$factura["IVA"] = $_REQUEST["IVA"];
-		$factura["PRECIOCONIVA"] = $_REQUEST["PRECIOCONIVA"];
-		$factura["TIPOPAGO"] = $_REQUEST["TIPOPAGO"];
-		$factura["FECHAVENCIMIENTO"] = $_REQUEST["FECHAVENCIMIENTO"];
-		$factura["FECHAEMISION"] = $_REQUEST["FECHAEMISION"];
-		$factura["PAGADA"] = $_REQUEST["PAGADA"];
-		$factura["DNIOPERARIO"] = $_REQUEST["DNIOPERARIO"];
-		$factura["DNICLIENTE"] = $_REQUEST["DNICLIENTE"];
-		$_SESSION["FACTURA"] = $factura;
+	} else if (isset($_POST["grabar"])) {
+		$factura["PRECIOSINIVA"] = $_POST["PRECIOSINIVA"];
+		$factura["IVA"] = $_POST["IVA"];
+		$factura["PRECIOCONIVA"] = $_POST["PRECIOCONIVA"];
+		$factura["TIPOPAGO"] = $_POST["TIPOPAGO"];
+		$factura["FECHAVENCIMIENTO"] = $_POST["FECHAVENCIMIENTO"];
+		$factura["FECHAEMISION"] = $_POST["FECHAEMISION"];
+		$factura["PAGADA"] = $_POST["PAGADA"];
+		$factura["DNIOPERARIO"] = $_POST["DNIOPERARIO"];
+		$factura["DNICLIENTE"] = $_POST["DNICLIENTE"];
+		$_SESSION["factura"] = $factura;
 		Header("Location: modificarFactura.php");
 	} else {
-		$_SESSION["FACTURA"] = $factura;
+		$_SESSION["factura"] = $factura;
 		Header("Location: facturaPagada.php");
 	}
 } else

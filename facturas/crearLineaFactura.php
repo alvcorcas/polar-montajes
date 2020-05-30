@@ -2,12 +2,13 @@
 session_start();
 require_once ("../gestionBD.php");
 $conexion = crearConexionBD();
-$consulta = "CALL insertar_lineafactura(:cantidad, :descripcion, :precioUnitario, :precioTotal, 'AB00010', :oid_s)";
+$consulta = "CALL insertar_lineafactura(:cantidad, :descripcion, :precioUnitario, :precioTotal, :idfactura, :oid_s)";
 $stmt = $conexion -> prepare($consulta);
 $stmt -> bindParam(':cantidad', $_GET['cantidad']);
 $stmt -> bindParam(':descripcion', $_GET['descripcion']);
 $stmt -> bindParam(':precioUnitario', $_GET['precioUnitario']);
 $stmt -> bindParam(':precioTotal', $_GET['precioTotal']);
+$stmt -> bindParam(':idFactura', $_SESSION['factura']);
 $stmt -> bindParam(':oid_s', $_GET['oid_s']);
 $stmt -> execute();
 cerrarConexionBD($conexion);
@@ -28,6 +29,7 @@ cerrarConexionBD($conexion);
 		<?php echo $_GET['precioUnitario'];?><br />
 		<?php echo $_GET['precioTotal'];?><br />
 		<?php echo $_GET['oid_s'];?><br />
+		<?php echo $_SESSION['factura']; ?>
 		
 		
 		

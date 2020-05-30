@@ -6,11 +6,6 @@ require_once ("../gestionBD.php");
 require_once ("gestionFactura.php");
 require_once ("../paginacion.php");
 
-// if (isset($_SESSION["libro"])){
-// $libro = $_SESSION["libro"];
-// unset($_SESSION["libro"]);
-// }
-
 // ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
 // ¿Hay una sesión activa?
 
@@ -132,7 +127,7 @@ cerrarConexionBD($conexion);
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
-			A continuación de muestran
+			A continuación se muestran
 
 			<input id="PAG_TAM" name="PAG_TAM" type="number"
 
@@ -164,7 +159,7 @@ cerrarConexionBD($conexion);
 	    <th>DNI del Operario </th>
 	     <th>DNI del Cliente </th>
 	    <th> Modificar</th>
-	    <th> Borrar</th>
+	    <th> Pagada</th>
         </tr>
     </thead>
     <tbody>

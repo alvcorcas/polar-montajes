@@ -3,5 +3,6 @@
 		<br />
 		<br />
 		<br />
+		<?php echo $_SESSION['login']; ?>
 	 <hr width=30% size=3 style="margin-right: 274px;"> 	
 </header>

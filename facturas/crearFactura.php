@@ -1,27 +1,9 @@
 <?php
 session_start();
-
 require_once ("../gestionBD.php");
 
-if (!isset($_SESSION['formulario'])) {
-	// Inicializamos la variable con los datos del formulario asignando valores por defecto a los elementos
-	$formulario['idfactura'] = "";
-	$formulario[''] = "";
-	$formulario['idfactura'] = "";
-	$formulario['idfactura'] = "";
-	$formulario['idfactura'] = "";
-
-	// Guardamos los datos en la sesión
-	$_SESSION['formulario'] = $formulario;
-} else {
-	//Si ya se ha completado el formulario
-	$formulario = $_SESSION['formulario'];
-}
-
-if (isset($_SESSION["errores"])) {
-	$errores = $_SESSION["errores"];
-	unset($_SESSION["errores"]);
-}
+if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
+	header("Location: ../index.php")
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +11,8 @@ if (isset($_SESSION["errores"])) {
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="../css/Proyecto.css" />
-		<script src="js/boton.js?v=<?= $version ?>"></script>
+		<script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script>
+		<script src="../js/boton.js?v=<?= $version ?>"></script>
 		<title>Creación de una factura</title>
 	</head>
 
@@ -39,7 +22,10 @@ if (isset($_SESSION["errores"])) {
 		?>
 
 		<header>
-			<h2>Creación de facturas: En primer lugar rellene el formulario de la izquierda y haga click en enviar factura. A continuación, añada tantas filas en la tabla como  lineas tenga la factura y seleccione en enviar lineasFactura</h2>
+			<h2>Creación de facturas</h2>
+			<p>
+				En primer lugar rellene el formulario de la izquierda y haga click en enviar factura. A continuación, añada tantas filas en la tabla como lineas tenga la factura y seleccione en enviar tras haberlas rellenado
+			</p>
 			<hr	 />
 		</header>
 
@@ -94,66 +80,62 @@ if (isset($_SESSION["errores"])) {
 		<br>
 		<div style="display: flex">
 			<!-- Formulario a rellenar con el contenido de la factura creada -->
-			<form id="nuevaFactura" method="post" action="controladorFacturas.php">
+
+			<form id="nuevaFactura" action="funcionCrearFactura.php" method="post">
 				<label>ID de la factura: </label>
 				<br>
 				<br>
-				<input type="text" name="IDFACTURA" placeholder="LLxxxx(2 mayús, 4 números)" pattern="[A-Z]{2}[0-9]{4}"/>
+				<input type="text" id="idFactura" name="idFactura" placeholder="LLxxxx(2 mayús, 4 números)" pattern="[A-Z]{2}[0-9]{5}" required/>
 				<br>
 				<br>
 				<label>Fecha de emision: </label>
 				<br>
 				<br>
-				<input type="date" name="FECHAEMISION" placeholder="dd/mm/aaaa"/>
+				<input type="date" id="fechaEmision" name="fechaEmision" placeholder="dd/mm/aaaa" required/>
 				<br>
 				<br>
 				<label>Fecha de vencimiento: </label>
 				<br>
 				<br>
-				<input type="date" name="FECHAVENCIMIENTO" placeholder="dd/mm/aaaa"/>
+				<input type="date" id="fechaVencimiento" name="fechaVencimiento" placeholder="dd/mm/aaaa" required/>
 				<br>
 				<br>
 				<label>Tipo de Pago: </label>
 				<br>
 				<br>
-				<input type="radio" name="tipoPago"/>
+				<input type="radio" id="transferenciaBancaria" name="tipoPago" value="Transferencia Bancaria" checked="true"/>
 				<label>Transferencia Bancaria</label>
 				<br>
 				<br>
-				<input type="radio" name="tipoPago"/>
+				<input type="radio" id="metalico" value="Metálico" name="tipoPago"/>
 				<label>Metálico</label>
 				<br>
 				<br>
 				<label>Precio sin IVA:</label>
 				<br>
 				<br>
-				<input type="text" name="precioSinIva" placeholder="Precio en euros" pattern="[0-9]"/>
+				<input type="text" id="precioSinIva" value="100" name="precioSinIva" placeholder="Precio en euros" pattern="[0-9]+" required/>
 				<br>
 				<br>
 				<label>IVA:</label>
 				<br>
 				<br>
-				<input type="text" name="iva" placeholder="0,21 x Precio Sin IVA" pattern="[0-9]"/>
+				<input type="text" id="iva" name="iva" value="21" placeholder="0,21 x Precio Sin IVA" pattern="[0-9]+" required/>
 				<br>
 				<br>
 				<label>Precio con IVA:</label>
 				<br>
 				<br>
-				<input type="text" name="precioConIva" placeholder="1,21 x Precio Sin IVA" pattern="[0-9]"/>
-				<br>
-				<br>
-				<label>DNI del Operario</label>
-				<br>
-				<br>
-				<input id="dniOperario" name="dniOperario" type="text" placeholder="12345678X" pattern="^[0-9]{8}[A-Z]" title="Ocho dígitos seguidos de una letra mayúscula">
+				<input type="text" id="precioConIva" value="121" name="precioConIva" placeholder="1,21 x Precio Sin IVA" pattern="[0-9]+" required/>
 				<br>
 				<br>
 				<label>DNI del cliente</label>
 				<br>
 				<br>
-				<input id="dniCliente" name="dniCliente" type="text" placeholder="12345678X" pattern="^[0-9]{8}[A-Z]" title="Ocho dígitos seguidos de una letra mayúscula">
+				<input id="dniCliente" value="00000001B" name="dniCliente" type="text" placeholder="12345678X" pattern="^[0-9]{8}[A-Z]" title="Ocho dígitos seguidos de una letra mayúscula" required>
 				<br>
 				<br>
+				<input type="submit" id="facturacion" value="Enviar factura" onclick="enviarFactura()">
 			</form>
 
 			<table id="myTable" style="width:100%" >
@@ -174,20 +156,57 @@ if (isset($_SESSION["errores"])) {
 				</tr>
 			</table>
 		</div>
-		
-		<button onclick="enviarLineasFactura()">
-			Enviar lineas de factura
+
+		<button id="lineasFacturacion" onclick="enviarLineasFactura()" style="visibility: hidden">
+			Insertar lineas de la factura
 		</button>
-		<button onclick="enviarFactura()">
-			Enviar factura
-		</button>
-		
+
+		<div id="test">
+
+		</div>
+
 		<script>
-			function enviarFactura(){
+			function enviarFactura() {
+				document.getElementById("facturacion").style.visibility = 'hidden';
+				document.getElementById("lineasFacturacion").style.visibility = 'visible';
 				
+				$("#nuevaFactura").submit(function(e) {
+
+					e.preventDefault();
+					// avoid to execute the actual submit of the form.
+
+					var form = $(this);
+					var url = form.attr('action');
+
+					$.ajax({
+						type : "POST",
+						url : url,
+						data : form.serialize(), // serializes the form's elements.
+						success : function(data) {
+							alert(data);
+						}
+					});
+
+				});
+				
+				
+				
+				// $.post("funcionCrearFactura.php", {
+				// idFactura : $('#idFactura').val(),
+				// fechaEmision : $('#fechaEmision').val(),
+				// fechaVencimiento : $('#fechaVencimiento').val(),
+				// tipoPago : $("input[type=radio]:checked").val(),
+				// precioSinIva : $('#precioSinIva').val(),
+				// iva : $('#iva').val(),
+				// precioConIva : $('#precioConIva').val(),
+				// dniCliente : $('#dniCliente').val()
+				// }, function(data, success) {
+				// $('#test').html(data);
+				//
+				// });
+
 			}
-			
-			
+
 			function addRow() {
 				var table = document.getElementById("myTable");
 				var row = table.insertRow();
@@ -212,29 +231,22 @@ if (isset($_SESSION["errores"])) {
 			}
 
 			function enviarLineasFactura() {
-				var cantidad;
-				var descripcion;
-				var precioUnitario;
-				var precioTotal;
-				var oid_s;
 				var numeroFilas = document.getElementById("myTable").rows.length;
-				for (var i = 1; i < numeroFilas; i++) {
-					cantidad = document.getElementById("cantidad" + i).value;
-					// alert(cantidad);
-					descripcion = document.getElementById("descripcion" + i).value;
-					// alert(descripcion);
-					precioUnitario = document.getElementById("precioUnitario" + i).value;
-					// alert(precioUnitario);
-					precioTotal = document.getElementById("precioTotal" + i).value;
-					// alert(precioTotal);
-					oid_s = document.getElementById("oid_s" + i).value;
-					// alert(oid_s);
-					alert("crearLineaFactura.php?cantidad=" + cantidad + "&descripcion=" + descripcion + "&precioUnitario=" + precioUnitario + "&precioTotal=" + precioTotal + "&oid_s=" + oid_s);
-					var xhttp;
-					xhttp = new XMLHttpRequest();
-					xhttp.open("GET", "crearLineaFactura.php?cantidad=" + cantidad + "&descripcion=" + descripcion + "&precioUnitario=" + precioUnitario + "&precioTotal=" + precioTotal + "&oid_s=" + oid_s, true);
-					xhttp.send();
+				var i;
+				for ( i = 1; i < numeroFilas; i++) {
+					$.post("crearLineaFactura.php", {
+						cantidad : $("#cantidad" + i).val(),
+						descripcion : $("#descripcion" + i).val(),
+						precioUnitario : $("#precioUnitario" + i).val(),
+						precioTotal : $("#precioTotal" + i).val(),
+						oid_s : $("#oid_s" + i).val()
+					}, function(data) {
+						alert("Linea correctamente insertada");
+
+					});
 				}
+				if(numeroFilas >1)
+					document.getElementById("lineasFacturacion").style.visibility = 'hidden';
 			}
 		</script>
 
