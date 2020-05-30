@@ -3,16 +3,10 @@
 session_start();
 $version = 5;
 require_once ("../gestionBD.php");
-require_once ("gestionCliente.php");
+require_once ("GestionServicio.php");
 require_once ("../paginacion.php");
 
-// if (isset($_SESSION["libro"])){
-// $libro = $_SESSION["libro"];
-// unset($_SESSION["libro"]);
-// }
 
-// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
-// ¿Hay una sesión activa?
 
 if (isset($_SESSION["paginacion"]))
 	$paginacion = $_SESSION["paginacion"];
@@ -25,19 +19,15 @@ if ($pagina_seleccionada < 1)
 if ($pag_tam < 1)
 	$pag_tam = 5;
 
-// Antes de seguir, borramos las variables de sección para no confundirnos más adelante
 
 unset($_SESSION["paginacion"]);
 
 $conexion = crearConexionBD();
 
-// La consulta que ha de paginarse
 
-$query = "SELECT * FROM CLIENTE";
-//consulta_paginada($conexion, $query, 3, 3);
+$query = "SELECT * FROM SERVICIO";
 
-// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
-// En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
+
 
 $total_registros = total_consulta($conexion, $query);
 $total_paginas = (int)($total_registros / $pag_tam);
@@ -55,8 +45,8 @@ $_SESSION["paginacion"] = $paginacion;
 
 $filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
 
-if (isset($_SESSION['CLIENTE']))
-	$cliente = $_SESSION['CLIENTE'];
+if (isset($_SESSION['TRABAJADOR']))
+	$servicio = $_SESSION['TRABAJADOR'];
 
 cerrarConexionBD($conexion);
 ?>
@@ -79,7 +69,7 @@ cerrarConexionBD($conexion);
 ?>
 <main>
 		<header>
-			<h2>Clientes</h2>
+			<h2>Servicios hasta la fecha de hoy</h2>
 			<hr	 />
 			</header>
 
@@ -87,11 +77,8 @@ cerrarConexionBD($conexion);
   <li><a href= "../principal/index.php">Polar Montajes:</a></li>
   <li><a href= "../principal/servicios.php">Servicios</a></li>
   <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
-     <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
-  	<li><a href="../facturas/consultaFacturas.php">Facturas</a></li>
-  	<?php } ?>
   <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Cliente'){?>
-  	<li><a href="facturasPorCliente.php">Mis facturas</a></li>
+  	<li><a href="../clientes/facturasPorCliente.php">Mis facturas</a></li>
   	<?php }?>
   <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
   	<li><a href="../opeparios/FacturasPorOperario.php">Facturas</a></li>
@@ -102,13 +89,12 @@ cerrarConexionBD($conexion);
   	<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
   	<li><a href="../pedidos/consultaPedidos.php">Pedidos</a></li>
   	<?php }?>
-  <li><a href="../Servicios/Servicios.php">Servicios Prestados</a></li>
+  <li><a href="Servicios.php">Servicios Prestados</a></li>
   <li><a href="../principal/contacto.php">Contact</a></li>
   <li><a href="../principal/about.php">About</a></li>
   <li><a href="../usuarios/login.php">Login</a></li>
   <li><a href="../usuarios/logout.php">Logout</a></li>
 	</ul>
-
 
  <nav>
  	<br />
@@ -127,13 +113,13 @@ cerrarConexionBD($conexion);
 
 			<?php }	else { ?>
 
-						<a href="consultaClientes.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="Servicios.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
 			<?php } ?>
 
 		</div>
 		<div style="text-align:center;">
-			<form method="get" action="consultaClientes.php">
+			<form method="get" action="Servicios.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -159,15 +145,14 @@ cerrarConexionBD($conexion);
 	<div >
 		<table class="table table-condensed" style="border-collapse:collapse; text-align: center;">
 			<thead>
-        <tr><th>Nombre</th>
-            <th>Apellidos</th>
-	    <th>DNI</th>
-	    <th>Correo</th>
-	    <th>Telefono</th>
-	    <th>Dirección</th>
-	    <th>Codigo Postal</th>
-	    <th> Modificar</th>
-	    <th> Borrar</th>
+        <tr><th>ID</th>
+            <th>Tiempo Empleado (horas)</th>
+	    <th>Fecha de Inicio</th>
+	    <th>Fecha Fin</th>
+	    <th>Servicio Prestado</th>
+	    <th>Tercera Empresa</th>
+	    <th>DNI del Cliente</th>
+	    
         </tr>
     </thead>
     <tbody>
@@ -177,8 +162,11 @@ cerrarConexionBD($conexion);
 
 	?>
 	
+	
+					
+					
 					<tr class=
-					<?php if ($fila['PAGADA'] == 1) { ?>
+					<?php if ($fila['FECHAFIN'] != null) { ?>
 						"fila1" 
 					<?php } else { ?>
 						"fila"
@@ -186,63 +174,43 @@ cerrarConexionBD($conexion);
 					data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">        
 	 <article class="cliente">
 
-		<form method="post" action="controladorClientes.php">
+		<form method="post" action="ControladorServicios.php">
 
 			<div class="fila_cliente">
 
 				<div class="datos_cliente">
 
-					<input id="DNICLIENTE" name="DNICLIENTE"
+					<input id="OID_S" name="OID_S"
 
-						type="hidden" value="<?php echo $fila["DNICLIENTE"]; ?>"/>
+						type="hidden" value="<?php echo $fila["OID_S"]; ?>"/>
 						
 						<div><b>
-							<td><?php echo $fila["NOMBRE"]?> </td>
-							<td><?php echo $fila["APELLIDOS"]?></td>
-							<td><?php echo $fila["DNICLIENTE"]?></td>
+							<td><?php echo $fila["OID_S"]?> </td>
+							<td><?php echo $fila["TIEMPOEMPLEADO"]?></td>
+							<td><?php echo $fila["FECHAINICIO"]?></td>
 							<?php
 
-					if (isset($cliente) and ($cliente["DNICLIENTE"] == $fila["DNICLIENTE"])) { ?>
-						<td><input id="CORREO" name="CORREO" type="text" value="<?php echo $fila["CORREO"]; ?>"/>	</td>
-						<td><input id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $fila["TELEFONO"]; ?>"/>	</td>
-						<td><input id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $fila["DIRECCION"]; ?>"/>	</td>
-						<td><input id="CODIGOPOSTAL" name="CODIGOPOSTAL" type="text" value="<?php echo $fila["CODIGOPOSTAL"]; ?>"/>	</td>
+					if (isset($servicio) and ($servicio["OID_S"] == $fila["OID_S"])) { ?>
+						
+						<td><input id="FECHAFIN" name="FECHAFIN" type="text" value="<?php echo $fila["FECHAFIN"]; ?>"/>	</td>
+						<td><input id="TIPOSERVICIO" name="TIPOSERVICIO" type="text" value="<?php echo $fila["TIPOSERVICIO"]; ?>"/>	</td>
+						<td><input id="TERCERAEMPRESA" name="TERCERAEMPRESA" type="text" value="<?php if($fila["TERCERAEMPRESA"] == 1){ ?>
+		     Sí;
+		<?php } else { ?>
+			 No;
+		<?php } ?>"/></td>
+						<td><input id="DNICLIENTE" name="DNICLIENTE" type="text" value="<?php echo $fila["DNICLIENTE"]; ?>"/>	</td>
 						<?php }	else { ?>
-							<td><?php echo $fila["CORREO"]; ?></td>
-							<td><?php echo $fila["TELEFONO"]?></td>
-							<td><?php echo $fila["DIRECCION"]; ?></td>
-							<td><?php echo $fila["CODIGOPOSTAL"]?></td>
+							<td><?php echo $fila["FECHAFIN"]; ?></td>
+							<td><?php echo $fila["TIPOSERVICIO"]?></td>
+							<td><?php if($fila["TERCERAEMPRESA"] == 1){ ?>
+		     Sí
+		<?php } else { ?>
+			 No
+		<?php } ?></td>
+							<td><?php echo $fila["DNICLIENTE"]?></td>
 						
 				<?php } ?>
-				<td>
-					<div id="botones_fila">
-
-				<?php if (isset($cliente) and ($cliente["DNICLIENTE"] == $fila["DNICLIENTE"])) { ?>
-
-						<button id="grabar" name="grabar" type="submit" class="editar_fila">
-
-							<img src="../imagenes/pngocean_opt.png" class="editar_fila" alt="Guardar modificación">
-
-						</button>
-
-				<?php } else { ?>
-
-						<button id="editar" name="editar" type="submit" class="editar_fila">
-
-							<img src="../imagenes/pngocean_opt.png" class="editar_fila" alt="Editar Cliente">
-
-						</button>
-					
-				<?php } ?>
-						</td>
-					<td>
-					<button id="borrar" name="borrar" type="submit" class="editar_fila">
-
-						<img src="../imagenes/borrar.png" class="editar_fila" alt="Borrar libro" >
-
-					</button>
-				</div>
-				</td>
 				</b>
 				
 				</div>

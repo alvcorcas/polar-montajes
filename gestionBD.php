@@ -2,8 +2,8 @@
 
 function crearConexionBD() {
 	$host = "oci:dbname=localhost/XE;charset=UTF8";
-	$usuario = "POLARMONTAJES";
-	$password = "DXB*yLz2.U_DaVA";
+	$usuario = "MIGUEL ÁNGEL NIEVA ARJONA";
+	$password = "MIgue2000Yo!";
 
 	try {
 		/* Indicar que las sucesivas conexiones se puedan reutilizar */

@@ -69,25 +69,30 @@ cerrarConexionBD($conexion);
 	<br />
 <ul>
   <li><a href= "../principal/index.php">Polar Montajes:</a></li>
-  <li><a href= "../principal/servicios.php">Servicio</a></li>
-  <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
+  <li><a href= "../principal/servicios.php">Servicios</a></li>
+  <li><a href="consultaTrabajadores.php">Trabajadores</a></li>
+     <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
+  	<li><a href="../facturas/consultaFacturas.php">Facturas</a></li>
+  	<?php } ?>
   <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Cliente'){?>
-  	<li><a href="facturasPorCliente.php">Mis facturas</a></li>
-  	<?php } ?>
+  	<li><a href="../clientes/facturasPorCliente.php">Mis facturas</a></li>
+  	<?php }?>
   <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
-  	<li><a href="../facturas/facturas.php">Facturas</a></li>
-  	<?php } ?>
+  	<li><a href="FacturasPorOperario.php">Facturas</a></li>
+  	<?php }?>
   <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
-  	<li><a href="../clientes/consultaClientes.php">Clientes</a></li>
-  	<?php } ?>
+  	<li><a href="../clientes/ConsultaClientes.php">Clientes</a></li>
+  	<?php }?>
   	<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
   	<li><a href="../pedidos/consultaPedidos.php">Pedidos</a></li>
-  	<?php } ?>
+  	<?php }?>
+  <li><a href="../Servicios/Servicios.php">Servicios Prestados</a></li>
   <li><a href="../principal/contacto.php">Contact</a></li>
-  <li><a href="about.php">About</a></li>
+  <li><a href="../principal/about.php">About</a></li>
   <li><a href="../usuarios/login.php">Login</a></li>
   <li><a href="../usuarios/logout.php">Logout</a></li>
 	</ul>
+	<br><br><br>
 	</div>
 	<header>
 			<h2>¡Estos son los profesionales que forman Polar Montajes!</h2>

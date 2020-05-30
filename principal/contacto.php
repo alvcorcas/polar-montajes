@@ -13,6 +13,33 @@
   <title>Polar Montajes: Contacto</title>
 </head>
 
+	<ul>
+  <li><a href= "index.php">Polar Montajes:</a></li>
+  <li><a href= "Servicios.php">Servicios</a></li>
+  <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
+   <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
+  	<li><a href="../facturas/consultaFacturas.php">Facturas</a></li>
+  	<?php } ?>
+  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Cliente'){?>
+  	<li><a href="../clientes/facturasPorCliente.php">Mis facturas</a></li>
+  	<?php }?>
+  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
+  	<li><a href="../operarios/FacturasPorOperario.php">Facturas</a></li>
+  	<?php }?>
+  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
+  	<li><a href="../clientes/ConsultaClientes.php">Clientes</a></li>
+  	<?php }?>
+  	<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
+  	<li><a href="../pedidos/consultaPedidos.php">Pedidos</a></li>
+  	<?php }?>
+  <li><a href="../Servicios/Servicios.php">Servicios Prestados</a></li>
+  <li><a href="contacto.php">Contact</a></li>
+  <li><a href="about.php">About</a></li>
+  <li><a href="../usuarios/login.php">Login</a></li>
+  <li><a href="../usuarios/logout.php">Logout</a></li>
+	</ul>
+	<br><br><br><br>
+	
 <body> 
 	<?php
 include_once ("../cabecera.php");
@@ -36,15 +63,12 @@ include_once ("../cabecera.php");
 	</div>
 
    <div>
-   <div class="img" >
-<img src="../imagenes/Contacto.jpg" align="left" width="200" height="250" style = "text-align:center;">
-</div>
 
-<div class ="text" style = "margin-top: 30px;">
+
+<div class ="text" style = "margin-top: 30px; margin-left:60px;">
 	<div>
 		
-	Para contactar con <strong><em>Polar Montajes</em></strong> dispone de diferentes posibilidades:
-	<br />
+	<br style="margin-left: 100px">Para contactar con <strong><em>Polar Montajes</em></strong> dispone de diferentes posibilidades: </br>
 	<br />
 	<br />
 	<fieldset>
@@ -53,21 +77,19 @@ include_once ("../cabecera.php");
 		<div>
 	 <div class="img" >
 <img src="../imagenes/11.png" align="left" width="80" height="70">
-	<div class="text1" style="margin-left:100px;">
-		<br />
-		657756874 --- 623490812
-	</div>
+		
+		<br> 657756874 --- 623490812 </br>
+	
 		</div>
 		<br />
 		<br />
 		<br />
 			<div>
 	 <div class="img" >
-<img src="../imagenes/instagram.jpg" align="left" width="80" height="60">
-	<div class="text1" style="margin-left:100px;" >
-		<br />
+<img src="../imagenes/instagram.jpg" align="left" width="80" height="70">
+
 		@PolarMontajes
-	</div>
+	
 		</div>
 		<br />
 		<br />
