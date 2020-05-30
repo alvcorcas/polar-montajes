@@ -15,6 +15,33 @@
   <title>Gestión de Clientes: Pagina Principal</title>
 </head>
 
+	<ul>
+  <li><a href= "index.php">Polar Montajes:</a></li>
+  <li><a href= "Servicios.php">Servicios</a></li>
+  <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
+   <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
+  	<li><a href="../facturas/consultaFacturas.php">Facturas</a></li>
+  	<?php } ?>
+  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Cliente'){?>
+  	<li><a href="../clientes/facturasPorCliente.php">Mis facturas</a></li>
+  	<?php }?>
+  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
+  	<li><a href="../operarios/FacturasPorOperario.php">Facturas</a></li>
+  	<?php }?>
+  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
+  	<li><a href="../clientes/ConsultaClientes.php">Clientes</a></li>
+  	<?php }?>
+  	<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
+  	<li><a href="../pedidos/consultaPedidos.php">Pedidos</a></li>
+  	<?php }?>
+  <li><a href="../Servicios/Servicios.php">Servicios Prestados</a></li>
+  <li><a href="contacto.php">Contact</a></li>
+  <li><a href="about.php">About</a></li>
+  <li><a href="../usuarios/login.php">Login</a></li>
+  <li><a href="../usuarios/logout.php">Logout</a></li>
+	</ul>
+	<br><br><br><br>
+
 <body> 
 	<div>
 	<div>
