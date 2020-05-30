@@ -36,3 +36,4 @@ var cantidad;
 					// xhttp.open("GET", "crearLineaFactura.php?cantidad=" + cantidad + "&descripcion=" + descripcion + "&precioUnitario=" + precioUnitario + "&precioTotal=" + precioTotal + "&oid_s=" + oid_s, true);
 					// xhttp.send();
 				}
+				

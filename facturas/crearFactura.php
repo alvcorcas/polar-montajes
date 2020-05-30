@@ -167,8 +167,7 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 
 		<script>
 			function enviarFactura() {
-				document.getElementById("facturacion").style.visibility = 'hidden';
-				document.getElementById("lineasFacturacion").style.visibility = 'visible';
+				
 				
 				$("#nuevaFactura").submit(function(e) {
 
@@ -184,26 +183,14 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 						data : form.serialize(), // serializes the form's elements.
 						success : function(data) {
 							alert(data);
+							if(data == "La factura se ha insertado correctamente, proceda a añadir filas y rellenarlas"){
+								document.getElementById("facturacion").style.visibility = 'hidden';
+								document.getElementById("lineasFacturacion").style.visibility = 'visible';
+							}
 						}
 					});
 
 				});
-				
-				
-				
-				// $.post("funcionCrearFactura.php", {
-				// idFactura : $('#idFactura').val(),
-				// fechaEmision : $('#fechaEmision').val(),
-				// fechaVencimiento : $('#fechaVencimiento').val(),
-				// tipoPago : $("input[type=radio]:checked").val(),
-				// precioSinIva : $('#precioSinIva').val(),
-				// iva : $('#iva').val(),
-				// precioConIva : $('#precioConIva').val(),
-				// dniCliente : $('#dniCliente').val()
-				// }, function(data, success) {
-				// $('#test').html(data);
-				//
-				// });
 
 			}
 
@@ -229,7 +216,7 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 				if (nFilas != 1)
 					tabla.deleteRow(nFilas - 1);
 			}
-
+			
 			function enviarLineasFactura() {
 				var numeroFilas = document.getElementById("myTable").rows.length;
 				var i;
@@ -241,9 +228,10 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 						precioTotal : $("#precioTotal" + i).val(),
 						oid_s : $("#oid_s" + i).val()
 					}, function(data) {
-						alert("Linea correctamente insertada");
+						alert(data);
 
 					});
+					
 				}
 				if(numeroFilas >1)
 					document.getElementById("lineasFacturacion").style.visibility = 'hidden';
