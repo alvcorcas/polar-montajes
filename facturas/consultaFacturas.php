@@ -3,13 +3,8 @@
 session_start();
 $version = 1225;
 require_once ("../gestionBD.php");
-require_once ("../facturas/gestionFacturas.php");
+require_once ("gestionFactura.php");
 require_once ("../paginacion.php");
-
-// if (isset($_SESSION["libro"])){
-// $libro = $_SESSION["libro"];
-// unset($_SESSION["libro"]);
-// }
 
 // ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
 // ¿Hay una sesión activa?
@@ -166,7 +161,6 @@ cerrarConexionBD($conexion);
 	    <th>Precio Total</th>
 	    <th>DNI del Operario </th>
 	     <th>DNI del Cliente </th>
-	    <th> Modificar</th>
 	    <th> Borrar</th>
         </tr>
     </thead>
@@ -193,23 +187,9 @@ cerrarConexionBD($conexion);
 
 				<div class="datos_empleado">
 
-					<input id="IDFACTURA" name="IDFACTURA"
+				
 
-						type="hidden" value="<?php echo $fila["IDFACTURA"]; ?>"/>
-
-					
-						
-						<?php
-					
-					if (isset($factura) and ($factura["IDFACTURA"] == $fila["IDFACTURA"])) { ?>
-
-
-						<h3><input id="IDFACTURA" name="IDFACTURA" type="text" value="<?php echo $fila["IDFACTURA"]; ?>"/>	</h3>
-
-				<?php }	else { ?>
-
-
-						<input id="IDFACTURA" name="IDFACTURA" type="hidden" value="<?php echo $fila["IDFACTURA"]; ?>"/>
+					<input id="IDFACTURA" name="IDFACTURA" type="hidden" value="<?php echo $fila["IDFACTURA"]; ?>"/>
 
 						
 						<div>
@@ -223,30 +203,7 @@ cerrarConexionBD($conexion);
 								<td><?php echo $fila["PRECIOCONIVA"]?></td> 
 								<td><?php echo $fila["DNIOPERARIO"]?></td>
 								<td><?php echo $fila["DNICLIENTE"]?></td>
-						<td>
-				<?php } ?>
-				
-				
-					<div id="botones_fila">
-
-				<?php if (isset($factura) and ($factura["IDFACTURA"] == $fila["IDFACTURA"])) { ?>
-
-						<button id="grabar" name="grabar" type="submit" class="editar_fila">
-
-							<img src="../imagenes/pngocean_opt.png" class="editar_fila" alt="Guardar modificación">
-
-						</button>
-
-				<?php } else { ?>
-
-						<button id="editar" name="editar" type="submit" class="editar_fila">
-
-							<img src="../imagenes/pngocean_opt.png" class="editar_fila" alt="Editar Cliente">
-
-						</button>
-					
-				<?php } ?>
-						</td>
+						
 					<td>
 					<button id="borrar" name="borrar" type="submit" class="editar_fila">
 

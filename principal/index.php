@@ -21,6 +21,7 @@ include_once ("../cabecera.php");
 		<header>
 			<h2>¡Bienvenido/a a Polar Montajes!</h2>
 			<hr	 />
+			<a href="../facturas/crearFactura.php">prueba</a>
 			</header>
 
 		<ul>

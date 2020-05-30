@@ -1,19 +1,16 @@
 <?php
 session_start();
 
-if (isset($_SESSION["FACTURA"])) {
-	$FACTURA = $_SESSION["FACTURA"];
-	unset($_SESSION["FACTURA"]);
+if (isset($_SESSION["factura"])) {
+	$FACTURA = $_SESSION["factura"];
+	unset($_SESSION["factura"]);
 
 	require_once ("../gestionBD.php");
 	require_once ("gestionFactura.php");
 
 	$conexion = crearConexionBD();
-	$excepcion = borrarfactura($conexion, $FACTURA["IDFACTURA"]);
+	$excepcion = pagarfactura($conexion, $FACTURA);
 	cerrarConexionBD($conexion);
-	echo var_dump($FACTURA);
-	echo var_dump($excepcion);
-	echo $FACTURA["FACTURA"];
 	if ($excepcion <> "") {
 		$_SESSION["excepcion"] = $excepcion;
 		$_SESSION["destino"] = "consultaFacturas.php";
