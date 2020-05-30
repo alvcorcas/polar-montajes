@@ -29,54 +29,6 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 			<hr	 />
 		</header>
 
-		<ul>
-			<li>
-				<a href= "../principal/index.php">Polar Montajes:</a>
-			</li>
-			<li>
-				<a href= "../principal/servicios.php">Servicio</a>
-			</li>
-			<li>
-				<a href="../operarios/consultaTrabajadores.php">Trabajadores</a>
-			</li>
-			<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Cliente'){
-			?>
-			<li>
-				<a href="../clientes/facturasPorCliente.php">Mis facturas</a>
-			</li>
-			<?php } ?>
-			<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){
-			?>
-			<li>
-				<a href="../facturas/consultaFacturas.php">Facturas</a>
-			</li>
-			<?php } ?>
-			<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){
-			?>
-			<li>
-				<a href="../clientes/consultaClientes.php">Clientes</a>
-			</li>
-			<?php } ?>
-			<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){
-			?>
-			<li>
-				<a href="../pedidos/consultaPedidos.php">Pedidos</a>
-			</li>
-			<?php } ?>
-			<li>
-				<a href="contacto.php">Contact</a>
-			</li>
-			<li>
-				<a href="about.php">About</a>
-			</li>
-			<li>
-				<a href="../usuarios/login.php">Login</a>
-			</li>
-			<li>
-				<a href="../usuarios/logout.php">Logout</a>
-			</li>
-		</ul>
-
 		<br>
 		<div style="display: flex">
 			<!-- Formulario a rellenar con el contenido de la factura creada -->
@@ -161,14 +113,13 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 			Insertar lineas de la factura
 		</button>
 
-		<div id="test">
+		<p id="test">
 
-		</div>
+		</p>
 
 		<script>
+			var indices = [];
 			function enviarFactura() {
-				
-				
 				$("#nuevaFactura").submit(function(e) {
 
 					e.preventDefault();
@@ -208,19 +159,25 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 				cell3.innerHTML = '<input type="text" id="precioUnitario' + i + '" name="precioUnitario" pattern="[0-9]"/>';
 				cell4.innerHTML = '<input type="text" id="precioTotal' + i + '" name="precioTotal" pattern="[0-9]"/>';
 				cell5.innerHTML = '<input type="text" id="oid_s' + i + '" name="OID_S" placeholder="Id numérico" pattern="[0-9]"/>';
+				indices.push(i);
+				document.getElementById("test").innerHTML = indices;
 			}
 
 			function deleteRow() {
 				var tabla = document.getElementById("myTable");
 				var nFilas = tabla.rows.length;
-				if (nFilas != 1)
+				if (nFilas != 1) {
 					tabla.deleteRow(nFilas - 1);
+					indices.pop();
+					document.getElementById("test").innerHTML = indices;
+				}
 			}
 			
 			function enviarLineasFactura() {
-				var numeroFilas = document.getElementById("myTable").rows.length;
-				var i;
-				for ( i = 1; i < numeroFilas; i++) {
+				var numeroFilas = indices.length;
+				var j = 0;
+				for (j = 0; j < numeroFilas; j++) {
+					var i = indices[j];
 					$.post("crearLineaFactura.php", {
 						cantidad : $("#cantidad" + i).val(),
 						descripcion : $("#descripcion" + i).val(),
@@ -228,13 +185,16 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 						precioTotal : $("#precioTotal" + i).val(),
 						oid_s : $("#oid_s" + i).val()
 					}, function(data) {
-						alert(data);
+						if (data == "Insertada correctamente"){
+							indices.splice(j, 1);
+							document.getElementById("test").innerHTML = indices;
+						} else {
+							alert(data);
+						}
 
 					});
 					
 				}
-				if(numeroFilas >1)
-					document.getElementById("lineasFacturacion").style.visibility = 'hidden';
 			}
 		</script>
 

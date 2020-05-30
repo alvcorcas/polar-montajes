@@ -21,34 +21,9 @@ include_once ("../cabecera.php");
 		<header>
 			<h2>¡Bienvenido/a a Polar Montajes!</h2>
 			<hr	 />
-			<a href="../facturas/crearFactura.php">prueba</a>
 			</header>
 
-		<ul>
-  <li><a href= "index.php">Polar Montajes:</a></li>
-  <li><a href= "Servicios.php">Servicios</a></li>
-  <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
-    <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
-  	<li><a href="../facturas/consultaFacturas.php">Facturas</a></li>
-  	<?php } ?>
-  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Cliente'){?>
-  	<li><a href="../clientes/facturasPorCliente.php">Mis facturas</a></li>
-  	<?php }?>
-  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
-  	<li><a href="../operarios/FacturasPorOperario.php"> Mis Facturas</a></li>
-  	<?php }?>
-  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
-  	<li><a href="../clientes/ConsultaClientes.php">Clientes</a></li>
-  	<?php }?>
-  	<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
-  	<li><a href="../pedidos/consultaPedidos.php">Pedidos</a></li>
-  	<?php }?>
-  <li><a href="../Servicios/Servicios.php">Servicios Prestados</a></li>
-  <li><a href="contacto.php">Contact</a></li>
-  <li><a href="about.php">About</a></li>
-  <li><a href="../usuarios/login.php">Login</a></li>
-  <li><a href="../usuarios/logout.php">Logout</a></li>
-	</ul>
+		
 	<br><br><br><br>
  	
  	<p align="center" style="border: PowderBlue 5px double; margin: 10px 305px 100px 305px;  border-top-left-radius: 20px; border-bottom-right-radius: 20px; padding: 3px 10px;; background-color: #ffffff9e; color: black; font-family: arial,helvetica; font-size: 12px; font-weight: bold;">

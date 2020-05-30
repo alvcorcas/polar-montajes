@@ -18,7 +18,7 @@ function insertar_lineafactura($conexion, $consulta) {
 		$stmt -> bindParam(':idFactura', $_SESSION['factura']);
 		$stmt -> bindParam(':oid_s', $_POST['oid_s']);
 		$stmt -> execute();
-		return "insertada correctamente";
+		return "Insertada correctamente";
 	} catch(PDOException $e) {
 		return "Compruebe que ha rellenado correctamente";
 	}

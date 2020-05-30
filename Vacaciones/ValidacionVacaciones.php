@@ -37,8 +37,6 @@ function validarDatosServicio($vacaciones) {
 	if ($vacaciones['FECHAINICIO'] == '') {
 		$errores[] = '<p>Esta fecha de inicio no puede estar vacia</p>';
 	}
-	
-	
 
 	if ($vacaciones['FECHAFIN'] == '') {
 		$errores[] = '<p>Esta fecha de fin no puede estar vacia</p>';
@@ -47,7 +45,6 @@ function validarDatosServicio($vacaciones) {
 	if ($vacaciones['TIPOVACACIONES'] == '') {
 		$errores[] = '<p>El tipo de vacaciones no puede estar vacia</p>';
 	}
-	
 	
 }
 	?>
