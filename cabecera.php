@@ -24,9 +24,9 @@ if ($sesionIniciada)
 	</li>
 
 	<!-- Consultas de facturas:
-			- Los operarios podrán ver las facturas que hayan emitido ellos mismos
-			- Los clientes podrán ver las facturas a su cargo
-			- Los gerentes tendrán acceso a todas las facturas de la página web
+	- Los operarios podrán ver las facturas que hayan emitido ellos mismos
+	- Los clientes podrán ver las facturas a su cargo
+	- Los gerentes tendrán acceso a todas las facturas de la página web
 	-->
 
 	<?php if ($sesionIniciada and $perfilUsuario == "Cliente") {
@@ -34,14 +34,6 @@ if ($sesionIniciada)
 
 	<li>
 		<a href="../clientes/facturasPorCliente.php">Mis facturas</a>
-	</li>
-	
-	<li>
-		<a href="../principal/contacto.php">Contact</a>
-	</li>
-	
-	<li>
-		<a href="../principal/about.php">About</a>
 	</li>
 
 	<?php } else if ($sesionIniciada and $perfilUsuario == "Trabajador") { ?>
@@ -57,33 +49,51 @@ if ($sesionIniciada)
 	</li>
 
 	<?php  } ?>
-	
+
 	<!-- El personal de la empresa podrá consutar todos los clientes que estén almacenados en la base de datos -->
 
-	<?php if ($sesionIniciada and ($perfilUsuario == "Trabajador" or $perfilUsuario == "Gerente")) { ?>
+	<?php if ($sesionIniciada and ($perfilUsuario == "Trabajador" or $perfilUsuario == "Gerente")) {
+	?>
 
 	<li>
 		<a href="../clientes/consultaClientes.php">Clientes</a>
 	</li>
-	
+
 	<!-- De igual manera también podrá consutar todos los pedidos que se hayan realizado -->
 
 	<li>
 		<a href="../pedidos/consultaPedidos.php">Pedidos</a>
 	</li>
+
+	
+	<li>
+		<a href="../Servicios/Servicios.php">Servicios Prestados</a>
+	</li>
+
+	<li>
+		<a href="../Vacaciones/Vacaciones.php">Vacaciones</a>
+	</li>
+
 	<?php } ?>
-	
-	
-	
-	<?php if($sesionIniciada) { ?>
+
+	<li>
+		<a href="../principal/contacto.php">Contact</a>
+	</li>
+
+	<li>
+		<a href="../principal/about.php">About</a>
+	</li>
+
+	<?php if($sesionIniciada) {
+	?>
 	<li>
 		<a href="../usuarios/logout.php">Logout</a>
 	</li>
-	<?php } else {?>
-	
+	<?php } else { ?>
+
 	<li>
 		<a href="../usuarios/login.php">Login</a>
 	</li>
-	
-	<?php  }  ?>
+
+	<?php  } ?>
 </ul>
