@@ -10,7 +10,7 @@ if (isset($_SESSION['formulario'])) {
 	$_SESSION["formulario"] = null;
 	$_SESSION["errores"] = null;
 	$conexion = crearConexionBD();
-	$consulta = "CALL insertarpartetrabajo(:horasTrabajadas, :horasExtras, :precioHora, :mesAno, :dniOperario)";
+	$consulta = "CALL insertar_parte_trabajo(:horasTrabajadas, :horasExtras, :precioHora, :mesAno, :dniOperario)";
 	$excepcion = crearNomina($conexion, $consulta, $nomina);
 	cerrarConexionBD($conexion);
 	if ($excepcion <> "") {

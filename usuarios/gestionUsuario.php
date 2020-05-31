@@ -11,8 +11,7 @@ function alta_usuario($conexion, $usuario) {
 		$stmt -> execute();
 
 		if ($usuario['perfil'] == 'Trabajador') {
-			$consulta = "INSERT INTO operario(DNIOPERARIO, NOMBRE, APELLIDOS, CORREO, TELEFONO, ESGERENTE, OCULTO) 
-							VALUES(:nif, :nombre, :apellidos, :email, :telefono, 0, 0)";
+			$consulta = "CALL insertar_operario(:nif, :nombre, :apellidos, :email, :telefono, 0, 0)";
 			$stmt = $conexion -> prepare($consulta);
 			$stmt -> bindParam(':nif', $usuario["nif"]);
 			$stmt -> bindParam(':nombre', $usuario["nombre"]);
@@ -21,8 +20,7 @@ function alta_usuario($conexion, $usuario) {
 			$stmt -> bindParam(':telefono', $usuario["telefono"]);
 			$stmt -> execute();
 		} else /* if ($usuario['perfil'] == 'Cliente')*/{
-			$consulta = "INSERT INTO cliente(DNICLIENTE, NOMBRE, APELLIDOS, TELEFONO, CORREO, DIRECCION, CODIGOPOSTAL, OCULTO) 
-							VALUES(:nif, :nombre, :apellidos, :telefono, :email, :direccion, :codigoPostal, 0)";
+			$consulta = "CALL insertar_cliente(:nif, :nombre, :apellidos, :telefono, :email, :direccion, :codigoPostal, 0)";
 			$stmt = $conexion -> prepare($consulta);
 			$stmt -> bindParam(':nif', $usuario["nif"]);
 			$stmt -> bindParam(':nombre', $usuario["nombre"]);

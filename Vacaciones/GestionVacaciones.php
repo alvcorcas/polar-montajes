@@ -7,8 +7,7 @@ $fechaInicio = date('d/m/Y', strtotime($vacaciones["FECHAINICIO"]));
 $fechaFin = date('d/m/Y', strtotime($vacaciones["FECHAFIN"]));
 
 	try {
-		$consulta = "INSERT INTO periodovacaciones(FECHAINICIO, FECHAFIN, TIPOVACACIONES, DNIOPERARIO) 
-							VALUES(:fechainicio, :fechafin, :tipovacaciones, :dnioperario)";
+		$consulta = "CALL solicitud_vacaciones(:fechainicio, :fechafin, :tipovacaciones, :dnioperario)";
 			$stmt = $conexion -> prepare($consulta);
 			$stmt -> bindParam(':fechainicio', $fechaInicio);
 			$stmt -> bindParam(':fechafin', $fechaFin);
