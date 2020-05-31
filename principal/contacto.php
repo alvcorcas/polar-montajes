@@ -65,51 +65,45 @@ include_once ("../cabecera.php");
    <div>
 
 
-<div class ="text" style = "margin-top: 30px; margin-left:60px;">
+<div class ="text" style = "margin-top: 30px; margin-left:120px;">
 	<div>
-		
+	
 	<br style="margin-left: 100px">Para contactar con <strong><em>Polar Montajes</em></strong> dispone de diferentes posibilidades: </br>
 	<br />
 	<br />
 	<fieldset>
 		<br />
 		<br />
-		<div>
-	 <div class="img" >
-<img src="../imagenes/11.png" align="left" width="80" height="70">
+		<div style="display: flex;">
+<img src="../imagenes/11.png" align="left" width="80" height="70" class="img" style="margin-left: 60px">
 		
-		<br> 657756874 --- 623490812 </br>
+		<p style=" margin-left: 20px"> 657756874 --- 623490812 </p>
 	
 		</div>
 		<br />
 		<br />
 		<br />
-			<div>
-	 <div class="img" >
-<img src="../imagenes/instagram.jpg" align="left" width="80" height="70">
+			<div style="display: flex;">
+<img src="../imagenes/instagram.jpg" align="left" width="80" height="70" class="img" style="margin-left: 60px">
 
-		@PolarMontajes
+			<p style=" margin-left: 20px"> @PolarMontajes </p>
 	
 		</div>
 		<br />
 		<br />
 		<br />
-	 <div class="img" >
-<img src="../imagenes/facebook.jpg" align="left" width="80" height="60">
-	<div class="text1" style="margin-left:100px;">
-		<br />
-	      @PolarMontajes
-	</div>
+	 <div style="display: flex;">
+<img src="../imagenes/facebook.jpg" align="left" width="80" height="60" class="img" style="margin-left: 60px">
+	     <p style=" margin-left: 20px"> @PolarMontajes </p>
 		</div>
 		<br />
 		<br />
 		<br />
-	 <div class="img" >
-<img src="../imagenes/gmail.jpg" align="left" width="80" height="60">
-	<div class="text1" style="margin-left:100px;">
-		<br>
-		polarmontajes@gmail.com
-	</div>
+	 <div style="display: flex;">
+<img src="../imagenes/gmail.jpg" align="left" width="80" height="60" class="img" style="margin-left: 60px">
+	
+		  <p style=" margin-left: 20px"> polarmontajes@gmail.com </p>
+	
 		</div>
 		<br />
 		<br />
