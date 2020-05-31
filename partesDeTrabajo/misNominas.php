@@ -138,7 +138,7 @@ cerrarConexionBD($conexion);
 
 	?>
 	
-					<tr 
+					<tr class= fila
 					
 					data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">        
 	 <article class="cliente">
