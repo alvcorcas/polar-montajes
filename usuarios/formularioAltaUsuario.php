@@ -32,7 +32,7 @@ $conexion = crearConexionBD();
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="../css/login.css" />
+		<link rel="stylesheet" type="text/css" href="../css/Proyecto.css" />
 		<script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
 		<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript"></script>-->
 		<script src="js/validacion_cliente_alta_usuario.js" type="text/javascript"></script>
@@ -71,37 +71,31 @@ $conexion = crearConexionBD();
 		<h3>Datos personales</h3>
 		<hr width=27%  align="left" size=3 >
 		<label for="nif">NIF:<em>*</em></label>
-		<input id="nif" name="nif" type="text" placeholder="12345678X" value="<?php echo $formulario['nif']; ?>"pattern="^[0-9]{8}[A-Z]" title="Ocho dígitos seguidos de una letra mayúscula" style="margin-left:120px;" required>
+		<input id="nif" name="nif" type="text" placeholder="12345678X" pattern="^[0-9]{8}[A-Z]" title="Ocho dígitos seguidos de una letra mayúscula" style="margin-left:120px;" required>
 		<br>
 		<br />
 		<label for="nombre">Nombre:<em>*</em></label>
-		<input id="nombre" name="nombre" type="text"  value="<?php echo $formulario['nombre']; ?>" required style="margin-left:93px;">
+		<input id="nombre" name="nombre" type="text"  required style="margin-left:93px;">
 		<br>
 		<br />
 		<label for="apellidos">Apellidos:</label>
-		<input id="apellidos" name="apellidos" type="text" value="<?php echo $formulario['apellidos']; ?>"style="margin-left:91px;">
+		<input id="apellidos" name="apellidos" type="text" style="margin-left:91px;">
 		<br>
 		<br />
 		<label>Perfil:</label>
 		<label>
-		<input name="perfil" type="radio" value="Trabajador" <?php
-		if ($formulario['perfil'] == 'Trabajador')
-			echo ' checked ';
-		?> style="margin-left:120px;">
+		<input name="perfil" type="radio" value="Trabajador" style="margin-left:120px;">
 		Trabajador</label>
 		<label>
-		<input name="perfil" type="radio" value="Cliente" <?php
-		if ($formulario['perfil'] == 'Cliente')
-			echo ' checked ';
-		?>>
+		<input name="perfil" type="radio" value="Cliente" >
 		Cliente</label>
 		<br>
 		<br />
 		<label for="email">Email:<em>*</em></label>
-		<input id="email" name="email"  type="email" placeholder="usuario@dominio.extension"  value="<?php echo $formulario['email']; ?>" required style="margin-left:107px";><br>
+		<input id="email" name="email"  type="email" placeholder="usuario@dominio.extension" required style="margin-left:107px";><br>
 		<br />
 		<label for="telefono">Telefono:<em>*</em></label>
-		<input id="telefono" name="telefono"  type="telefono" placeholder="Numero de telefono" pattern="^[0-9]{9}"  value="<?php echo $formulario['telefono']; ?>" required style="margin-left:107px";><br>
+		<input id="telefono" name="telefono"  type="telefono" placeholder="Numero de telefono" pattern="^[0-9]{9}"  required style="margin-left:107px";><br>
 		<hr	 />
 
 		<h3>Datos de usuario</h3>
@@ -120,11 +114,11 @@ $conexion = crearConexionBD();
 		<h3>Dirección (rellenar unicamente si eres cliente)</h3>
 		<hr width=27%  align="left" size=3 >
 		<div><label for="direccion">Dirección:</label>
-		<input id="direccion" name="direccion" type="text" value="<?php echo $formulario['direccion']; ?>"  style="margin-left:67px";>
+		<input id="direccion" name="direccion" type="text" style="margin-left:67px";>
 		</div>
 		<br />
 		<div><label for="codigoPostal">Codigo postal:</label>
-		<input id="codigoPostal" name="codigoPostal" type="text" pattern="^41[0-9]{3}"value="<?php echo $formulario['codigoPostal']; ?>" style="margin-left:81px";  >
+		<input id="codigoPostal" name="codigoPostal" type="text" pattern="^41[0-9]{3}" style="margin-left:81px";  >
 		</div>
 		<hr	 />
 		

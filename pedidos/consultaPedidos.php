@@ -198,6 +198,11 @@ cerrarConexionBD($conexion);
 </tbody>
 </table>
 </div>
+
+<form action="crearPedido.php" style="margin-left: 46%; margin-top: 2%;">
+    <input type="submit" value="Crear nuevo pedido" />
+	</form>
+
 <br />
 		<br />
 		<footer >

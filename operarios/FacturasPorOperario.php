@@ -190,6 +190,9 @@ cerrarConexionBD($conexion);
 </tbody>
 </table>
 </div>
+<form action="../facturas/crearFactura.php" style="margin-left: 46%; margin-top: 2%;">
+    <input type="submit" value="Crear nueva factura" />
+	</form>
 <br />
 		<br />
 		<footer >

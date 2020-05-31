@@ -2,7 +2,7 @@
 session_start();
 require_once ("../gestionBD.php");
 // Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
-if ($_SERVER["POST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Recogemos los datos del formulario
 	$nuevanomina["HORASTRABAJADAS"] = $_POST["HORASTRABAJADAS"];
 	$nuevanomina["HORASEXTRAS"] = $_POST["HORASEXTRAS"];
@@ -30,7 +30,6 @@ if (count($errores) > 0) {
 	// Si todo va bien, vamos a la página de acción (inserción del usuario en la base de datos)
 	Header('Location: AccionAltanomina.php');
 
-
 function validarDatosnomina($nuevanomina) {
 
 	if ($nuevanomina['HORASTRABAJADAS'] == '') {
@@ -41,17 +40,16 @@ function validarDatosnomina($nuevanomina) {
 		$errores[] = '<p>El Tiempo empleado no puede estar vacio</p>';
 	}
 
-
 	if ($nuevanomina['PRECIOHORA'] == '') {
 		$errores[] = '<p>EstA fecha de inicio no es válida</p>';
 	}
-	
+
 	if ($nuevanomina['MESANO'] == '') {
 		$errores[] = '<p>La tercera empresa no puede estar vacio</p>';
 	}
-	
+
 	if ($nuevanomina['DNIOPERARIO'] == '') {
 		$errores[] = '<p>El DNI del cliente no puede estar vacio</p>';
 	}
 }
-	?>
+?>

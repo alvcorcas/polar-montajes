@@ -83,22 +83,22 @@ if ($sesionIniciada)
 	<?php } ?>
 
 	<li>
-		<a href="../principal/contacto.php">Contact</a>
+		<a href="../principal/contacto.php">Contacto</a>
 	</li>
 
 	<li>
-		<a href="../principal/about.php">About</a>
+		<a href="../principal/about.php">Sobre nosotros</a>
 	</li>
 
 	<?php if($sesionIniciada) {
 	?>
 	<li>
-		<a href="../usuarios/logout.php">Logout</a>
+		<a href="../usuarios/logout.php">Log out</a>
 	</li>
 	<?php } else { ?>
 
 	<li>
-		<a href="../usuarios/login.php">Login</a>
+		<a href="../usuarios/login.php">Log in</a>
 	</li>
 
 	<?php  } ?>
