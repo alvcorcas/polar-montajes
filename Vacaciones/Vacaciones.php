@@ -71,57 +71,9 @@ $conexion = crearConexionBD();
 		}
 		?>
 			<header>
-				<h2>Servicios Prestados</h2>
+				<h2>Gestion de vacaciones</h2>
 				<hr	 />
 			</header>
-
-			<ul>
-				<li>
-					<a href= "../principal/index.php">Polar Montajes:</a>
-				</li>
-				<li>
-					<a href= "../principal/servicios.php">Servicio</a>
-				</li>
-				<li>
-					<a href="../operarios/consultaTrabajadores.php">Trabajadores</a>
-				</li>
-				<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Cliente'){
-				?>
-				<li>
-					<a href="../clientes/facturasPorCliente.php">Mis facturas</a>
-				</li>
-				<?php } ?>
-				<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){
-				?>
-				<li>
-					<a href="../facturas/consultaFacturas.php">Facturas</a>
-				</li>
-				<?php } ?>
-				<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){
-				?>
-				<li>
-					<a href="../clientes/consultaClientes.php">Clientes</a>
-				</li>
-				<?php } ?>
-				<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){
-				?>
-				<li>
-					<a href="../pedidos/consultaPedidos.php">Pedidos</a>
-				</li>
-				<?php } ?>
-				<li>
-					<a href="contacto.php">Contact</a>
-				</li>
-				<li>
-					<a href="about.php">About</a>
-				</li>
-				<li>
-					<a href="../usuarios/login.php">Login</a>
-				</li>
-				<li>
-					<a href="../usuarios/logout.php">Logout</a>
-				</li>
-			</ul>
 			
 			<br>
 			<br>
@@ -143,31 +95,18 @@ $conexion = crearConexionBD();
 				<br>
 				<label>Tipo de Vacaciones:</label>
 		<label>
-		<input name="TIPOVACACIONES" type="radio" value="Verano" <?php
-		if ($formulario['TIPOVACACIONES'] == 'Verano')
-			echo ' checked ';
-		?> style="margin-left:30px;">
-		verano</label>
+		<input name="TIPOVACACIONES" type="radio" value="Verano"  style="margin-left:30px;">
+		Verano</label>
 		<label>
-		<input name="TIPOVACACIONES" type="radio" value="Navidad" <?php
-		if ($formulario['TIPOVACACIONES'] == 'Navidad')
-			echo ' checked ';
-		?>>
+		<input name="TIPOVACACIONES" type="radio" value="Navidad" >
 		Navidad</label>
 		<label>
-		<input name="TIPOVACACIONES" type="radio" value="Asuntos Propios" <?php
-		if ($formulario['TIPOVACACIONES'] == 'Asuntos Propios')
-			echo ' checked ';
-		?>>
-		Asuntos Propios</label>
+		<input name="TIPOVACACIONES" type="radio" value="Asuntos Propios" >
+		Asuntos propios</label>
 		<br>
 		<br />
 				<br>
 				<br>
-				
-				<label>DNI del operario: </label>
-				<input type="text" name="DNIOPERARIO" placeholder="xxxxxxxxL" value="<?php echo $formulario['DNIOPERARIO']; ?>" pattern="^[0-9]{8}[A-Z]"/><br><br>
-				
 				
 				<input type="submit" value="Submit">
 			</form>

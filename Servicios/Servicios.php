@@ -195,17 +195,29 @@ cerrarConexionBD($conexion);
 				</div>
 
 			</div>
-
+</div>
 		</form>
+		
+		
+		
+		
+		
 	</article>
 	 </tr>
 	
 
 
 	<?php } ?>
+	
+	
 </tbody>
 </table>
-</div>
+<br />
+<br />
+<form action="CrearServicio.php" style="margin-left: 46%;">
+    <input type="submit" value="Crear nuevo servicio" />
+	</form>
+
 </main>
 </body>
 </html>

@@ -7,7 +7,7 @@ if (isset($_SESSION["formulario"])) {
 	$vacaciones["FECHAINICIO"] = $_REQUEST["FECHAINICIO"];
 	$vacaciones["FECHAFIN"] = $_REQUEST["FECHAFIN"];
 	$vacaciones["TIPOVACACIONES"] = $_REQUEST["TIPOVACACIONES"];
-	$vacaciones["DNIOPERARIO"] = $_REQUEST["DNIOPERARIO"];
+	$vacaciones["DNIOPERARIO"] = $_SESSION['login'];
 
 	// Guardar la variable local con los datos del formulario en la sesión.
 	$_SESSION['formulario'] = $vacaciones;

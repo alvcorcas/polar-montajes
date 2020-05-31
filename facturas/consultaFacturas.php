@@ -126,7 +126,7 @@ cerrarConexionBD($conexion);
 	<br><br /><br />
 
 
-	<div >
+	<div style="margin-left: auto;">
 		<table class="table table-condensed" style="border-collapse:collapse; text-align: center;">
 			<thead>
         <tr><th>ID</th>
@@ -209,7 +209,9 @@ cerrarConexionBD($conexion);
 </div>
 
 
-<a href="./crearFactura.php">En construccion</a>
+<form action="crearFactura.php" style="margin-left: 46%; margin-top: 2%;">
+    <input type="submit" value="Crear nueva factura" />
+	</form>
 
 </main>
 </body>
