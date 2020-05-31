@@ -5,25 +5,15 @@ function consultarPedidos($conexion) {
 	return $conexion->query($consulta);
 }
 
-function borrarcliente($conexion,$nif) {
+function pagarpedido($conexion,$oid_p) {
 	try {
-		$stmt=$conexion->prepare('CALL pck_cliente.eliminar(:nif)');
-		$stmt->bindParam(':nif',$DNIcliente);
+		$stmt=$conexion->prepare('CALL pagar_pedido(:oid_p)');
+		$stmt->bindParam(':oid_p',$oid_p);
 		$stmt->execute();
 		return "";
 	} catch(PDOException $e) {
 		return $e->getMessage();
     }
 }
-function modificarcliente($conexion,$nif,$email) {
-	try {
-		$stmt=$conexion->prepare('CALL MODIFICAR_EMAIL(:nif,:email)');
-		$stmt->bindParam(':nif',$DNIcliente);
-		$stmt->bindParam(':email',$email);
-		$stmt->execute();
-		return "";
-	} catch(PDOException $e) {
-		return $e->getMessage();
-    }
-}
+
 ?> 
