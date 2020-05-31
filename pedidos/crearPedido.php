@@ -12,8 +12,7 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="../css/Proyecto.css" />
-		<!-- <script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script> -->
-		<script src="js/boton.js?v=<?= $version ?>"></script>
+		<script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script>
 		<title>Creación de una pedido</title>
 	</head>
 
@@ -72,7 +71,7 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 			</table>
 		</div>
 
-		<button id="lineasPedido" onclick="enviarLineasPedidos()" hidden>
+		<button id="lineasPedido" onclick="enviarLineasPedido()" style="visibility: hidden">
 			Insertar lineas del pedido
 		</button>
 
@@ -80,11 +79,9 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 
 		<script>
 			function enviarPedido() {
-				$(document).ready(function() {
-					$("#nuevoPedido").submit(function(event) {
+					$("#nuevoPedido").submit(function(e) {
 
-						event.preventDefault();
-						// avoid to execute the actual submit of the form.
+						e.preventDefault();
 
 						var form = $(this);
 						var url = form.attr('action');
@@ -92,15 +89,19 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 						$.ajax({
 							type : "POST",
 							url : url,
-							data : form.serialize(), // serializes the form's elements.
+							data : form.serialize(), 
 							success : function(data) {
 								alert(data);
+								if(data == "El pedido se ha insertado correctamente, proceda a añadir filas y rellenarlas"){
+									document.getElementById("pedir").style.visibility = "hidden";
+									document.getElementById("lineasPedido").style.visibility = "visible";
+									
+								}
 
 							}
 						});
 
 					});
-				});
 
 			}
 
@@ -129,7 +130,7 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 				if (numeroFilas > 2) {
 					var i;
 					for ( i = 1; i < numeroFilas; i++) {
-						$.post("crearLineaFactura.php", {
+						$.post("crearLineaPedido.php", {
 							cantidad : $("#cantidad" + i).val(),
 							precioTotal : $("#precioTotal" + i).val(),
 							oid_prod : $("#oid_prod" + i).val(),

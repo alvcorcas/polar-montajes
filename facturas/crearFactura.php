@@ -12,7 +12,6 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="../css/Proyecto.css" />
 		<script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script>
-		<script src="../js/boton.js?v=<?= $version ?>"></script>
 		<title>Creación de una factura</title>
 	</head>
 
@@ -121,7 +120,6 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 			function enviarFactura() {
 				$("#nuevaFactura").submit(function(e) {
 					e.preventDefault();
-					// avoid to execute the actual submit of the form.
 
 					var form = $(this);
 					var url = form.attr('action');
@@ -129,7 +127,7 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 					$.ajax({
 						type : "POST",
 						url : url,
-						data : form.serialize(), // serializes the form's elements.
+						data : form.serialize(), 
 						success : function(data) {
 							alert(data);
 							if (data == "La factura se ha insertado correctamente, proceda a añadir filas y rellenarlas") {

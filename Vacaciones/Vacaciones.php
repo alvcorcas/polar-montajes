@@ -231,8 +231,8 @@ $conexion = crearConexionBD();
 		foreach($filas as $fila) {
 	?>
 		<?php
-	$fechaInicio = date('d/m/Y', strtotime($fila["FECHAINICIO"]));
-	$fechaFin = date('d/m/Y', strtotime($fila["FECHAFIN"]));
+	$fechaInicio = $fila["FECHAINICIO"];
+	$fechaFin = $fila["FECHAFIN"];
 	$fechaActual = date('d-m-Y');
 				?>	
 					<tr class=
@@ -255,10 +255,6 @@ $conexion = crearConexionBD();
 						type="hidden" value="<?php echo $fila["DNIOPERARIO"]; ?>"/>
 						
 						<div><b>
-							<td><?php echo $fechaInicio?> </td>
-							<td><?php echo $fechaFin?></td>
-							<td><?php echo $fila["TIPOVACACIONES"]?></td>
-							<td><?php echo $fila["DNIOPERARIO"]?></td>
 							<?php
 					if (isset($vacaciones) and ($vacaciones["DNIOPERARIO"] == $fila["DNIOPERARIO"])) { ?>
 						<td><input id="FECHAINICIO" name="FECHAINICIO" type="text" value="<?php echo $fechaInicio; ?>"/>	</td>
