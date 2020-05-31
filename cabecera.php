@@ -39,7 +39,10 @@ if ($sesionIniciada)
 	<?php } else if ($sesionIniciada and $perfilUsuario == "Trabajador") { ?>
 
 	<li>
-		<a href="../operarios/FacturasPorOperario.php">Facturas</a>
+		<a href="../operarios/FacturasPorOperario.php">Mis Facturas</a>
+	</li>
+	<li>
+		<a href="../partesDeTrabajo/misNominas.php">Mis Nóminas</a>
 	</li>
 
 	<?php } else if($sesionIniciada and $perfilUsuario == "Gerente") { ?>
@@ -48,6 +51,9 @@ if ($sesionIniciada)
 		<a href="../facturas/consultaFacturas.php">Facturas</a>
 	</li>
 
+	<li>
+		<a href="../partesDeTrabajo/nominas.php">Nóminas</a>
+	</li>
 	<?php  } ?>
 
 	<!-- El personal de la empresa podrá consutar todos los clientes que estén almacenados en la base de datos -->
