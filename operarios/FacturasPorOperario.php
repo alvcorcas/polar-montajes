@@ -66,7 +66,7 @@ cerrarConexionBD($conexion);
    <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../css/Proyecto.css?v=<?= $version ?>" />
 <script src="js/boton.js?v=<?= $version ?>"></script>
-  <title>Gestión de Clientes: Lista de Facturas</title>
+  <title>Estas son tus facturas</title>
 </head>
 
 <body> 

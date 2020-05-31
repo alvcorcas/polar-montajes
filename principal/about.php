@@ -12,7 +12,7 @@
   <link rel="stylesheet" type="text/css" href="../css/Proyecto.css?v=<?= $version ?>" />
 <script src="js/boton.js?v=<?= $version ?>"></script>
    
-  <title>Gestión de Clientes: Pagina Principal</title>
+  <title>Sobre Polar Montajes</title>
 </head>
 
 <body> 

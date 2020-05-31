@@ -53,7 +53,7 @@ $conexion = crearConexionBD();
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="../css/Proyecto.css" />
 		<script src="js/boton.js?v=<?= $version ?>"></script>
-		<title>Creación de un Servicio</title>
+		<title>Solicitud de vacaciones</title>
 	</head>
 
 	<body>

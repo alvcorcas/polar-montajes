@@ -50,7 +50,7 @@ $conexion = crearConexionBD();
 		}
 		?>
 			<header>
-				<h2>Servicios Prestados</h2>
+				<h2>Añade un Servicio</h2>
 				<hr	 />
 			</header>
 

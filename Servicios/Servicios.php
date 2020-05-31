@@ -56,7 +56,7 @@ cerrarConexionBD($conexion);
    <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../css/Proyecto.css?v=<?= $version ?>" />
 <script src="js/boton.js?v=<?= $version ?>"></script>
-  <title>Gestión de Clientes: Lista de Clientes</title>
+  <title>Servicios de Polar Montajes</title>
 </head>
 
 <body> 
