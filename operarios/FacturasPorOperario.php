@@ -98,13 +98,13 @@ cerrarConexionBD($conexion);
 
 			<?php }	else { ?>
 
-						<a href="Facturas.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="FacturasPorOperario.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
 			<?php } ?>
 
 		</div>
 		<div style="text-align:center;">
-			<form method="get" action="Facturas.php">
+			<form method="get" action="FacturasPorOperario.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -147,11 +147,15 @@ cerrarConexionBD($conexion);
 		foreach($filas as $fila) {
 
 	?>
-<?php
 
 				
-				if($fila["PAGADA"] == 1) { ?>
-<tr class="fila1" data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">        
+				
+						<tr class=
+							<?php if($fila['PAGADA'] == 1) { ?>
+								"fila1"
+							<?php } else { ?>
+								"fila"
+							<?php } ?> data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">        
 	 <article class="cliente">
 
 		<form method="post" action="controladorFactura.php">
@@ -159,137 +163,19 @@ cerrarConexionBD($conexion);
 			<div class="fila_empleado">
 
 				<div class="datos_empleado">
-
-					<input id="IDFACTURA" name="IDFACTURA"
-
-						type="hidden" value="<?php echo $fila["IDFACTURA"]; ?>"/>
-
-					<input id="FECHAEMISION" name="FECHAEMISION"
-
-						type="hidden" value="<?php echo $fila["FECHAEMISION"]; ?>"/>
-
-					<input id="FECHAVENCIMIENTO" name="FECHAVENCIMIENTO"
-
-						type="hidden" value="<?php echo $fila["FECHAVENCIMIENTO"]; ?>"/>
 						
-						<input id="TIPOPAGO" name="TIPOPAGO"
-
-						type="hidden" value="<?php echo $fila["TIPOPAGO"]; ?>"/>
-						
-						<input id="PRECIOSINIVA" name="PRECIOSINIVA"
-
-						type="hidden" value="<?php echo $fila["PRECIOSINIVA"]; ?>"/>
-						
-						<input id="IVA" name="IVA"
-
-						type="hidden" value="<?php echo $fila["IVA"]; ?>"/>
-						
-						<input id="PRECIOCONIVA" name="PRECIOCONIVA"
-
-						type="hidden" value="<?php echo $fila["PRECIOCONIVA"]; ?>"/>
-						
-						<input id="DNIOPERARIO" name="DNIOPERARIO"
-
-						type="hidden" value="<?php echo $fila["DNIOPERARIO"]; ?>"/>
-						
-						<input id="DNICLIENTE" name="DNICLIENTE"
-
-						type="hidden" value="<?php echo $fila["DNICLIENTE"]; ?>"/>
-						
-						
-				
+						<div class="fila1"><b><td><?php echo $fila["IDFACTURA"]?> </td>
+							<td><?php echo $fila["FECHAEMISION"]?></td>
+							<td><?php echo $fila["FECHAVENCIMIENTO"]?></td>
+							<td><?php echo $fila["TIPOPAGO"]; ?></td>
+							<td><?php echo $fila["PRECIOSINIVA"]?></td>
+							<td><?php echo $fila["IVA"]; ?></td> 
+							<td><?php echo $fila["PRECIOCONIVA"]?></td> 
+							<td><?php echo $fila["DNIOPERARIO"]?></td>
+							<td><?php echo $fila["DNICLIENTE"]?></td>
 					
-					<?php
-
-					if (isset($factura) and ($factura["IDFACTURA"] == $fila["IDFACTURA"])) { ?>
-
-
-						<h3><input id="IDFACTURA" name="IDFACTURA" type="text" value="<?php echo $fila["IDFACTURA"]; ?>"/>	</h3>
-
-						<h4><?php echo $fila["FECHAEMISION"] . " " . $fila["FECHAVENCIMIENTO"]; ?></h4>
-
-				<?php }	else { ?>
-
-
-						<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["FECHAEMISION"]; ?>"/>
-
-						
-						<div class="fila"><b><td><?php echo $fila["IDFACTURA"]?> </td><td><?php echo $fila["FECHAEMISION"]?></td><td><?php echo $fila["FECHAVENCIMIENTO"]?></td><td><?php echo $fila["TIPOPAGO"]; ?></td>
-							<td><?php echo $fila["PRECIOSINIVA"]?></td><td><?php echo $fila["IVA"]; ?></td> <td><?php echo $fila["PRECIOCONIVA"]?></td> <td><?php echo $fila["DNIOPERARIO"]?></td><td><?php echo $fila["DNICLIENTE"]?></td>
-				
-				<?php } ?>
-				
-				</b>
-					<?php }	else { ?>
-						<tr class="fila" data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">        
-	 <article class="cliente">
-
-		<form method="post" action="controladorFactura.php">
-
-			<div class="fila_empleado">
-
-				<div class="datos_empleado">
-
-					<input id="IDFACTURA" name="IDFACTURA"
-
-						type="hidden" value="<?php echo $fila["IDFACTURA"]; ?>"/>
-
-					<input id="FECHAEMISION" name="FECHAEMISION"
-
-						type="hidden" value="<?php echo $fila["FECHAEMISION"]; ?>"/>
-
-					<input id="FECHAVENCIMIENTO" name="FECHAVENCIMIENTO"
-
-						type="hidden" value="<?php echo $fila["FECHAVENCIMIENTO"]; ?>"/>
-						
-						<input id="TIPOPAGO" name="TIPOPAGO"
-
-						type="hidden" value="<?php echo $fila["TIPOPAGO"]; ?>"/>
-						
-						<input id="PRECIOSINIVA" name="PRECIOSINIVA"
-
-						type="hidden" value="<?php echo $fila["PRECIOSINIVA"]; ?>"/>
-						
-						<input id="IVA" name="IVA"
-
-						type="hidden" value="<?php echo $fila["IVA"]; ?>"/>
-						
-						<input id="PRECIOCONIVA" name="PRECIOCONIVA"
-
-						type="hidden" value="<?php echo $fila["PRECIOCONIVA"]; ?>"/>
-						
-						<input id="DNIOPERARIO" name="DNIOPERARIO"
-
-						type="hidden" value="<?php echo $fila["DNIOPERARIO"]; ?>"/>
-						
-						<input id="DNICLIENTE" name="DNICLIENTE"
-
-						type="hidden" value="<?php echo $fila["DNICLIENTE"]; ?>"/>
-						
-						<?php
-					
-					if (isset($factura) and ($factura["IDFACTURA"] == $fila["IDFACTURA"])) { ?>
-
-
-						<h3><input id="IDFACTURA" name="IDFACTURA" type="text" value="<?php echo $fila["IDFACTURA"]; ?>"/>	</h3>
-
-						<h4><?php echo $fila["FECHAEMISION"] . " " . $fila["FECHAVENCIMIENTO"]; ?></h4>
-
-				<?php }	else { ?>
-
-
-						<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["FECHAEMISION"]; ?>"/>
-
-						
-						<div class="fila1"><b><td><?php echo $fila["IDFACTURA"]?> </td><td><?php echo $fila["FECHAEMISION"]?></td><td><?php echo $fila["FECHAVENCIMIENTO"]?></td><td><?php echo $fila["TIPOPAGO"]; ?></td>
-							<td><?php echo $fila["PRECIOSINIVA"]?></td><td><?php echo $fila["IVA"]; ?></td> <td><?php echo $fila["PRECIOCONIVA"]?></td> <td><?php echo $fila["DNIOPERARIO"]?></td><td><?php echo $fila["DNICLIENTE"]?></td>
-					
-				<?php } ?>
-			
-				
 				</b>
 						
-					<?php } ?>	
 				</div>
 				
 			</div>

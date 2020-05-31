@@ -65,25 +65,25 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 				<label>Precio sin IVA:</label>
 				<br>
 				<br>
-				<input type="text" id="precioSinIva" value="100" name="precioSinIva" placeholder="Precio en euros" pattern="[0-9]+" required/>
+				<input type="text" id="precioSinIva"  name="precioSinIva" placeholder="Precio en euros" pattern="[0-9]+" required/>
 				<br>
 				<br>
 				<label>IVA:</label>
 				<br>
 				<br>
-				<input type="text" id="iva" name="iva" value="21" placeholder="0,21 x Precio Sin IVA" pattern="[0-9]+" required/>
+				<input type="text" id="iva" name="iva"  placeholder="0,21 x Precio Sin IVA" pattern="[0-9]+" required/>
 				<br>
 				<br>
 				<label>Precio con IVA:</label>
 				<br>
 				<br>
-				<input type="text" id="precioConIva" value="121" name="precioConIva" placeholder="1,21 x Precio Sin IVA" pattern="[0-9]+" required/>
+				<input type="text" id="precioConIva"  name="precioConIva" placeholder="1,21 x Precio Sin IVA" pattern="[0-9]+" required/>
 				<br>
 				<br>
 				<label>DNI del cliente</label>
 				<br>
 				<br>
-				<input id="dniCliente" value="00000001B" name="dniCliente" type="text" placeholder="12345678X" pattern="^[0-9]{8}[A-Z]" title="Ocho dígitos seguidos de una letra mayúscula" required>
+				<input id="dniCliente"  name="dniCliente" type="text" placeholder="12345678X" pattern="^[0-9]{8}[A-Z]" title="Ocho dígitos seguidos de una letra mayúscula" required>
 				<br>
 				<br>
 				<input type="submit" id="facturacion" value="Enviar factura" onclick="enviarFactura()">

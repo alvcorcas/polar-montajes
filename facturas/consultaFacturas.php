@@ -138,7 +138,6 @@ cerrarConexionBD($conexion);
 	    <th>Precio Total</th>
 	    <th>DNI del Operario </th>
 	     <th>DNI del Cliente </th>
-	    <th> Borrar</th>
         </tr>
     </thead>
     <tbody>
@@ -181,18 +180,9 @@ cerrarConexionBD($conexion);
 								<td><?php echo $fila["DNIOPERARIO"]?></td>
 								<td><?php echo $fila["DNICLIENTE"]?></td>
 						
-					<td>
-					<button id="borrar" name="borrar" type="submit" class="editar_fila">
-
-						<img src="../imagenes/borrar.png" class="editar_fila" alt="Borrar libro" >
-
-					</button>
-				</div>
-				</td>
-				
-				</b>
-						
 					
+						</div>
+				
 				</div>
 				
 			</div>

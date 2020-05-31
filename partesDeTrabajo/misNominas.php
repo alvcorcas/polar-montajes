@@ -3,10 +3,10 @@
 session_start();
 $version = 5;
 require_once ("../gestionBD.php");
-require_once ("GestionServicio.php");
 require_once ("../paginacion.php");
 
-
+// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
+// ¿Hay una sesión activa?
 
 if (isset($_SESSION["paginacion"]))
 	$paginacion = $_SESSION["paginacion"];
@@ -19,11 +19,20 @@ if ($pagina_seleccionada < 1)
 if ($pag_tam < 1)
 	$pag_tam = 5;
 
+// Antes de seguir, borramos las variables de sección para no confundirnos más adelante
 
 unset($_SESSION["paginacion"]);
 
 $conexion = crearConexionBD();
-$query = "SELECT * FROM SERVICIO";
+
+// La consulta que ha de paginarse
+
+$query = "SELECT * FROM PARTETRABAJO WHERE DNIOPERARIO = '" . $_SESSION['login']. "'";
+$_SESSION['query'] = $query;
+//consulta_paginada($conexion, $query, 3, 3);
+
+// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
+// En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
 
 $total_registros = total_consulta($conexion, $query);
 $total_paginas = (int)($total_registros / $pag_tam);
@@ -41,9 +50,6 @@ $_SESSION["paginacion"] = $paginacion;
 
 $filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
 
-if (isset($_SESSION['TRABAJADOR']))
-	$servicio = $_SESSION['TRABAJADOR'];
-
 cerrarConexionBD($conexion);
 ?>
 
@@ -56,7 +62,7 @@ cerrarConexionBD($conexion);
    <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../css/Proyecto.css?v=<?= $version ?>" />
 <script src="js/boton.js?v=<?= $version ?>"></script>
-  <title>Gestión de Clientes: Lista de Clientes</title>
+  <title>Mis nóminas</title>
 </head>
 
 <body> 
@@ -65,11 +71,9 @@ cerrarConexionBD($conexion);
 ?>
 <main>
 		<header>
-			<h2>Servicios hasta la fecha de hoy</h2>
+			<h2>Mis nóminas</h2>
 			<hr	 />
 			</header>
-
-	
 
  <nav>
  	<br />
@@ -88,13 +92,13 @@ cerrarConexionBD($conexion);
 
 			<?php }	else { ?>
 
-						<a href="Servicios.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="misNominas.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
 			<?php } ?>
 
 		</div>
 		<div style="text-align:center;">
-			<form method="get" action="Servicios.php">
+			<form method="get" action="misNominas.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -120,14 +124,11 @@ cerrarConexionBD($conexion);
 	<div >
 		<table class="table table-condensed" style="border-collapse:collapse; text-align: center;">
 			<thead>
-        <tr><th>ID</th>
-            <th>Tiempo Empleado (horas)</th>
-	    <th>Fecha de Inicio</th>
-	    <th>Fecha Fin</th>
-	    <th>Servicio Prestado</th>
-	    <th>Tercera Empresa</th>
-	    <th>DNI del Cliente</th>
-	    
+        <tr><th>Horas trabajadas</th>
+            <th>Horas extras</th>
+            <th>€ por hora de trabajo</th>
+	    <th>Sueldo percibido</th>
+	    <th>Fecha</th>
         </tr>
     </thead>
     <tbody>
@@ -137,83 +138,34 @@ cerrarConexionBD($conexion);
 
 	?>
 	
-	
+					<tr 
 					
-					
-					<tr class=
-					<?php if ($fila['FECHAFIN'] != null) { ?>
-						"fila1" 
-					<?php } else { ?>
-						"fila"
-					<?php } ?>
 					data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">        
 	 <article class="cliente">
 
-		<form method="post" action="ControladorServicios.php">
+		<form method="post" action="controladorClientes.php">
 
 			<div class="fila_cliente">
 
 				<div class="datos_cliente">
 
-					<input id="OID_S" name="OID_S"
-
-						type="hidden" value="<?php echo $fila["OID_S"]; ?>"/>
-						
 						<div><b>
-							<td><?php echo $fila["OID_S"]?> </td>
-							<td><?php echo $fila["TIEMPOEMPLEADO"]?></td>
-							<td><?php echo $fila["FECHAINICIO"]?></td>
-							<?php
-
-					if (isset($servicio) and ($servicio["OID_S"] == $fila["OID_S"])) { ?>
-						
-						<td><input id="FECHAFIN" name="FECHAFIN" type="text" value="<?php echo $fila["FECHAFIN"]; ?>"/>	</td>
-						<td><input id="TIPOSERVICIO" name="TIPOSERVICIO" type="text" value="<?php echo $fila["TIPOSERVICIO"]; ?>"/>	</td>
-						<td><input id="TERCERAEMPRESA" name="TERCERAEMPRESA" type="text" value="<?php if($fila["TERCERAEMPRESA"] == 1){ ?>
-		     Sí;
-		<?php } else { ?>
-			 No;
-		<?php } ?>"/></td>
-						<td><input id="DNICLIENTE" name="DNICLIENTE" type="text" value="<?php echo $fila["DNICLIENTE"]; ?>"/>	</td>
-						<?php }	else { ?>
-							<td><?php echo $fila["FECHAFIN"]; ?></td>
-							<td><?php echo $fila["TIPOSERVICIO"]?></td>
-							<td><?php if($fila["TERCERAEMPRESA"] == 1){ ?>
-		     Sí
-		<?php } else { ?>
-			 No
-		<?php } ?></td>
-							<td><?php echo $fila["DNICLIENTE"]?></td>
-						
-				<?php } ?>
-				</b>
+							<td><?php echo $fila["HORASTRABAJADAS"]?> </td>
+							<td><?php echo $fila["HORASEXTRAS"]?></td>
+							<td><?php echo $fila["PRECIOHORA"]?></td>
+							<td><?php echo $fila["SUELDOTOTAL"]; ?></td>
+							<td><?php echo $fila["MESAÑO"]?></td>
 				
 				</div>
-
 			</div>
-</div>
 		</form>
-		
-		
-		
-		
-		
 	</article>
 	 </tr>
-	
-
 
 	<?php } ?>
-	
-	
 </tbody>
 </table>
-<br />
-<br />
-<form action="CrearServicio.php" style="margin-left: 46%;">
-    <input type="submit" value="Crear nuevo servicio" />
-	</form>
-
+</div>
 <br />
 		<br />
 		<footer >

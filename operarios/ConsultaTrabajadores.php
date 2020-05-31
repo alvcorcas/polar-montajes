@@ -4,35 +4,16 @@ session_start();
 $version = 6;
 require_once ("../gestionBD.php");
 require_once ("gestionTrabajador.php");
-require_once ("../paginacion.php");
 
-if (isset($_SESSION["paginacion"]))
-	$paginacion = $_SESSION["paginacion"];
-$pagina_seleccionada = isset($_GET["PAG_NUM"]) ? (int)$_GET["PAG_NUM"] : (isset($paginacion) ? (int)$paginacion["PAG_NUM"] : 1);
 
-$pag_tam = isset($_GET["PAG_TAM"]) ? (int)$_GET["PAG_TAM"] : (isset($paginacion) ? (int)$paginacion["PAG_TAM"] : 5);
-
-if ($pagina_seleccionada < 1)
-	$pagina_seleccionada = 1;
-if ($pag_tam < 1)
-	$pag_tam = 8;
-
-unset($_SESSION["paginacion"]);
 
 $conexion = crearConexionBD();
 $query = "SELECT * FROM OPERARIO";
+$stmt = $conexion -> prepare($query);
+$stmt -> execute();
+$filas = $stmt;
 
-$total_registros = total_consulta($conexion, $query);
-$total_paginas = (int)($total_registros / $pag_tam);
 
-if ($total_registros % $pag_tam > 0)
-	$total_paginas++;
-if ($pagina_seleccionada > $total_paginas)
-	$pagina_seleccionada = $total_paginas;
-$paginacion["PAG_NUM"] = $pagina_seleccionada;
-$paginacion["PAG_TAM"] = $pag_tam;
-$_SESSION["paginacion"] = $paginacion;
-$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
 
 if (isset($_SESSION['OPERARIO'])) {
 	$operario = $_SESSION['OPERARIO'];
