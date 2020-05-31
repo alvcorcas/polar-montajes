@@ -87,7 +87,7 @@ include_once ("../cabecera.php");
 </div>
 <br />
 <br />
-	<footer>
+	<footer >
 		<a> Universidad De Sevilla</a> <h5> Derechos Reservados| Miguel Ángel Nieva Arjona y Álvaro Cortés Casado</h5>
 	</footer>
 	

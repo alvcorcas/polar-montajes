@@ -230,5 +230,10 @@ $conexion = crearConexionBD();
 <?php
 		cerrarConexionBD($conexion);
 		?>
+		<br />
+		<br />
+		<footer >
+		<a> Universidad De Sevilla</a> <h5> Derechos Reservados| Miguel Ángel Nieva Arjona y Álvaro Cortés Casado</h5>
+	</footer>
 	</body>
 </html>

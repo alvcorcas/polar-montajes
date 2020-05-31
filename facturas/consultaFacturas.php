@@ -212,7 +212,11 @@ cerrarConexionBD($conexion);
 <form action="crearFactura.php" style="margin-left: 46%; margin-top: 2%;">
     <input type="submit" value="Crear nueva factura" />
 	</form>
-
+<br />
+		<br />
+		<footer >
+		<a> Universidad De Sevilla</a> <h5> Derechos Reservados| Miguel Ángel Nieva Arjona y Álvaro Cortés Casado</h5>
+	</footer>
 </main>
 </body>
 </html>

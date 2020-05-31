@@ -235,6 +235,11 @@ cerrarConexionBD($conexion);
 </tbody>
 </table>
 </div>
+<br />
+		<br />
+		<footer >
+		<a> Universidad De Sevilla</a> <h5> Derechos Reservados| Miguel Ángel Nieva Arjona y Álvaro Cortés Casado</h5>
+	</footer>
 </main>
 </body>
 </html>
