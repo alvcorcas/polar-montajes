@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="../css/login.css?v=<?= $version ?>" />
+		<link rel="stylesheet" type="text/css" href="../css/proyecto.css?v=<?= $version ?>" />
 
 		<title>Polar Montajes: Login</title>
 	</head>

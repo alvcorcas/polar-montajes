@@ -2,6 +2,9 @@
 session_start();
 
 require_once ("../gestionBD.php");
+
+if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
+	header("Location: ../index.php")
 ?>
 
 <!DOCTYPE html>
@@ -9,8 +12,7 @@ require_once ("../gestionBD.php");
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="../css/Proyecto.css" />
-		<!-- <script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script> -->
-		<script src="js/boton.js?v=<?= $version ?>"></script>
+		<script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script>
 		<title>Creación de una pedido</title>
 	</head>
 
@@ -22,58 +24,10 @@ require_once ("../gestionBD.php");
 		<header>
 			<h2>Creación de pedidos</h2>
 			<p>
-				: En primer lugar rellene el formulario de la izquierda y haga click en enviar pedido. A continuación, añada tantas filas en la tabla como lineas tenga su pedido y seleccione en enviar tras haberlas rellenado
+				En primer lugar rellene el formulario de la izquierda y haga click en enviar pedido. A continuación, añada tantas filas en la tabla como lineas tenga su pedido y seleccione en enviar tras haberlas rellenado
 			</p>
 			<hr	 />
 		</header>
-
-		<ul>
-			<li>
-				<a href= "../principal/index.php">Polar Montajes:</a>
-			</li>
-			<li>
-				<a href= "../principal/servicios.php">Servicio</a>
-			</li>
-			<li>
-				<a href="../operarios/consultaTrabajadores.php">Trabajadores</a>
-			</li>
-			<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Cliente'){
-			?>
-			<li>
-				<a href="../clientes/pedidosPorCliente.php">Mis pedidos</a>
-			</li>
-			<?php } ?>
-			<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){
-			?>
-			<li>
-				<a href="../pedidos/consultaPedidos.php">Pedidos</a>
-			</li>
-			<?php } ?>
-			<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){
-			?>
-			<li>
-				<a href="../clientes/consultaClientes.php">Clientes</a>
-			</li>
-			<?php } ?>
-			<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){
-			?>
-			<li>
-				<a href="../pedidos/consultaPedidos.php">Pedidos</a>
-			</li>
-			<?php } ?>
-			<li>
-				<a href="contacto.php">Contact</a>
-			</li>
-			<li>
-				<a href="about.php">About</a>
-			</li>
-			<li>
-				<a href="../usuarios/login.php">Login</a>
-			</li>
-			<li>
-				<a href="../usuarios/logout.php">Logout</a>
-			</li>
-		</ul>
 
 		<br>
 		<div style="display: flex">
@@ -82,21 +36,22 @@ require_once ("../gestionBD.php");
 				<label>Fecha de pedido: </label>
 				<br>
 				<br>
-				<input type="date" id="fecha" name="fecha" placeholder="dd/mm/aaaa"/>
+				<input type="date" id="fecha" name="fecha" placeholder="dd/mm/aaaa" required/>
 				<br>
 				<br>
 				<label>Precio:</label>
 				<br>
 				<br>
-				<input type="text" id="precio" name="precio" placeholder="Precio en euros" pattern="[0-9]"/>
+				<input type="text" id="precio" name="precio" placeholder="Precio en euros" pattern="[0-9]+" required/>
 				<br>
 				<br>
 				<label>Nombre de la empresa:</label>
 				<br>
 				<br>
-				<input id="nombreEmpresa" name="nombreEmpresa" type="text">
+				<input id="nombreEmpresa" name="nombreEmpresa" type="text" required>
 				<br>
 				<br>
+				<input type="submit" id="pedir" value="Enviar pedido" onclick="enviarPedido()">
 			</form>
 
 			<table id="myTable" style="width:100%" >
@@ -116,35 +71,37 @@ require_once ("../gestionBD.php");
 			</table>
 		</div>
 
-		<button id="lineasPedido" onclick="enviarLineasPedidos()" hidden>
+		<button id="lineasPedido" onclick="enviarLineasPedido()" style="visibility: hidden">
 			Insertar lineas del pedido
-		</button>
-
-		<button id="pedido" onclick="enviarPedido()">
-			Enviar pedido
 		</button>
 
 		<p id="test"></p>
 
 		<script>
 			function enviarPedido() {
-				$("#nuevoPedido").submit(function(e) {
-					e.preventDefault();
-					// avoid to execute the actual submit of the form.
-					var form = $(this);
-					var url = form.attr('action');
-					$.ajax({
-						type : "POST",
-						url : url,
-						data : form.serialize(), // serializes the form's elements.
-						success : function(data) {
-							alert(data);
-						}
-					});
+					$("#nuevoPedido").submit(function(e) {
 
-				});
-				document.getElementById("lineasPedido").style.visibility = 'visible';
-				document.getElementById("pedido").style.visibility = 'hidden';
+						e.preventDefault();
+
+						var form = $(this);
+						var url = form.attr('action');
+
+						$.ajax({
+							type : "POST",
+							url : url,
+							data : form.serialize(), 
+							success : function(data) {
+								alert(data);
+								if(data == "El pedido se ha insertado correctamente, proceda a añadir filas y rellenarlas"){
+									document.getElementById("pedir").style.visibility = "hidden";
+									document.getElementById("lineasPedido").style.visibility = "visible";
+									
+								}
+
+							}
+						});
+
+					});
 
 			}
 
@@ -173,17 +130,17 @@ require_once ("../gestionBD.php");
 				if (numeroFilas > 2) {
 					var i;
 					for ( i = 1; i < numeroFilas; i++) {
-						$.post("crearLineaFactura.php", {
+						$.post("crearLineaPedido.php", {
 							cantidad : $("#cantidad" + i).val(),
 							precioTotal : $("#precioTotal" + i).val(),
-							oid_prod : $("#oid_prod" + i).val()
+							oid_prod : $("#oid_prod" + i).val(),
+							fila : i
 						}, function(data) {
-							alert("Linea correctamente insertada");
+							alert(data);
 
 						});
 					}
 
-					document.getElementById("lineasPedido").style.visibility = 'hidden';
 				}
 			}
 		</script>

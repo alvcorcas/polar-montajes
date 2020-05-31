@@ -30,14 +30,7 @@ include_once ("../cabecera.php");
 	<br />
 	<br />
 	<br />
-		<ul>
-  <li><a href= "index.php">Polar Montajes:</a></li>
-  <li><a href= "servicios.php">Servicio</a></li>
-  <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
-  <li><a href= "ayuda.php">Ayuda</a></li>
-  <li><a href="contacto.php">Contact</a></li>
-  <li><a href="about.php">About</a></li>
-	</ul>
+		
 	</div>
 	<header>
 			<h2>Preguntas Frecuentes...</h2>

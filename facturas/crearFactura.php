@@ -12,7 +12,6 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="../css/Proyecto.css" />
 		<script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script>
-		<script src="../js/boton.js?v=<?= $version ?>"></script>
 		<title>Creación de una factura</title>
 	</head>
 
@@ -28,54 +27,6 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 			</p>
 			<hr	 />
 		</header>
-
-		<ul>
-			<li>
-				<a href= "../principal/index.php">Polar Montajes:</a>
-			</li>
-			<li>
-				<a href= "../principal/servicios.php">Servicio</a>
-			</li>
-			<li>
-				<a href="../operarios/consultaTrabajadores.php">Trabajadores</a>
-			</li>
-			<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Cliente'){
-			?>
-			<li>
-				<a href="../clientes/facturasPorCliente.php">Mis facturas</a>
-			</li>
-			<?php } ?>
-			<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){
-			?>
-			<li>
-				<a href="../facturas/consultaFacturas.php">Facturas</a>
-			</li>
-			<?php } ?>
-			<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){
-			?>
-			<li>
-				<a href="../clientes/consultaClientes.php">Clientes</a>
-			</li>
-			<?php } ?>
-			<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){
-			?>
-			<li>
-				<a href="../pedidos/consultaPedidos.php">Pedidos</a>
-			</li>
-			<?php } ?>
-			<li>
-				<a href="contacto.php">Contact</a>
-			</li>
-			<li>
-				<a href="about.php">About</a>
-			</li>
-			<li>
-				<a href="../usuarios/login.php">Login</a>
-			</li>
-			<li>
-				<a href="../usuarios/logout.php">Logout</a>
-			</li>
-		</ul>
 
 		<br>
 		<div style="display: flex">
@@ -161,18 +112,14 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 			Insertar lineas de la factura
 		</button>
 
-		<div id="test">
+		<p id="test">
 
-		</div>
+		</p>
 
 		<script>
 			function enviarFactura() {
-				
-				
 				$("#nuevaFactura").submit(function(e) {
-
 					e.preventDefault();
-					// avoid to execute the actual submit of the form.
 
 					var form = $(this);
 					var url = form.attr('action');
@@ -180,10 +127,10 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 					$.ajax({
 						type : "POST",
 						url : url,
-						data : form.serialize(), // serializes the form's elements.
+						data : form.serialize(), 
 						success : function(data) {
 							alert(data);
-							if(data == "La factura se ha insertado correctamente, proceda a añadir filas y rellenarlas"){
+							if (data == "La factura se ha insertado correctamente, proceda a añadir filas y rellenarlas") {
 								document.getElementById("facturacion").style.visibility = 'hidden';
 								document.getElementById("lineasFacturacion").style.visibility = 'visible';
 							}
@@ -216,25 +163,26 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 				if (nFilas != 1)
 					tabla.deleteRow(nFilas - 1);
 			}
-			
+
 			function enviarLineasFactura() {
 				var numeroFilas = document.getElementById("myTable").rows.length;
-				var i;
-				for ( i = 1; i < numeroFilas; i++) {
-					$.post("crearLineaFactura.php", {
-						cantidad : $("#cantidad" + i).val(),
-						descripcion : $("#descripcion" + i).val(),
-						precioUnitario : $("#precioUnitario" + i).val(),
-						precioTotal : $("#precioTotal" + i).val(),
-						oid_s : $("#oid_s" + i).val()
-					}, function(data) {
-						alert(data);
+				if (numeroFilas > 2) {
+					var i;
+					for ( i = 1; i < numeroFilas; i++) {
+						$.post("crearLineaFactura.php", {
+							cantidad : $("#cantidad" + i).val(),
+							descripcion : $("#descripcion" + i).val(),
+							precioUnitario : $("#precioUnitario" + i).val(),
+							precioTotal : $("#precioTotal" + i).val(),
+							oid_s : $("#oid_s" + i).val(),
+							fila : i
+						}, function(data) {
+							alert(data);
+						});
 
-					});
-					
+					}
 				}
-				if(numeroFilas >1)
-					document.getElementById("lineasFacturacion").style.visibility = 'hidden';
+
 			}
 		</script>
 

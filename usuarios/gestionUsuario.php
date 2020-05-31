@@ -56,5 +56,19 @@ function obtenerPerfil($conexion, $nif) {
 	$stmt = $conexion -> prepare($consulta);
 	$stmt -> bindParam(':nif', $nif);
 	$stmt -> execute();
-	return $stmt -> fetchColumn();
+	$perfil = $stmt -> fetchColumn();
+	if($perfil == "Trabajador"){
+		$consulta = "SELECT ESGERENTE FROM operario WHERE dnioperario=:nif";
+		$stmt = $conexion -> prepare($consulta);
+		$stmt -> bindParam(':nif', $nif);
+		$stmt -> execute();
+		if($stmt -> fetchColumn())
+			$perfil = "Gerente";
+	}
+	return $perfil;
 }
+
+
+
+
+

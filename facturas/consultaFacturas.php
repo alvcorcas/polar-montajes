@@ -78,30 +78,7 @@ cerrarConexionBD($conexion);
 			<hr	 />
 			</header>
 
-		<ul>
-  <li><a href= "../principal/index.php">Polar Montajes:</a></li>
-  <li><a href= "../principal/servicios.php">Servicio</a></li>
-  <li><a href="../operarios/consultaTrabajadores.php">Trabajadores</a></li>
-     <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
-  	<li><a href="../facturas/consultaFacturas.php">Facturas</a></li>
-  	<?php } ?>
-  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Cliente'){?>
-  	<li><a href="../clientes/facturasPorCliente.php">Mis facturas</a></li>
-  	<?php } ?>
-  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
-  	<li><a href="consultaFacturas.php">Facturas</a></li>
-  	<?php } ?>
-  <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
-  	<li><a href="../clientes/consultaClientes.php">Clientes</a></li>
-  	<?php } ?>
-  	<?php if(isset($_SESSION['login']) and $_SESSION['perfil'] == 'Trabajador'){?>
-  	<li><a href="../pedidos/consultaPedidos.php">Pedidos</a></li>
-  	<?php } ?>
-  <li><a href="contacto.php">Contact</a></li>
-  <li><a href="about.php">About</a></li>
-  <li><a href="../usuarios/login.php">Login</a></li>
-  <li><a href="../usuarios/logout.php">Logout</a></li>
-	</ul>
+	
 
  <nav>
  	<br />
@@ -149,7 +126,7 @@ cerrarConexionBD($conexion);
 	<br><br /><br />
 
 
-	<div >
+	<div style="margin-left: auto;">
 		<table class="table table-condensed" style="border-collapse:collapse; text-align: center;">
 			<thead>
         <tr><th>ID</th>
@@ -232,7 +209,9 @@ cerrarConexionBD($conexion);
 </div>
 
 
-<a href="./crearFactura.php">En construccion</a>
+<form action="crearFactura.php" style="margin-left: 46%; margin-top: 2%;">
+    <input type="submit" value="Crear nueva factura" />
+	</form>
 
 </main>
 </body>

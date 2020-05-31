@@ -5,7 +5,6 @@ require_once ("../gestionBD.php");
 $conexion = crearConexionBD();
 $consulta = "CALL insertar_factura(:idFactura, :precioSinIva, :iva, :precioConIva, :tipoPago, :fechaVencimiento, :fechaEmision, :dniOperario, :dniCliente)";
 $excepcion = crearFactura($conexion, $consulta);
-$_SESSION["excepcion"] = $excepcion;
 cerrarConexionBD($conexion);
 echo $excepcion;
 
