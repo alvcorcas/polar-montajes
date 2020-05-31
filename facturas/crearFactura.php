@@ -118,10 +118,8 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 		</p>
 
 		<script>
-			var indices = [];
 			function enviarFactura() {
 				$("#nuevaFactura").submit(function(e) {
-
 					e.preventDefault();
 					// avoid to execute the actual submit of the form.
 
@@ -134,7 +132,7 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 						data : form.serialize(), // serializes the form's elements.
 						success : function(data) {
 							alert(data);
-							if(data == "La factura se ha insertado correctamente, proceda a añadir filas y rellenarlas"){
+							if (data == "La factura se ha insertado correctamente, proceda a añadir filas y rellenarlas") {
 								document.getElementById("facturacion").style.visibility = 'hidden';
 								document.getElementById("lineasFacturacion").style.visibility = 'visible';
 							}
@@ -159,42 +157,34 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 				cell3.innerHTML = '<input type="text" id="precioUnitario' + i + '" name="precioUnitario" pattern="[0-9]"/>';
 				cell4.innerHTML = '<input type="text" id="precioTotal' + i + '" name="precioTotal" pattern="[0-9]"/>';
 				cell5.innerHTML = '<input type="text" id="oid_s' + i + '" name="OID_S" placeholder="Id numérico" pattern="[0-9]"/>';
-				indices.push(i);
-				document.getElementById("test").innerHTML = indices;
 			}
 
 			function deleteRow() {
 				var tabla = document.getElementById("myTable");
 				var nFilas = tabla.rows.length;
-				if (nFilas != 1) {
+				if (nFilas != 1)
 					tabla.deleteRow(nFilas - 1);
-					indices.pop();
-					document.getElementById("test").innerHTML = indices;
-				}
 			}
-			
-			function enviarLineasFactura() {
-				var numeroFilas = indices.length;
-				var j = 0;
-				for (j = 0; j < numeroFilas; j++) {
-					var i = indices[j];
-					$.post("crearLineaFactura.php", {
-						cantidad : $("#cantidad" + i).val(),
-						descripcion : $("#descripcion" + i).val(),
-						precioUnitario : $("#precioUnitario" + i).val(),
-						precioTotal : $("#precioTotal" + i).val(),
-						oid_s : $("#oid_s" + i).val()
-					}, function(data) {
-						if (data == "Insertada correctamente"){
-							indices.splice(j, 1);
-							document.getElementById("test").innerHTML = indices;
-						} else {
-							alert(data);
-						}
 
-					});
-					
+			function enviarLineasFactura() {
+				var numeroFilas = document.getElementById("myTable").rows.length;
+				if (numeroFilas > 2) {
+					var i;
+					for ( i = 1; i < numeroFilas; i++) {
+						$.post("crearLineaFactura.php", {
+							cantidad : $("#cantidad" + i).val(),
+							descripcion : $("#descripcion" + i).val(),
+							precioUnitario : $("#precioUnitario" + i).val(),
+							precioTotal : $("#precioTotal" + i).val(),
+							oid_s : $("#oid_s" + i).val(),
+							fila : i
+						}, function(data) {
+							alert(data);
+						});
+
+					}
 				}
+
 			}
 		</script>
 

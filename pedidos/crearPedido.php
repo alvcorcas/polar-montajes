@@ -2,6 +2,9 @@
 session_start();
 
 require_once ("../gestionBD.php");
+
+if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
+	header("Location: ../index.php")
 ?>
 
 <!DOCTYPE html>
@@ -22,12 +25,10 @@ require_once ("../gestionBD.php");
 		<header>
 			<h2>Creación de pedidos</h2>
 			<p>
-				: En primer lugar rellene el formulario de la izquierda y haga click en enviar pedido. A continuación, añada tantas filas en la tabla como lineas tenga su pedido y seleccione en enviar tras haberlas rellenado
+				En primer lugar rellene el formulario de la izquierda y haga click en enviar pedido. A continuación, añada tantas filas en la tabla como lineas tenga su pedido y seleccione en enviar tras haberlas rellenado
 			</p>
 			<hr	 />
 		</header>
-
-		
 
 		<br>
 		<div style="display: flex">
@@ -36,21 +37,22 @@ require_once ("../gestionBD.php");
 				<label>Fecha de pedido: </label>
 				<br>
 				<br>
-				<input type="date" id="fecha" name="fecha" placeholder="dd/mm/aaaa"/>
+				<input type="date" id="fecha" name="fecha" placeholder="dd/mm/aaaa" required/>
 				<br>
 				<br>
 				<label>Precio:</label>
 				<br>
 				<br>
-				<input type="text" id="precio" name="precio" placeholder="Precio en euros" pattern="[0-9]"/>
+				<input type="text" id="precio" name="precio" placeholder="Precio en euros" pattern="[0-9]+" required/>
 				<br>
 				<br>
 				<label>Nombre de la empresa:</label>
 				<br>
 				<br>
-				<input id="nombreEmpresa" name="nombreEmpresa" type="text">
+				<input id="nombreEmpresa" name="nombreEmpresa" type="text" required>
 				<br>
 				<br>
+				<input type="submit" id="pedir" value="Enviar pedido" onclick="enviarPedido()">
 			</form>
 
 			<table id="myTable" style="width:100%" >
@@ -74,31 +76,31 @@ require_once ("../gestionBD.php");
 			Insertar lineas del pedido
 		</button>
 
-		<button id="pedido" onclick="enviarPedido()">
-			Enviar pedido
-		</button>
-
 		<p id="test"></p>
 
 		<script>
 			function enviarPedido() {
-				$("#nuevoPedido").submit(function(e) {
-					e.preventDefault();
-					// avoid to execute the actual submit of the form.
-					var form = $(this);
-					var url = form.attr('action');
-					$.ajax({
-						type : "POST",
-						url : url,
-						data : form.serialize(), // serializes the form's elements.
-						success : function(data) {
-							alert(data);
-						}
-					});
+				$(document).ready(function() {
+					$("#nuevoPedido").submit(function(event) {
 
+						event.preventDefault();
+						// avoid to execute the actual submit of the form.
+
+						var form = $(this);
+						var url = form.attr('action');
+
+						$.ajax({
+							type : "POST",
+							url : url,
+							data : form.serialize(), // serializes the form's elements.
+							success : function(data) {
+								alert(data);
+
+							}
+						});
+
+					});
 				});
-				document.getElementById("lineasPedido").style.visibility = 'visible';
-				document.getElementById("pedido").style.visibility = 'hidden';
 
 			}
 
@@ -130,14 +132,14 @@ require_once ("../gestionBD.php");
 						$.post("crearLineaFactura.php", {
 							cantidad : $("#cantidad" + i).val(),
 							precioTotal : $("#precioTotal" + i).val(),
-							oid_prod : $("#oid_prod" + i).val()
+							oid_prod : $("#oid_prod" + i).val(),
+							fila : i
 						}, function(data) {
-							alert("Linea correctamente insertada");
+							alert(data);
 
 						});
 					}
 
-					document.getElementById("lineasPedido").style.visibility = 'hidden';
 				}
 			}
 		</script>
