@@ -38,9 +38,7 @@ include_once ("../cabecera.php");
 		  
 		  <h2>El nuevo servicio ha sido dado de alta con éxito con los siguientes datos:</h2>
 		<ul>
-			<br ><?php echo "OID_S: " . $nuevoServicio["OID_S"]; ?></br>
-			<br>
-			<br>
+			
 			<br ><?php echo " TIEMPOEMPLEADO: " . $nuevoServicio["TIEMPOEMPLEADO"]; ?></br>
 			<br>
 			<br>
@@ -67,9 +65,7 @@ include_once ("../cabecera.php");
 		<?php } else { ?>
 				<h1>El servicio ya existe en la base de datos</h1>
 				<ul>
-			<br ><?php echo "OID_S: " . $nuevoServicio["OID_S"]; ?></br>
-			<br>
-			<br>
+			
 			<br ><?php echo " TIEMPOEMPLEADO: " . $nuevoServicio["TIEMPOEMPLEADO"]; ?></br>
 			<br>
 			<br>

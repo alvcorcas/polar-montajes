@@ -98,13 +98,13 @@ cerrarConexionBD($conexion);
 
 			<?php }	else { ?>
 
-						<a href="pedidos.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="consultaPedidos.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
 			<?php } ?>
 
 		</div>
 		<div style="text-align:center;">
-			<form method="get" action="pedidos.php">
+			<form method="get" action="consultaPedidos.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -134,8 +134,7 @@ cerrarConexionBD($conexion);
             <th>Fecha de Pedido</th>
 	    <th>Precio</th>
 	   <th>DNI del Operario </th>
-	    <th>NOMBREEMPRESA</th>
-	    <th> Modificar</th>
+	    <th>Proveedor</th>
 	    <th> Borrar</th>
         </tr>
     </thead>
@@ -147,85 +146,36 @@ cerrarConexionBD($conexion);
 	?>
 
 				<tr class= <?php if($fila['PAGADO'] == 1) {?>
-							"fila"
-						<?php } else { ?>
 							"fila1"
+						<?php } else { ?>
+							"fila"
 							<?php } ?>
 						 data-toggle="collapse" data-target="#demo1" class="accordion-toggle" id="div2">        
 	 <article class="cliente">
 
 		<form method="post" action="controladorPedido.php">
 
-			<div class="fila_empleado">
+			<div class="fila_cliente">
 
-				<div class="datos_empleado">
+				<div class="datos_cliente">
 
 					<input id="OID_P" name="OID_P"
 
 						type="hidden" value="<?php echo $fila["OID_P"]; ?>"/>
-
-					<input id="FECHA" name="FECHA"
-
-						type="hidden" value="<?php echo $fila["FECHA"]; ?>"/>
-
-					<input id="PRECIO" name="PRECIO"
-
-						type="hidden" value="<?php echo $fila["PRECIO"]; ?>"/>
 						
-						<input id="DNIOPERARIO" name="DNIOPERARIO"
-
-						type="hidden" value="<?php echo $fila["DNIOPERARIO"]; ?>"/>
-						
-						
-						<input id="NOMBREEMPRESA" name="NOMBREEMPRESA"
-
-						type="hidden" value="<?php echo $fila["NOMBREEMPRESA"]; ?>"/>
-						
-						<?php
-					
-					if (isset($pedido) and ($pedido["OID_P"] == $fila["OID_P"])) { ?>
-
-
-						<h3><input id="OID_P" name="OID_P" type="text" value="<?php echo $fila["OID_P"]; ?>"/>	</h3>
-
-						<h4><?php echo $fila["FECHA"] . " " . $fila["PRECIO"]; ?></h4>
-
-				<?php }	else { ?>
-
-
-						<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["FECHA"]; ?>"/>
-
-						
-						<div class="fila1"><b><td><?php echo $fila["OID_P"]?> </td><td><?php echo $fila["FECHA"]?></td><td><?php echo $fila["PRECIO"]?></td>
-							<td><?php echo $fila["DNIOPERARIO"]?></td><td><?php echo $fila["NOMBREEMPRESA"]; ?></td>
+						<div class="fila1"><b>
+							<td><?php echo $fila["OID_P"]?> </td>
+							<td><?php echo $fila["FECHA"]?></td>
+							<td><?php echo $fila["PRECIO"]?></td>
+							<td><?php echo $fila["DNIOPERARIO"]?></td>
+							<td><?php echo $fila["NOMBREEMPRESA"]; ?></td>
 						<td>
-				<?php } ?>
-				
-				
+								
 					<div id="botones_fila">
-
-				<?php if (isset($pedido) and ($pedido["OID_P"] == $fila["OID_P"])) { ?>
-
-						<button id="grabar" name="grabar" type="submit" class="editar_fila">
-
-							<img src="../imagenes/pngocean_opt.png" class="editar_fila" alt="Guardar modificación">
-
-						</button>
-
-				<?php } else { ?>
-
-						<button id="editar" name="editar" type="submit" class="editar_fila">
-
-							<img src="../imagenes/pngocean_opt.png" class="editar_fila" alt="Editar Cliente">
-
-						</button>
-					</td>
-					<td>
-				<?php } ?>
 						
 					<button id="borrar" name="borrar" type="submit" class="editar_fila">
 
-						<img src="../imagenes/borrar.png" class="editar_fila" alt="Borrar libro" >
+						<img src="../imagenes/borrar.png" class="editar_fila" alt="Pagar pedido" >
 
 					</button>
 				</div>

@@ -16,23 +16,11 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../css/Proyecto.css" />
-  <title>Gestión de biblioteca: ¡Se ha producido un problema!</title>
+  <title>¡Se ha producido un problema!</title>
 </head>
 <body>	
-<?php	
 	
-	echo var_dump($excepcion);
-
-?>
-	
-		
-	
-	
-	
-	
-	
-	
-	
+	<h1>¡Vaya! Parece que ha ocurrido un problema. Pulse el logo para volver a la pantalla de inicio</h1>	
 		
 	<div class='excepcion'>	
 		<?php echo "Información relativa al problema: $excepcion;" ?>

@@ -62,22 +62,10 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 				<label>Metálico</label>
 				<br>
 				<br>
-				<label>Precio sin IVA:</label>
+				<label>Total sin IVA:</label>
 				<br>
 				<br>
 				<input type="text" id="precioSinIva"  name="precioSinIva" placeholder="Precio en euros" pattern="[0-9]+" required/>
-				<br>
-				<br>
-				<label>IVA:</label>
-				<br>
-				<br>
-				<input type="text" id="iva" name="iva"  placeholder="0,21 x Precio Sin IVA" pattern="[0-9]+" required/>
-				<br>
-				<br>
-				<label>Precio con IVA:</label>
-				<br>
-				<br>
-				<input type="text" id="precioConIva"  name="precioConIva" placeholder="1,21 x Precio Sin IVA" pattern="[0-9]+" required/>
 				<br>
 				<br>
 				<label>DNI del cliente</label>
@@ -94,7 +82,6 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 					<th>Cantidad</th>
 					<th>Descripcion</th>
 					<th>Precio unidad</th>
-					<th>Precio total</th>
 					<th>ID del servicio que representa</th>
 					<th>
 					<button type="button" onclick="addRow()">
@@ -148,13 +135,11 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 				var cell2 = row.insertCell(1);
 				var cell3 = row.insertCell(2);
 				var cell4 = row.insertCell(3);
-				var cell5 = row.insertCell(4);
 				var i = table.rows.length - 1;
 				cell1.innerHTML = '<input type="text" id="cantidad' + i + '" name="cantidad" pattern="[0-9]"/>';
 				cell2.innerHTML = '<input type="text" id="descripcion' + i + '" name="descripcion"/>';
 				cell3.innerHTML = '<input type="text" id="precioUnitario' + i + '" name="precioUnitario" pattern="[0-9]"/>';
-				cell4.innerHTML = '<input type="text" id="precioTotal' + i + '" name="precioTotal" pattern="[0-9]"/>';
-				cell5.innerHTML = '<input type="text" id="oid_s' + i + '" name="OID_S" placeholder="Id numérico" pattern="[0-9]"/>';
+				cell4.innerHTML = '<input type="text" id="oid_s' + i + '" name="OID_S" placeholder="Id numérico" pattern="[0-9]"/>';
 			}
 
 			function deleteRow() {
@@ -166,7 +151,7 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 
 			function enviarLineasFactura() {
 				var numeroFilas = document.getElementById("myTable").rows.length;
-				if (numeroFilas > 2) {
+				if (numeroFilas > 1) {
 					var i;
 					for ( i = 1; i < numeroFilas; i++) {
 						$.post("crearLineaFactura.php", {

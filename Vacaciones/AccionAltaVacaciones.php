@@ -54,11 +54,11 @@ include_once ("../Cabecera.php");
 				</ul>		
 		
 			<div id="div_volver">	
-			   Pulsa <a href="Vacaciones.php">aquí</a> para volver a servicios.
+			   Pulsa <a href="Vacaciones.php">aquí</a> para volver a vacaciones.
 			</div>
 		</div>
 		<?php } else { ?>
-				<h1>Este periodo de vacaciones ya esta cogido por otro empleado</h1>
+				<h1>Este periodo de vacaciones ya esta cogido por otro empleado o ha superado el limite de 30 dias por año</h1>
 				<ul>
 			
 			<br ><?php echo " FECHAINICIO: " . $vacaciones["FECHAINICIO"]; ?></br>

@@ -3,7 +3,7 @@
 session_start();
 require_once ("../gestionBD.php");
 $conexion = crearConexionBD();
-$consulta = "CALL insertar_factura(:idFactura, :precioSinIva, :iva, :precioConIva, :tipoPago, :fechaVencimiento, :fechaEmision, :dniOperario, :dniCliente)";
+$consulta = "CALL insertar_factura(:idFactura, :precioSinIva, :tipoPago, :fechaVencimiento, :fechaEmision, :dniOperario, :dniCliente)";
 $excepcion = crearFactura($conexion, $consulta);
 cerrarConexionBD($conexion);
 echo $excepcion;
@@ -20,8 +20,6 @@ function crearFactura($conexion, $consulta) {
 		$stmt -> bindParam(':fechaVencimiento', $fechaVencimiento);
 		$stmt -> bindParam(':tipoPago', $_POST['tipoPago']);
 		$stmt -> bindParam(':precioSinIva', $_POST['precioSinIva']);
-		$stmt -> bindParam(':iva', $_POST['iva']);
-		$stmt -> bindParam(':precioConIva', $_POST['precioConIva']);
 		$stmt -> bindParam(':dniOperario', $_SESSION['login']);
 		$stmt -> bindParam(':dniCliente', $_POST['dniCliente']);
 		$stmt -> execute();

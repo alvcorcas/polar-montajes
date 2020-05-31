@@ -1,23 +1,20 @@
-<?php	
-	session_start();
-	
-	if (isset($_REQUEST["OID P"])){
-		$pedido["OID_P"] = $_REQUEST["OID_P"];
-		$pedido["FECHA"] = $_REQUEST["FECHA"];
-		$pedido["PRECIO"] = $_REQUEST["PRECIO"];
-		$pedido["PAGADO"] = $_REQUEST["PAGADO"];
-		$pedido[" NOMBREEMPRESA"] = $_REQUEST["NOMBREEMPRESA"];
-		$pedido["DNIOPERARIO"] = $_REQUEST["DNIOPERARIO"];
-		
-		$_SESSION["PEDIDO"] = $pedido;
-	
-	if (isset($_REQUEST["editar"])) Header("Location: consultaPedidos.php"); 
-		else if (isset($_REQUEST["grabar"])) Header("Location: ModificarCliente.php");
-		else /* if (isset($_REQUEST["borrar"])) */ Header("Location: borrarCliente.php"); 
-	}
-	else 
-		Header("Location: Pedidos.php");
+<?php
+session_start();
 
-?>
-
+if (isset($_POST["OID_P"])) {
+	$pedido = $_POST["OID_P"];
+	require_once ("../gestionBD.php");
+	require_once ("gestionPedido.php");
+	$conexion = crearConexionBD();
+	$excepcion = pagarpedido($conexion, $pedido);
+	cerrarConexionBD($conexion);
+	if ($excepcion <> "") {
+		$_SESSION["excepcion"] = $excepcion;
+		$_SESSION["destino"] = "../pedidos/consultaPedidos.php";
+		Header("Location: ../principal/excepcion.php");
+	} else
+		Header("Location: ../pedidos/consultaPedidos.php");
+} else
+	Header("Location: ../principal/index.php");
+// Se ha tratado de acceder directamente a este PHP
 ?>

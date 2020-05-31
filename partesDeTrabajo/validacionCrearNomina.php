@@ -2,13 +2,13 @@
 session_start();
 require_once ("../gestionBD.php");
 // Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
-if (isset($_SESSION["formulario"])) {
+if ($_SERVER["POST_METHOD"] == "POST") {
 	// Recogemos los datos del formulario
-	$nuevanomina["HORASTRABAJADAS"] = $_REQUEST["HORASTRABAJADAS"];
-	$nuevanomina["HORASEXTRAS"] = $_REQUEST["HORASEXTRAS"];
-	$nuevanomina["PRECIOHORA"] = $_REQUEST["PRECIOHORA"];
-	$nuevanomina["MESANO"] = $_REQUEST["MESANO"] . "-01";
-	$nuevanomina["DNIOPERARIO"] = $_REQUEST["DNIOPERARIO"];
+	$nuevanomina["HORASTRABAJADAS"] = $_POST["HORASTRABAJADAS"];
+	$nuevanomina["HORASEXTRAS"] = $_POST["HORASEXTRAS"];
+	$nuevanomina["PRECIOHORA"] = $_POST["PRECIOHORA"];
+	$nuevanomina["MESANO"] = $_POST["MESANO"] . "-01";
+	$nuevanomina["DNIOPERARIO"] = $_POST["DNIOPERARIO"];
 	// Guardar la variable local con los datos del formulario en la sesión.
 	$_SESSION['formulario'] = $nuevanomina;
 	// Si se ha llegado a esta página sin haber rellenado el formulario, se redirige al usuario al formulario

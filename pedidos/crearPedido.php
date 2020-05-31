@@ -127,7 +127,7 @@ if(!isset($_SESSION['login']) or $_SESSION['perfil'] == "cliente")
 
 			function enviarLineasPedido() {
 				var numeroFilas = document.getElementById("myTable").rows.length;
-				if (numeroFilas > 2) {
+				if (numeroFilas > 1) {
 					var i;
 					for ( i = 1; i < numeroFilas; i++) {
 						$.post("crearLineaPedido.php", {

@@ -4,7 +4,7 @@ require_once ("../gestionBD.php");
 $conexion = crearConexionBD();
 if ($_POST['fila'] == 1)
 	borrarLineas($conexion);
-$consulta = "CALL insertar_lineafactura(:cantidad, :descripcion, :precioUnitario, :precioTotal, :idfactura, :oid_s)";
+$consulta = "CALL insertar_lineafactura(:cantidad, :descripcion, :precioUnitario, :idfactura, :oid_s)";
 $excepcion = insertar_lineafactura($conexion, $consulta);
 cerrarConexionBD($conexion);
 echo $excepcion;
@@ -15,7 +15,6 @@ function insertar_lineafactura($conexion, $consulta) {
 		$stmt -> bindParam(':cantidad', $_POST['cantidad']);
 		$stmt -> bindParam(':descripcion', $_POST['descripcion']);
 		$stmt -> bindParam(':precioUnitario', $_POST['precioUnitario']);
-		$stmt -> bindParam(':precioTotal', $_POST['precioTotal']);
 		$stmt -> bindParam(':idFactura', $_SESSION['factura']);
 		$stmt -> bindParam(':oid_s', $_POST['oid_s']);
 		$stmt -> execute();

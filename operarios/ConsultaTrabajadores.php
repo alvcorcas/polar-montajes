@@ -91,6 +91,8 @@ cerrarConexionBD($conexion);
   						 	<p><strong><em>Correo:</em></strong><?php echo $fila["CORREO"]; ?> </p>
   						 	<p><strong><em>Teléfono:</em></strong><?php echo $fila["TELEFONO"]; ?></p>
   						 <?php } ?>
+  						 
+  						 <?php if(isset($_SESSION['login']) and $_SESSION['perfil'] <> "Cliente") { ?>
   						 	<div id="botones_fila" >
 
 				<?php if (isset($operario) and ($operario["DNIOPERARIO"] == $fila["DNIOPERARIO"])) { ?>
@@ -118,7 +120,7 @@ cerrarConexionBD($conexion);
 					</button>
   						 	</div>
   						</td>
-				
+				<?php } ?>
 				</b>
 
 				

@@ -2,15 +2,14 @@
 session_start();
 require_once ("../gestionBD.php");
 // Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
-if (isset($_SESSION["formulario"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Recogemos los datos del formulario
-	$nuevoServicio["OID_S"] = $_REQUEST["OID_S"];
-	$nuevoServicio["TIEMPOEMPLEADO"] = $_REQUEST["TIEMPOEMPLEADO"];
-	$nuevoServicio["FECHAINICIO"] = $_REQUEST["FECHAINICIO"];
-	$nuevoServicio["FECHAFIN"] = $_REQUEST["FECHAFIN"];
-	$nuevoServicio["TERCERAEMPRESA"] = $_REQUEST["TERCERAEMPRESA"];
-	$nuevoServicio["TIPOSERVICIO"] = $_REQUEST["TIPOSERVICIO"];
-	$nuevoServicio["DNICLIENTE"] = $_REQUEST["DNICLIENTE"];
+	$nuevoServicio["TIEMPOEMPLEADO"] = $_POST["TIEMPOEMPLEADO"];
+	$nuevoServicio["FECHAINICIO"] = $_POST["FECHAINICIO"];
+	$nuevoServicio["FECHAFIN"] = $_POST["FECHAFIN"];
+	$nuevoServicio["TERCERAEMPRESA"] = $_POST["TERCERAEMPRESA"];
+	$nuevoServicio["TIPOSERVICIO"] = $_POST["TIPOSERVICIO"];
+	$nuevoServicio["DNICLIENTE"] = $_POST["DNICLIENTE"];
 
 	// Guardar la variable local con los datos del formulario en la sesión.
 	$_SESSION['formulario'] = $nuevoServicio;
@@ -35,11 +34,6 @@ if (count($errores) > 0) {
 
 
 function validarDatosServicio($nuevoServicio) {
-
-	if ($nuevoServicio['OID_S'] == '') {
-		$errores[] = '<p>El ID no puede estar vacio</p>';
-	}
-
 	if ($nuevoServicio['TIEMPOEMPLEADO'] == '') {
 		$errores[] = '<p>El Tiempo empleado no puede estar vacio</p>';
 	}
@@ -55,8 +49,6 @@ function validarDatosServicio($nuevoServicio) {
 		$errores[] = '<p>Esta fecha de vencimiento no es válida</p>';
 	}
 	
-
-
 	if ($nuevoServicio['TIPOSERVICIO'] == '') {
 		$errores[] = '<p>El tipo de servicio no puede estar vacio</p>';
 	}

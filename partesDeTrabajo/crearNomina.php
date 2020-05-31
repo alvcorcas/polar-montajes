@@ -54,7 +54,7 @@ $conexion = crearConexionBD();
 		</header>
 		<br>
 		<!-- Formulario a rellenar con el contenido de la nómina creada -->
-		<form id="nuevaNómina" method="post" action="ValidacionCrearNomina.php">
+		<form id="nuevaNomina" method="post" action="ValidacionCrearNomina.php">
 			<label>Horas trabajadas por el operario: </label>
 			<input type="text" name="HORASTRABAJADAS" placeholder="xx"  pattern="[0-9]+"/>
 			<br>
